@@ -4,8 +4,7 @@ import store from './store';
 import RouterNavigator from './Router';
 
  
-class App extends Component {
-    //V2
+class App extends Component { 
     render() {
         return (
             <Provider store={store}>

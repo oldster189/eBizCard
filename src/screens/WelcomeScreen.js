@@ -6,6 +6,7 @@ class WelcomeScreen extends Component {
     return (
       <View>
         <Text> WelcomeScreen </Text>
+        
       </View>
     );
   }
