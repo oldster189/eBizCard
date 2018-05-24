@@ -1,5 +1,5 @@
 import { AsyncStorage } from 'react-native';
-import FBSDK, { LoginManager, AccessToken } from 'react-native-fbsdk';
+import { LoginManager, AccessToken } from 'react-native-fbsdk';
 
 import {
     FACEBOOK_LOGIN_SUCCESS,
