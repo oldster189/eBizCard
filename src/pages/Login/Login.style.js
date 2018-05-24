@@ -37,6 +37,6 @@ export default StyleSheet.create({
     },
     forgetPasswordGroupStyle: { 
         alignItems: 'center',  
-        marginTop: ,
+        marginTop: 26,
     }
 });
