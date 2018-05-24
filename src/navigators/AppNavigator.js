@@ -16,39 +16,27 @@ import { addListener } from '../utils/redux';
 export const AppNavigator = StackNavigator({
   Welcome: {
     screen: WelcomeScreen,
-    navigationOptions: {
-      title: 'Welcome E-Biz Card'
-    }
+    navigationOptions: { title: 'Welcome E-Biz Card' }
   },
   Login: {
     screen: Pages.Login,
-    navigationOptions: {
-      title: 'Sign in'
-    }
+    navigationOptions: { title: 'Sign in' }
   },
   Register: {
     screen: RegisterScreen,
-    navigationOptions: {
-      title: 'Sign up'
-    }
+    navigationOptions: { title: 'Sign up' }
   },
   CreateProfile: {
     screen: CreateProfileScreen,
-    navigationOptions: {
-      title: 'Create your profile'
-    }
+    navigationOptions: { title: 'Create your profile' }
   },
   CreatePhotoCard: {
     screen: CreatePhotoCardScreen,
-    navigationOptions: {
-      title: 'Capture your card'
-    }
+    navigationOptions: { title: 'Capture your card' }
   },
   Main: {
     screen: MainScreen,
-    navigationOptions: {
-      title: 'Main'
-    }
+    navigationOptions: { title: 'Main' }
   },
 });
 
