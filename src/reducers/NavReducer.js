@@ -9,12 +9,11 @@ const tempNavState = router.getStateForAction(mainAction);
 const loginAction = router.getActionForPathAndParams('Login');
 
 const initialNavState = router.getStateForAction(
-  loginAction,
-  tempNavState
+  loginAction, 
+  tempNavState 
 );
 
 export default (state = initialNavState, action) => {
-  console.log(`Action: ${JSON.stringify(action)}`); 
   let nextState;
   switch (action.type) {
     case LOGIN:
@@ -30,6 +29,8 @@ export default (state = initialNavState, action) => {
       );
       break;
     default:
+    
+    console.log(`Action: ${JSON.stringify(action)} ${JSON.stringify(state)}`); 
       nextState = AppNavigator.router.getStateForAction(action, state);
       break;
   }

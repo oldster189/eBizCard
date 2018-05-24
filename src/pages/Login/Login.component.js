@@ -4,19 +4,32 @@ import { SocialIcon, Button, Input } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons';
+import FloatLabelTextInput from 'react-native-floating-label-text-input';
 
 import { LabelWithLink, TextLink } from '../../components/common';
+import PasswordInput from '../../components/PasswordInput';import {
+  TextField
+} from 'react-native-material-textfield';
 import styles from './Login.style';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class LoginScreen extends Component {
+  
   onClickSignup() {
     console.log('Click Sign up!');
   }
 
-  onForgetPassword() {
+  onClickForgetPassword() {
     console.log('Click Forget Password!');
+  }
+
+  onClickSigninFacebook() {
+    console.log('Click Sign in Facebook!');
+  }
+
+  onClickSigninGoogle() {
+    console.log('Click Sign in Google!');
   }
 
   render() {
@@ -61,31 +74,11 @@ class LoginScreen extends Component {
               }}
               blurOnSubmit={false}
             />
-            <Input
-              leftIcon={
-                <SimpleIcon
-                  name="lock"
-                  color="#339CED"
-                  size={25}
-                />
-              }
-              iconContainerStyle={{
-                marginLeft: 20
-              }}
-              placeholder="Password"
-              placeholderTextColor="#B4B4B4"
-              inputStyle={{ marginLeft: 10, color: '#454545' }}
-              autoCapitalize="none"
-              autoCorrect={false}
-              keyboardAppearance="light"
-              keyboardType="email-address"
-              returnKeyType="next"
-              ref={input => (this.usernameInput = input)}
-              onSubmitEditing={() => {
-                this.email2Input.focus();
-              }}
-              blurOnSubmit={false}
-            />
+            <TextField  
+                    autoCorrect={false}
+                    autoCapitalize='none' 
+                    label="Email" />
+            <PasswordInput />
           </View>
           <View style={forgetPasswordGroupStyle}>
             <Button
@@ -101,7 +94,7 @@ class LoginScreen extends Component {
             />
             <TextLink
               title='Forget password'
-              onPress={() => this.onForgetPassword()}
+              onPress={() => this.onClickForgetPassword()}
               textLinkStyle={forgetPasswordTextStyle}
             />
           </View>
@@ -117,9 +110,11 @@ class LoginScreen extends Component {
         </View>
         <View style={loginGroupBtnStyle}>
           <SocialIcon
+            onPress={() => this.onClickSigninFacebook()}
             type='facebook'
           />
           <SocialIcon
+            onPress={() => this.onClickSigninGoogle()}
             light
             type='google'
           />

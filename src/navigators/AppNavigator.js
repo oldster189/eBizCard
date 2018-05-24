@@ -39,7 +39,6 @@ export const AppNavigator = StackNavigator({
     navigationOptions: { title: 'Main' }
   },
 });
-
 class AppWithNavigationState extends Component {
 
   static propTypes = {
@@ -61,8 +60,11 @@ class AppWithNavigationState extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  nav: state.nav,
-});
+const mapStateToProps = ({ nav }) => {
+  console.log(`State: ${JSON.stringify(nav)}`)
+  return {
+    nav: nav,
+  };
+};
 
 export default connect(mapStateToProps)(AppWithNavigationState);
