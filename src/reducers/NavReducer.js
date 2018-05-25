@@ -1,16 +1,23 @@
 
 import { NavigationActions } from 'react-navigation';
 import { AppNavigator } from '../navigators/AppNavigator';
-import { LOGIN, LOGOUT } from '../actions/types';
+import {
+  LOGIN,
+  LOGOUT,
+  NORMAL_LOGIN_SUCCESS,
+  FACEBOOK_LOGIN_SUCCESS,
+  NORMAL_REGISTER_SUCCESS
+} from '../actions/types';
 
 const router = AppNavigator.router;
 const mainAction = router.getActionForPathAndParams('Main');
 const tempNavState = router.getStateForAction(mainAction);
 const loginAction = router.getActionForPathAndParams('Login');
+const CreateProfileAction = router.getActionForPathAndParams('CreateProfile');
 
 const initialNavState = router.getStateForAction(
-  loginAction, 
-  tempNavState 
+  loginAction,
+  tempNavState
 );
 
 export default (state = initialNavState, action) => {
@@ -24,13 +31,19 @@ export default (state = initialNavState, action) => {
       break;
     case LOGOUT:
       nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Main' }),
+        NavigationActions.navigate({ routeName: 'Login' }),
+        state
+      );
+      break;
+    case NORMAL_LOGIN_SUCCESS:
+    case FACEBOOK_LOGIN_SUCCESS:
+    case NORMAL_REGISTER_SUCCESS:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'CreateProfile' }),
         state
       );
       break;
     default:
-    
-    console.log(`Action: ${JSON.stringify(action)} ${JSON.stringify(state)}`); 
       nextState = AppNavigator.router.getStateForAction(action, state);
       break;
   }

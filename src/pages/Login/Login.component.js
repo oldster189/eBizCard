@@ -1,97 +1,121 @@
 import React, { Component } from 'react';
-import { View, Text, Dimensions } from 'react-native';
-import { SocialIcon, Button, Input } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
-
-import SimpleIcon from 'react-native-vector-icons/SimpleLineIcons';
-import FloatLabelTextInput from 'react-native-floating-label-text-input';
-
+import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { Input } from 'react-native-elements';
 import { LabelWithLink, TextLink } from '../../components/common';
-import PasswordInput from '../../components/PasswordInput';import {
-  TextField
-} from 'react-native-material-textfield';
 import styles from './Login.style';
-
-const SCREEN_WIDTH = Dimensions.get('window').width;
+import theme from '../../styles/theme.style';
 
 class LoginScreen extends Component {
-  
+
+  static navigationOptions = {
+    title: 'Sign in',
+    headerStyle: {
+      backgroundColor: theme.NAV_BAR_COLOR,
+    },
+    headerTitleStyle: { color: 'white' },
+    headerBackTitle: ' '
+  }
+
   onClickSignup() {
-    console.log('Click Sign up!');
+    this.props.navigation.push('Register');
   }
 
   onClickForgetPassword() {
-    console.log('Click Forget Password!');
+    this.props.navigation.push('ForgetPassword');
   }
 
   onClickSigninFacebook() {
-    console.log('Click Sign in Facebook!');
+    this.props.facebookLogin();
   }
 
   onClickSigninGoogle() {
     console.log('Click Sign in Google!');
   }
 
+  onClickSubmit() {
+    const { normalLogin, email, password } = this.props;
+    normalLogin(email, password);
+  }
+
   render() {
     const {
       containerStyle,
+      rootLayoutStyle,
       labelSignupStyle,
       loginGroupBtnStyle,
       lineIndicatorStyle,
       indicatorGroupStyle,
       textIndicatorStyle,
       forgetPasswordTextStyle,
-      forgetPasswordGroupStyle
+      forgetPasswordGroupStyle,
+      inputFormGroupStyle,
+      inputGroupStyle,
+      iconImageStyle,
+      nextButtonStyle,
+      layoutButtonGroupStyle,
+      socialButtonStyle
     } = styles;
 
-    return (
-      <View style={containerStyle}>
+    // action creator
+    const { loginValueChange } = this.props;
 
-        <View style={{ flex: 1 }}>
-          <View>
-            <Input
-              leftIcon={
-                <SimpleIcon
-                  name="user"
-                  color="#339CED"
-                  size={25}
-                />
-              }
-              iconContainerStyle={{
-                marginLeft: 20
-              }}
-              placeholder="Email"
-              placeholderTextColor="#B4B4B4"
-              inputStyle={{ marginLeft: 10, color: '#454545' }}
-              autoCapitalize="none"
-              autoCorrect={false}
-              keyboardAppearance="light"
-              keyboardType="email-address"
-              returnKeyType="next"
-              ref={input => (this.usernameInput = input)}
-              onSubmitEditing={() => {
-                this.email2Input.focus();
-              }}
-              blurOnSubmit={false}
-            />
-            <TextField  
-                    autoCorrect={false}
-                    autoCapitalize='none' 
-                    label="Email" />
-            <PasswordInput />
+    // props
+    const { email, password } = this.props;
+
+    return (
+      <ScrollView style={containerStyle}>
+        <View style={rootLayoutStyle}>
+          <View style={inputFormGroupStyle}>
+            <View style={inputGroupStyle}>
+              <Image
+                source={require('../../assets/images/ic_mail.png')}
+                style={iconImageStyle}
+              />
+              <Input
+                placeholder="Email"
+                keyboardType="email-address"
+                autoCapitalize="none"
+                autoCorrect={false}
+                placeholderTextColor={theme.PLACEHOLDER_TEXT_COLOR}
+                inputStyle={{ marginLeft: 0, color: theme.INPUT_TEXT_COLOR }}
+                returnKeyType="next"
+                onSubmitEditing={() => {
+                  this.passwordInput.focus();
+                }}
+                blurOnSubmit={false}
+                onChangeText={text => loginValueChange('email', text)}
+                value={email}
+              />
+            </View>
+            <View style={inputGroupStyle}>
+              <Image
+                source={require('../../assets/images/ic_password.png')}
+                style={iconImageStyle}
+              />
+
+              <Input
+                placeholder="Password"
+                autoCapitalize="none" keyboardAppearance="light"
+                secureTextEntry
+                autoCorrect={false}
+                keyboardType="default"
+                placeholderTextColor={theme.PLACEHOLDER_TEXT_COLOR}
+                inputStyle={{ marginLeft: 0, color: theme.INPUT_TEXT_COLOR }}
+                returnKeyType="done"
+                ref={input => (this.passwordInput = input)}
+                onChangeText={text => loginValueChange('password', text)}
+                value={password}
+              />
+            </View>
           </View>
+
           <View style={forgetPasswordGroupStyle}>
-            <Button
-              icon={
-                <Icon
-                  name='arrow-right'
-                  size={15}
-                  color='white'
-                />
-              }
-              title=''
-              buttonStyle={{ width: 48, height: 48, borderRadius: 24, marginBottom: 8 }}
-            />
+            <TouchableOpacity onPress={() => this.onClickSubmit()}>
+              <Image
+                source={require('../../assets/images/button_next.png')}
+                style={nextButtonStyle}
+              />
+            </TouchableOpacity>
             <TextLink
               title='Forget password'
               onPress={() => this.onClickForgetPassword()}
@@ -100,34 +124,41 @@ class LoginScreen extends Component {
           </View>
         </View>
 
+        <View style={layoutButtonGroupStyle}>
+          <View>
+            <View style={indicatorGroupStyle} >
+              <View style={lineIndicatorStyle} />
+              <Text style={textIndicatorStyle}>
+                Or Sign in with
+                </Text>
+              <View style={lineIndicatorStyle} />
 
-        <View style={indicatorGroupStyle}>
-          <View style={lineIndicatorStyle} />
-          <Text style={textIndicatorStyle}>
-            Or Sign in with
-          </Text>
-          <View style={lineIndicatorStyle} />
-        </View>
-        <View style={loginGroupBtnStyle}>
-          <SocialIcon
-            onPress={() => this.onClickSigninFacebook()}
-            type='facebook'
-          />
-          <SocialIcon
-            onPress={() => this.onClickSigninGoogle()}
-            light
-            type='google'
-          />
-        </View>
-        <View style={labelSignupStyle}>
-          <LabelWithLink
-            textDesc={'don\'t have an account yet?'}
-            textLink='Sign up now'
-            onPress={() => this.onClickSignup()}
-          />
+            </View>
+            <View style={loginGroupBtnStyle}>
+              <TouchableOpacity onPress={() => this.onClickSigninFacebook()}>
+                <Image
+                  source={require('../../assets/images/ic_facebook.png')}
+                  style={socialButtonStyle}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity onPress={() => this.onClickSigninGoogle()}>
+                <Image
+                  source={require('../../assets/images/ic_google.png')}
+                  style={socialButtonStyle}
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={labelSignupStyle}>
+              <LabelWithLink
+                textDesc={'don\'t have an account yet?'}
+                textLink='Sign up now'
+                onPress={() => this.onClickSignup()}
+              />
+            </View>
+          </View>
         </View>
 
-      </View>
+      </ScrollView>
     );
   }
 }
