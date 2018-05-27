@@ -1,9 +1,0 @@
-export default {
-
-    //COLOR
-    INPUT_TYPE_TEXT: 'INPUT_TYPE_TEXT',
-    INPUT_TYPE_PASSWORD: 'INPUT_TYPE_PASSWORD',
-
-    //FONTSIZE  
-};
-

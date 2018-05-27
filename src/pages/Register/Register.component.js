@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { NavigationActions } from 'react-navigation';
 import { Input } from 'react-native-elements';
-import { LabelWithLink } from '../../components/common';
+import { LabelWithLink } from '../../common';
 import styles from './Register.style';
 import theme from '../../styles/theme.style';
 
@@ -22,12 +22,8 @@ class RegisterScreen extends Component {
     if (error !== '') {
       alert(error);
     } 
-  }
-
-  onClickSignin() {
-    this.props.navigation.dispatch(NavigationActions.back());
-  }
-
+  } 
+  
   onClickSigninFacebook() {
     this.props.facebookLogin();
   }
@@ -60,11 +56,10 @@ class RegisterScreen extends Component {
     } = styles;
 
     // action creator
-    const { registerValueChange } = this.props;
+    const { registerValueChange, LoginScreen } = this.props;
 
     // props
-    const { email, password, rePassword, error } = this.props;
-    console.log(error);
+    const { email, password, rePassword, error } = this.props; 
     return (
       <ScrollView style={containerStyle}>
         <View style={rootLayoutStyle}>
@@ -173,7 +168,7 @@ class RegisterScreen extends Component {
               <LabelWithLink
                 textDesc={'you have account already'}
                 textLink='Sign in now'
-                onPress={() => this.onClickSignin()}
+                onPress={LoginScreen}
               />
             </View>
           </View>

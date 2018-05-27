@@ -6,14 +6,15 @@ import {
   LOGOUT,
   NORMAL_LOGIN_SUCCESS,
   FACEBOOK_LOGIN_SUCCESS,
-  NORMAL_REGISTER_SUCCESS
-} from '../actions/types';
+  NORMAL_REGISTER_SUCCESS,
+  LOGIN_SCREEN,
+  REGISTER_SCREEN
+} from '../constants/actionTypes';
 
 const router = AppNavigator.router;
 const mainAction = router.getActionForPathAndParams('Main');
 const tempNavState = router.getStateForAction(mainAction);
 const loginAction = router.getActionForPathAndParams('Login');
-const CreateProfileAction = router.getActionForPathAndParams('CreateProfile');
 
 const initialNavState = router.getStateForAction(
   loginAction,
@@ -43,11 +44,24 @@ export default (state = initialNavState, action) => {
         state
       );
       break;
+    case LOGIN_SCREEN:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'Login' }),
+        state
+      );
+      break;
+    case REGISTER_SCREEN:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'Register' }),
+        state
+      );
+      break;
     default:
       nextState = AppNavigator.router.getStateForAction(action, state);
       break;
   }
 
   // Simply return the original `state` if `nextState` is null or undefined.
+  // console.log(`NextState: ${JSON.stringify(nextState)}`)
   return nextState || state;
 };

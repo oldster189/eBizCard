@@ -11,3 +11,5 @@ export const LOGIN_USER_START = 'LOGIN_USER_START';
 export const REGISTER_USER_START = 'REGISTER_USER_START';
 export const LOGIN = 'Login';
 export const LOGOUT = 'Logout';
+export const REGISTER_SCREEN = 'REGISTER_SCREEN';
+export const LOGIN_SCREEN = 'LOGIN_SCREEN';

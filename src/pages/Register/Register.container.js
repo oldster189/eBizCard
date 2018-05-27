@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { NavigationActions } from 'react-navigation';
 import RegisterScreen from './Register.component';
 import { registerValueChange, normalRegister } from '../../actions';
 
@@ -14,7 +15,10 @@ const mapDispatchToProps = (dispatch) => {
         },
         normalRegister: (email, password, rePassword) => {
             dispatch(normalRegister({ email, password, rePassword }));
-        }
+        },
+        LoginScreen: () => {
+            dispatch(NavigationActions.navigate({ routeName: 'Login' }))
+        },
     };
 };  
 

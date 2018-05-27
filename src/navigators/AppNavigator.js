@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { StackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
+import { initializeListeners } from 'react-navigation-redux-helpers';
 
-import * as Pages from '../pages';
+import * as Pages from '../pages'; 
+import { navigationPropConstructor } from '../utils/redux';
 
-import { addListener } from '../utils/redux';
-
-export const AppNavigator = StackNavigator({
+export const AppNavigator = createStackNavigator({
   Welcome: { screen: Pages.Welcome },
   Login: { screen: Pages.Login },
   Register: { screen: Pages.Register },
@@ -24,25 +24,19 @@ class AppWithNavigationState extends Component {
     nav: PropTypes.object.isRequired,
   };
 
+  componentDidMount() {
+    initializeListeners('root', this.props.nav);
+  }
+
   render() {
     const { dispatch, nav } = this.props;
-
-    return (
-      <AppNavigator
-        navigation={{
-          dispatch,
-          state: nav,
-          addListener,
-        }}
-      />
-    );
+    const navigation = navigationPropConstructor(dispatch, nav);
+    return <AppNavigator navigation={navigation} />;
   }
 }
 
 const mapStateToProps = ({ nav }) => {
-  return {
-    nav,
-  };
+  return { nav };
 };
 
 export default connect(mapStateToProps)(AppWithNavigationState);

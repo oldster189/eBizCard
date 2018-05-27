@@ -1,4 +1,5 @@
 import { AsyncStorage } from 'react-native';
+import { NavigationActions } from 'react-navigation';
 import { LoginManager, AccessToken } from 'react-native-fbsdk';
 
 import {
@@ -11,14 +12,15 @@ import {
     NORMAL_REGISTER_NOT_MATCH_PASSWORD,
     LOGIN_USER_START,
     REGISTER_USER_START
-} from './types';
+} from '../constants/actionTypes';
 
 const startLoginUser = (dispatch) => {
     dispatch({ type: LOGIN_USER_START });
 };
 
-export const facebookLogin = () => async dispatch => {
+export const facebookLogin = () => async dispatch => { 
     const token = await AsyncStorage.getItem('fb_token');
+    console.log(token);
     if (token) {
         // Dispatch an action saying FB login is done
         dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: token });
@@ -30,6 +32,7 @@ export const facebookLogin = () => async dispatch => {
 };
 
 const doFacebookLogin = async dispatch => {  
+   
     const { isCancelled } = await LoginManager.logInWithReadPermissions([
         'public_profile', 'email']);
     if (isCancelled) {
@@ -81,4 +84,19 @@ export const normalRegister = ({ email, password, rePassword }) => {
             dispatch({ type: NORMAL_REGISTER_SUCCESS });  
         } 
     }; 
+};
+
+export const forgetPasswordScreen = () => dispatch => dispatch(NavigationActions.navigate({ routeName: 'ForgetPassword' }))
+
+
+export const loginScreen = () => {
+    return dispatch =>{
+        dispatch({ type: LOGIN_SCREEN })  
+    };
+};
+
+export const registerScreen = () => {
+    return dispatch =>{
+        dispatch({ type: REGISTER_SCREEN })  
+    };
 };
