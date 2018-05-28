@@ -13,11 +13,12 @@ import {
 
 const router = AppNavigator.router;
 const mainAction = router.getActionForPathAndParams('Main');
-const tempNavState = router.getStateForAction(mainAction);
 const loginAction = router.getActionForPathAndParams('Login');
+const tempNavState = router.getStateForAction(loginAction);
+const createProfileAction = router.getActionForPathAndParams('CreateProfile');
 
 const initialNavState = router.getStateForAction(
-  loginAction,
+  createProfileAction,
   tempNavState
 );
 

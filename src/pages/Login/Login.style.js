@@ -7,7 +7,7 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 export default StyleSheet.create({
     containerStyle: {
         flex: 1,
-        backgroundColor: theme.BACKGROUND_CONTAINER_COLOR,
+        backgroundColor: theme.BACKGROUND_AUTH_CONTAINER_COLOR,
     },
     rootLayoutStyle: {
         flex: 1, 

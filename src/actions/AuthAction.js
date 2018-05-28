@@ -11,7 +11,9 @@ import {
     NORMAL_REGISTER_SUCCESS,
     NORMAL_REGISTER_NOT_MATCH_PASSWORD,
     LOGIN_USER_START,
-    REGISTER_USER_START
+    REGISTER_USER_START,
+    LOGIN_SCREEN,
+    REGISTER_SCREEN
 } from '../constants/actionTypes';
 
 const startLoginUser = (dispatch) => {
@@ -20,7 +22,7 @@ const startLoginUser = (dispatch) => {
 
 export const facebookLogin = () => async dispatch => { 
     const token = await AsyncStorage.getItem('fb_token');
-    console.log(token);
+    console.log(`token: ${token}`);
     if (token) {
         // Dispatch an action saying FB login is done
         dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: token });
@@ -31,8 +33,7 @@ export const facebookLogin = () => async dispatch => {
     }
 };
 
-const doFacebookLogin = async dispatch => {  
-   
+const doFacebookLogin = async dispatch => {   
     const { isCancelled } = await LoginManager.logInWithReadPermissions([
         'public_profile', 'email']);
     if (isCancelled) {
@@ -53,7 +54,7 @@ export const loginValueChange = ({ prop, value }) => {
 
 
 export const normalLogin = ({ email, password }) => {
-    console.log(email, password);
+    console.log(`NormalLogin: ${email}, ${password}`);
     return {
         type: NORMAL_LOGIN_SUCCESS
     };
@@ -70,7 +71,7 @@ export const registerValueChange = ({ prop, value }) => {
     };
 };
 
-export const normalRegister = ({ email, password, rePassword }) => {
+export const normalRegister = ({ email, password, rePassword }) => { 
     this.email = email.replace(/\s+/g, '').toLowerCase();
     this.password = password.replace(/\s+/g, '').toLowerCase();
     this.rePassword = rePassword.replace(/\s+/g, '').toLowerCase();
@@ -86,17 +87,18 @@ export const normalRegister = ({ email, password, rePassword }) => {
     }; 
 };
 
-export const forgetPasswordScreen = () => dispatch => dispatch(NavigationActions.navigate({ routeName: 'ForgetPassword' }))
-
-
+export const forgetPasswordScreen = () => dispatch => {
+    dispatch(NavigationActions.navigate({ routeName: 'ForgetPassword' }))
+}
+     
 export const loginScreen = () => {
-    return dispatch =>{
+    return dispatch => {
         dispatch({ type: LOGIN_SCREEN })  
     };
 };
 
 export const registerScreen = () => {
-    return dispatch =>{
+    return dispatch => {
         dispatch({ type: REGISTER_SCREEN })  
     };
 };

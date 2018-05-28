@@ -22,7 +22,6 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  console.log(`Action: ${JSON.stringify(action)} \nState: ${JSON.stringify(state)}`);
   switch (action.type) {
     case LOGIN:
       return { ...state, isLoggedIn: true };

@@ -1,4 +1,5 @@
 import { StyleSheet, Dimensions } from 'react-native';
+import theme from '../../styles/theme.style'; 
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
@@ -6,46 +7,41 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 export default StyleSheet.create({
     containerStyle: {
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: theme.BACKGROUND_AUTH_CONTAINER_COLOR,
     },
     rootLayoutStyle: {
-        flex: 1,
+        flex: 1, 
         height: SCREEN_HEIGHT - 100
     },
-    labelSignupStyle: {
+    labelSigninStyle: {
         marginBottom: 48,
     },
-    loginGroupBtnStyle: {
+    registerGroupBtnStyle: {
         flexDirection: 'row',
         justifyContent: 'center',
         marginBottom: 8,
     },
-    lineIndicatorStyle: {
+    lineSeparatorStyle: {
         height: 1,
         width: (SCREEN_WIDTH / 4),
-        backgroundColor: '#EAEAEA',
+        backgroundColor: theme.SEPARATOR_COLOR,
     },
-    textIndicatorStyle: {
-        fontSize: 19,
-        color: '#454545',
+    textSeparatorStyle: {
+        fontSize: theme.TEXT_SEPARATOR_FONT,
+        color: theme.TEXT_SEPARATOR_COLOR,
         marginLeft: 8,
         marginRight: 8,
     },
-    indicatorGroupStyle: {
+    separatorGroupStyle: {
         flexDirection: 'row',
         alignItems: 'center',
-        flex: 0,
+        flex: 1,
         marginTop: 100,
         marginLeft: 16,
         marginRight: 16,
         marginBottom: 8,
-    },
-    forgetPasswordTextStyle: {
-        fontSize: 14,
-        color: '#B4B4B4',
-        marginTop: 12,
-    },
-    forgetPasswordGroupStyle: {
+    }, 
+    nextBtnGroupStyle: {
         alignItems: 'center',
         marginTop: 40,
     },

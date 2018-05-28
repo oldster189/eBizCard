@@ -1,12 +1,24 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
-import { NavigationActions } from 'react-navigation';
-import { Input } from 'react-native-elements';
+import FloatLabelTextInput from 'react-native-floating-label-text-input';
+
 import { LabelWithLink } from '../../common';
+import PasswordInputText from '../../common/PasswordInputText';
 import styles from './Register.style';
 import theme from '../../styles/theme.style';
 
+
 class RegisterScreen extends Component {
+  static propTypes = {
+    registerValueChange: PropTypes.func.isRequired,
+    normalRegister: PropTypes.func.isRequired,
+    facebookLogin: PropTypes.func.isRequired,
+    loginScreen: PropTypes.func.isRequired,
+    email: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    rePassword: PropTypes.string.isRequired,
+  };
 
   static navigationOptions = {
     title: 'Sign up',
@@ -20,33 +32,49 @@ class RegisterScreen extends Component {
   componentWillReceiveProps(nextProps) {
     const { error } = nextProps;
     if (error !== '') {
-      alert(error);
-    } 
-  } 
-  
-  onClickSigninFacebook() {
-    this.props.facebookLogin();
+      // alert(error)
+      console.log(`error: ${error}`)
+    }
   }
-
+  
   onClickSigninGoogle() {
     console.log('Click Sign in Google!');
   }
+  
+  showErrorEmail() { 
+    return (
+      <Text style={{ color: 'red', marginLeft: 40, marginTop: 6, backgroundColor: 'green' }}>
+        Email is isRequired
+      </Text>
+    )
+  }
 
-  onClickSubmit() {
-    const { normalRegister, email, password, rePassword } = this.props; 
-    normalRegister(email, password, rePassword);
+  showErrorPassword() { 
+    return (
+      <Text style={{ color: 'red', marginLeft: 40, marginTop: 6, backgroundColor: 'green' }}>
+        Password is isRequired
+      </Text>
+    )
+  }
+
+  showErrorConfirmPassword() { 
+    return (
+      <Text style={{ color: 'red', marginLeft: 40, marginTop: 6, backgroundColor: 'green' }}>
+        Confirm is isRequired
+      </Text>
+    )
   }
 
   render() {
     const {
       containerStyle,
       rootLayoutStyle,
-      labelSignupStyle,
-      loginGroupBtnStyle,
-      lineIndicatorStyle,
-      indicatorGroupStyle,
-      textIndicatorStyle,
-      forgetPasswordGroupStyle,
+      labelSigninStyle,
+      registerGroupBtnStyle,
+      lineSeparatorStyle,
+      separatorGroupStyle,
+      textSeparatorStyle,
+      nextBtnGroupStyle,
       inputFormGroupStyle,
       inputGroupStyle,
       iconImageStyle,
@@ -55,13 +83,22 @@ class RegisterScreen extends Component {
       socialButtonStyle
     } = styles;
 
-    // action creator
-    const { registerValueChange, LoginScreen } = this.props;
+    const {
+      registerValueChange,
+      normalRegister,
+      facebookLogin,
+      loginScreen,
+      email,
+      password,
+      rePassword,
+    } = this.props;
 
-    // props
-    const { email, password, rePassword, error } = this.props; 
+
     return (
-      <ScrollView style={containerStyle}>
+      <ScrollView
+        style={containerStyle}
+        keyboardShouldPersistTaps='handled'
+      >
         <View style={rootLayoutStyle}>
           <View style={inputFormGroupStyle}>
             <View style={inputGroupStyle}>
@@ -69,42 +106,40 @@ class RegisterScreen extends Component {
                 source={require('../../assets/images/ic_mail.png')}
                 style={iconImageStyle}
               />
-              <Input
-                placeholder="Email"
+              <FloatLabelTextInput
+                placeholder={'Email'}
                 keyboardType="email-address"
                 autoCapitalize="none"
                 autoCorrect={false}
+                inputStyle={{ color: 'red' }}
                 placeholderTextColor={theme.PLACEHOLDER_TEXT_COLOR}
-                inputStyle={{ marginLeft: 0, color: theme.INPUT_TEXT_COLOR }}
                 returnKeyType="next"
                 onSubmitEditing={() => {
                   this.passwordInput.focus();
                 }}
-                blurOnSubmit={false}
-                onChangeText={text => registerValueChange('email', text)}
+                onChangeTextValue={text => registerValueChange({ prop: 'email', value: text })}
                 value={email}
               />
-            </View>
+            </View> 
             <View style={inputGroupStyle}>
               <Image
                 source={require('../../assets/images/ic_password.png')}
                 style={iconImageStyle}
               />
-
-              <Input
+              <PasswordInputText
                 placeholder="Password"
-                autoCapitalize="none" keyboardAppearance="light"
-                secureTextEntry
-                autoCorrect={false}
                 keyboardType="default"
+                autoCapitalize="none"
+                keyboardAppearance="light"
+                autoCorrect={false}
+                secureTextEntry
                 placeholderTextColor={theme.PLACEHOLDER_TEXT_COLOR}
-                inputStyle={{ marginLeft: 0, color: theme.INPUT_TEXT_COLOR }}
+                ref={input => (this.passwordInput = input)}
                 returnKeyType="next"
                 onSubmitEditing={() => {
                   this.rePasswordInput.focus();
                 }}
-                ref={input => (this.passwordInput = input)}
-                onChangeText={text => registerValueChange('password', text)}
+                onChangeTextValue={text => registerValueChange({ prop: 'password', value: text })}
                 value={password}
               />
             </View>
@@ -113,25 +148,24 @@ class RegisterScreen extends Component {
                 source={require('../../assets/images/ic_password.png')}
                 style={iconImageStyle}
               />
-
-              <Input
+              <PasswordInputText
                 placeholder="Confirm Password"
-                autoCapitalize="none" keyboardAppearance="light"
-                secureTextEntry
-                autoCorrect={false}
                 keyboardType="default"
+                autoCapitalize="none"
+                keyboardAppearance="light"
+                autoCorrect={false}
+                secureTextEntry
                 placeholderTextColor={theme.PLACEHOLDER_TEXT_COLOR}
-                inputStyle={{ marginLeft: 0, color: theme.INPUT_TEXT_COLOR }}
                 returnKeyType="done"
                 ref={input => (this.rePasswordInput = input)}
-                onChangeText={text => registerValueChange('rePassword', text)}
+                onChangeTextValue={text => registerValueChange({ prop: 'rePassword', value: text })}
                 value={rePassword}
               />
             </View>
           </View>
 
-          <View style={forgetPasswordGroupStyle}>
-            <TouchableOpacity onPress={() => this.onClickSubmit()}>
+          <View style={nextBtnGroupStyle}>
+            <TouchableOpacity onPress={() => normalRegister({ email, password, rePassword })}>
               <Image
                 source={require('../../assets/images/button_next.png')}
                 style={nextButtonStyle}
@@ -142,16 +176,16 @@ class RegisterScreen extends Component {
 
         <View style={layoutButtonGroupStyle}>
           <View>
-            <View style={indicatorGroupStyle} >
-              <View style={lineIndicatorStyle} />
-              <Text style={textIndicatorStyle}>
-                Or Sign up with
-                </Text>
-              <View style={lineIndicatorStyle} />
+            <View style={separatorGroupStyle} >
+              <View style={lineSeparatorStyle} />
+              <Text style={textSeparatorStyle}>
+                Or sign up with
+              </Text>
+              <View style={lineSeparatorStyle} />
 
             </View>
-            <View style={loginGroupBtnStyle}>
-              <TouchableOpacity onPress={() => this.onClickSigninFacebook()}>
+            <View style={registerGroupBtnStyle}>
+              <TouchableOpacity onPress={facebookLogin}>
                 <Image
                   source={require('../../assets/images/ic_facebook.png')}
                   style={socialButtonStyle}
@@ -164,11 +198,11 @@ class RegisterScreen extends Component {
                 />
               </TouchableOpacity>
             </View>
-            <View style={labelSignupStyle}>
+            <View style={labelSigninStyle}>
               <LabelWithLink
                 textDesc={'you have account already'}
                 textLink='Sign in now'
-                onPress={LoginScreen}
+                onPress={loginScreen}
               />
             </View>
           </View>

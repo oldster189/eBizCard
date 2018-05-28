@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
-import { Input } from 'react-native-elements';
+import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native'; 
 import FloatLabelTextInput from 'react-native-floating-label-text-input';
 
 import { LabelWithLink, TextLink } from '../../common';
@@ -77,18 +76,20 @@ class LoginScreen extends Component {
                 style={iconImageStyle}
               />
               <FloatLabelTextInput
-                placeholder={"Email"}
+                placeholder={'Email'}
                 keyboardType="email-address"
                 autoCapitalize="none"
-                autoCorrect={false}
-                inputStyle={{ color: 'red' }}
+                autoCorrect={false} 
                 placeholderTextColor={theme.PLACEHOLDER_TEXT_COLOR}
                 returnKeyType="next"
                 onSubmitEditing={() => {
                   this.passwordInput.focus();
                 }}
-                onChangeTextValue={text => loginValueChange({ prop: 'email', value: text})}
-                value={email} />
+                onChangeTextValue={text => loginValueChange({ prop: 'email', value: text })}
+                value={email} 
+                blurOnSubmit={false}
+              />
+              
             </View>
             <View style={inputGroupStyle}>
               <Image
@@ -104,15 +105,16 @@ class LoginScreen extends Component {
                 secureTextEntry
                 placeholderTextColor={theme.PLACEHOLDER_TEXT_COLOR}
                 returnKeyType="done"
-                ref={input => (this.passwordInput = input)}
-                onChangeTextValue={text => loginValueChange({ prop: 'password', value: text})}
-                value={password}
+                ref={input => (this.passwordInput = input)} 
+                // ref={input => (this.passwordInput = input)} 
+                onChangeTextValue={text => loginValueChange({ prop: 'password', value: text })}
+                value={password} 
               />
             </View>
           </View>
 
           <View style={forgetPasswordGroupStyle}>
-            <TouchableOpacity onPress={() => normalLogin({email, password})}>
+            <TouchableOpacity onPress={() => normalLogin({ email, password })}>
               <Image
                 source={require('../../assets/images/button_next.png')}
                 style={nextButtonStyle}

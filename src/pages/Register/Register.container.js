@@ -1,27 +1,13 @@
-import { connect } from 'react-redux';
-import { NavigationActions } from 'react-navigation';
-import RegisterScreen from './Register.component';
-import { registerValueChange, normalRegister } from '../../actions';
+import { connect } from 'react-redux'; 
+import Register from './Register.component';
+import * as actions from '../../actions/AuthAction';
 
 const mapStateToProps = ({ auth }) => {
-    const { email, password, rePassword, error } = auth;
-    return { email, password, rePassword, error };
-};
+    const { email, password, rePassword } = auth;
+    return { email, password, rePassword };
+}; 
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        registerValueChange: (prop, value) => {
-            dispatch(registerValueChange({ prop, value }));
-        },
-        normalRegister: (email, password, rePassword) => {
-            dispatch(normalRegister({ email, password, rePassword }));
-        },
-        LoginScreen: () => {
-            dispatch(NavigationActions.navigate({ routeName: 'Login' }))
-        },
-    };
-};  
 
-const RegisterScreenContainer = connect(mapStateToProps, mapDispatchToProps)(RegisterScreen);
+const RegisterScreenContainer = connect(mapStateToProps, actions)(Register);
 
 export default RegisterScreenContainer;
