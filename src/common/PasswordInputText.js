@@ -79,8 +79,7 @@ export default class PasswordInputText extends React.Component {
         }
     }
 
-    render() {
-        console.log(this.props)
+    render() { 
         return (
             <View
                 style={{

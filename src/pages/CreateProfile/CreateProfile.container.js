@@ -4,6 +4,7 @@ import * as actions from '../../actions/CreateProfileAction';
 
 const mapStateToProps = ({ createProfile }) => {
     const {
+        imageProfile,
         profileName,
         infoPrefix,
         fname,
@@ -27,6 +28,7 @@ const mapStateToProps = ({ createProfile }) => {
     } = createProfile;
 
     return {
+        imageProfile,
         profileName,
         infoPrefix,
         fname,

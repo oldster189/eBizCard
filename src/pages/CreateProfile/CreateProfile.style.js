@@ -27,6 +27,7 @@ export default StyleSheet.create({
     imgProfileStyle: {
         height: 138,
         width: 138,
+        borderRadius: 69
     },
     cameraLayoutGroupStyle: {
         alignItems: 'flex-end',

@@ -17,3 +17,7 @@ export const LOGIN_SCREEN = 'LOGIN_SCREEN';
 
 //Create Profile Action Type
 export const CREATE_PROFILE_VALUE_CHANGE = 'CREATE_PROFILE_VALUE_CHANGE';
+export const SELECT_PHOTO_CAMERA = 'SELECT_PHOTO_CAMERA';
+export const SELECT_PHOTO_LIBRARY = 'SELECT_PHOTO_LIBRARY';
+export const CHOOSE_CAMERA = 0;
+export const CHOOSE_LIBRARY = 1;
