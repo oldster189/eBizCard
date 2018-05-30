@@ -5,7 +5,10 @@ import {
     CHOOSE_CAMERA,
     CHOOSE_LIBRARY,
     SELECT_PHOTO_CAMERA,
-    SELECT_PHOTO_LIBRARY
+    SELECT_PHOTO_LIBRARY,
+    CREATE_PROFILE_START,
+    TEXT_INPUT_IS_REQUIRE,
+    CREATE_PROFILE_SUCCESS
 } from '../constants/actionTypes';
 
 const ImagePicker = NativeModules.ImageCropPicker;
@@ -82,3 +85,36 @@ const chooseCamera = (dispatch, cropping) => {
     });
 }
 
+const startCreateProfile = (dispatch) => {
+    dispatch({ type: CREATE_PROFILE_START });
+};
+
+export const createProfile = ({
+    infoPrefix,
+    fname,
+    mname,
+    lname,
+    suffix,
+    mobilePhone,
+    email,
+    companyName,
+    position,
+    companyAddress,
+    officePhone,
+    faxPhone,
+    businessType
+}) => { 
+    this.email = email.replace(/\s+/g, '').toLowerCase();
+
+    return async dispatch => {
+        startCreateProfile(dispatch)
+        if (fname === '') {
+            dispatch({ type: TEXT_INPUT_IS_REQUIRE, payload: { errorFname: 'First name is Require' } })
+        } else if (lname === '') {
+            dispatch({ type: TEXT_INPUT_IS_REQUIRE, payload: { errorLname: 'Last name is Require' } })
+        } else {
+            // Call service
+            dispatch({ type: CREATE_PROFILE_SUCCESS })
+        }
+    }
+}

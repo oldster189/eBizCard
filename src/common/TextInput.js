@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, Text } from 'react-native'
 import FloatLabelTextInput from 'react-native-floating-label-text-input'
+import { TextField } from 'react-native-material-textfield';
 import SeparatorLine from '../common/SeparatorLine'
 import theme from '../styles/theme.style'
 
@@ -24,6 +25,17 @@ class TextInput extends Component {
         }
     }
 
+
+    unsetFocus() {
+        this.setState({
+            focused: false
+        });
+        try {
+            return this.props.onBlur();
+        } catch (_error) { }
+    }
+
+
     clear() {
         this.inputRef().clear()
     }
@@ -44,24 +56,31 @@ class TextInput extends Component {
         return this.refs.input
     }
 
-    renderSeparatorLine() {
-        if (!this.props.hideUnderLine) {
-            return <SeparatorLine />
+    renderError() { 
+        if (this.props.textError === '') {
+            return
         }
-        return null
+        return (
+            <Text style={styles.errorStyle}>{this.props.textError}</Text>
+        )
     }
 
     render() {
-        const { containerStyle, groupInputStyle } = styles 
+        const { containerStyle, groupInputStyle } = styles
         return (
             <View style={{ flex: 1 }}>
                 <View style={containerStyle}>
-                    <View
-                        style={groupInputStyle}
-                    >
-                        <FloatLabelTextInput
+                    <View style={groupInputStyle} >
+                        <TextField
+                            containerStyle={{
+                                flex: 1,
+                                height: 70,
+                                padding: 0,
+                                justifyContent: 'center'
+                            }} 
                             {...this.props}
                             ref='input'
+                            activeLineWidth={2}
                             onFocus={() => this.setFocus()}
                             onBlur={() => this.unsetFocus()}
                             noBorder
@@ -71,21 +90,25 @@ class TextInput extends Component {
                             placeholderTextColor={theme.PLACEHOLDER_TEXT_COLOR}
                         />
                     </View>
+                    {this.renderError()}
                 </View> 
-                {this.renderSeparatorLine()}
-            </View> 
+            </View>
         )
     }
 }
 const styles = StyleSheet.create({
     containerStyle: {
         flex: 1,
-        height: 68,
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'white',
         justifyContent: 'center',
     },
     groupInputStyle: {
         flexDirection: 'row',
+    },
+    errorStyle: {
+        marginLeft: theme.MARGIN_LEFT,
+        color: theme.TEXT_ERROR_COLOR,
+        fontSize: theme.TEXT_ERROR_FONT,
     }
 })
 

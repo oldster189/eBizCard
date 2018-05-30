@@ -16,28 +16,36 @@ import theme from '../../styles/theme.style';
 class CreateProfileScreen extends Component {
 
   static propTypes = {
-    createProfileValueChange: PropTypes.func.isRequired,
-    handleActionSheetPress: PropTypes.func.isRequired, 
-    profileName: PropTypes.string.isRequired,
-    infoPrefix: PropTypes.string.isRequired,
-    fname: PropTypes.string.isRequired,
-    mname: PropTypes.string.isRequired,
-    lname: PropTypes.string.isRequired,
-    suffix: PropTypes.string.isRequired,
-    mobilePhone: PropTypes.string.isRequired,
-    secondMobilePhone: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    secondEmail: PropTypes.string.isRequired,
-    companyName: PropTypes.string.isRequired,
-    position: PropTypes.string.isRequired,
-    companyAddress: PropTypes.string.isRequired,
-    officePhone: PropTypes.string.isRequired,
-    faxPhone: PropTypes.string.isRequired,
-    businessType: PropTypes.string.isRequired,
+    createProfileValueChange: PropTypes.func,
+    handleActionSheetPress: PropTypes.func,
+    createProfile: PropTypes.func,
+    profileName: PropTypes.string,
+    infoPrefix: PropTypes.string,
+    fname: PropTypes.string,
+    mname: PropTypes.string,
+    lname: PropTypes.string,
+    suffix: PropTypes.string,
+    mobilePhone: PropTypes.string,
+    secondMobilePhone: PropTypes.string,
+    email: PropTypes.string,
+    secondEmail: PropTypes.string,
+    companyName: PropTypes.string,
+    position: PropTypes.string,
+    companyAddress: PropTypes.string,
+    officePhone: PropTypes.string,
+    faxPhone: PropTypes.string,
+    businessType: PropTypes.string,
     error: PropTypes.string,
     loading: PropTypes.bool,
     isShowSecondMobilePhone: PropTypes.bool,
     isShowSecondEmail: PropTypes.bool,
+    errorProfileName: PropTypes.string,
+    errorFname: PropTypes.string,
+    errorLname: PropTypes.string,
+    errorMobilePhone: PropTypes.string,
+    errorCompanyName: PropTypes.string,
+    errorPosition: PropTypes.string,
+    errorCompanyAddress: PropTypes.string,
   };
 
   static navigationOptions = {
@@ -87,14 +95,14 @@ class CreateProfileScreen extends Component {
               />
             </TouchableOpacity>
 
-            <TextInput
-              placeholder={'Second mobile no'}
+            <TextInput lineWidth={0}
+              label={'Second mobile no'}
               keyboardType="phone-pad"
               returnKeyType="next"
-              onChangeTextValue={text =>
+              onChangeText={text =>
                 createProfileValueChange({ prop: 'secondMobilePhone', value: text })}
               value={secondMobilePhone}
-              hideUnderLine
+              onFocus={() => { }}
             />
           </View>
           <SeparatorLine />
@@ -133,14 +141,14 @@ class CreateProfileScreen extends Component {
               />
             </TouchableOpacity>
 
-            <TextInput
-              placeholder={'Second email'}
+            <TextInput lineWidth={0}
+              label={'Second email'}
               keyboardType="email-address"
               returnKeyType="next"
-              onChangeTextValue={text =>
+              onChangeText={text =>
                 createProfileValueChange({ prop: 'secondEmail', value: text })}
               value={secondEmail}
-              hideUnderLine
+              onFocus={() => { }}
             />
           </View>
         </View>
@@ -172,6 +180,7 @@ class CreateProfileScreen extends Component {
     const {
       createProfileValueChange,
       handleActionSheetPress,
+      createProfile,
       profileName,
       infoPrefix,
       fname,
@@ -186,8 +195,17 @@ class CreateProfileScreen extends Component {
       officePhone,
       faxPhone,
       businessType,
+      errorProfileName,
+      errorFname,
+      errorLname,
+      errorMobilePhone,
+      errorCompanyName,
+      errorPosition,
+      errorCompanyAddress,
+
     } = this.props
 
+    console.log('asdasd'+this.props.errorFname)
     return (
       <View style={containerStyle}>
         <ScrollView
@@ -224,16 +242,18 @@ class CreateProfileScreen extends Component {
 
           {/* Begin Content */}
           <View style={{ marginTop: 10 }} />
-          <TextInput
-            placeholder={'Profile name'}
+          <TextInput lineWidth={0}
+            label={'Profile name'}
             keyboardType="default"
             returnKeyType="next"
             onSubmitEditing={() => {
               this.fnameInput.focus();
             }}
-            onChangeTextValue={text =>
+            textError={errorProfileName}
+            onChangeText={text =>
               createProfileValueChange({ prop: 'profileName', value: text })}
             value={profileName}
+            onFocus={() => { }}
           />
 
           {/* Section Personal info */}
@@ -243,92 +263,103 @@ class CreateProfileScreen extends Component {
             title='Personal info'
           />
           <SeparatorLine />
-          <TextInput
+          <TextInput lineWidth={1}
             editable={false}
-            placeholder={'Info prefix'}
+            label={'Info prefix'}
             keyboardType="default"
-            onChangeTextValue={text =>
+            onChangeText={text =>
               createProfileValueChange({ prop: 'infoPrefix', value: text })}
             value={infoPrefix}
+            onFocus={() => { }}
           />
 
-          <TextInput
-            placeholder={'First name'}
+          <TextInput lineWidth={1}
+            label={'First name'}
             keyboardType="default"
             returnKeyType="next"
             onSubmitEditing={() => {
               this.mnameInput.focus();
             }}
             ref={input => (this.fnameInput = input)}
-            onChangeTextValue={text =>
+            onChangeText={text =>
               createProfileValueChange({ prop: 'fname', value: text })}
             value={fname}
+            textError={errorFname}
+            onFocus={() => { }}
           />
 
-          <TextInput
-            placeholder={'Middle name'}
+          <TextInput lineWidth={1}
+            label={'Middle name'}
             keyboardType="default"
             returnKeyType="next"
             onSubmitEditing={() => {
               this.lnameInput.focus();
             }}
             ref={input => (this.mnameInput = input)}
-            onChangeTextValue={text =>
+            onChangeText={text =>
               createProfileValueChange({ prop: 'mname', value: text })}
             value={mname}
+            onFocus={() => { }}
           />
 
-          <TextInput
-            placeholder={'Last name'}
+          <TextInput lineWidth={1}
+            label={'Last name'}
             keyboardType="default"
             returnKeyType="next"
             onSubmitEditing={() => {
               this.suffixInput.focus();
             }}
             ref={input => (this.lnameInput = input)}
-            onChangeTextValue={text =>
+            onChangeText={text =>
               createProfileValueChange({ prop: 'lname', value: text })}
             value={lname}
+            textError={errorLname}
+            onFocus={() => { }}
           />
 
-          <TextInput
-            placeholder={'Suffix'}
+          <TextInput lineWidth={1}
+            label={'Suffix'}
             keyboardType="default"
             returnKeyType="next"
             onSubmitEditing={() => {
               this.mobilePhoneInput.focus();
             }}
             ref={input => (this.suffixInput = input)}
-            onChangeTextValue={text =>
+            onChangeText={text =>
               createProfileValueChange({ prop: 'suffix', value: text })}
             value={suffix}
+            onFocus={() => { }}
           />
 
-          <TextInput
-            placeholder={'Mobile no'}
+          <TextInput lineWidth={1}
+            label={'Mobile no'}
             keyboardType="phone-pad"
             returnKeyType="next"
             onSubmitEditing={() => {
               this.emailInput.focus();
             }}
             ref={input => (this.mobilePhoneInput = input)}
-            onChangeTextValue={text =>
+            onChangeText={text =>
               createProfileValueChange({ prop: 'mobilePhone', value: text })}
             value={mobilePhone}
+            textError={errorMobilePhone}
+            onFocus={() => { }}
           />
           {this.renderSecondMobilePhone()}
 
-          <TextInput
-            placeholder={'Email'}
+          <TextInput lineWidth={1}
+            label={'Email'}
             keyboardType="email-address"
             returnKeyType="next"
+            disabled
             onSubmitEditing={() => {
               this.companyNameInput.focus();
             }}
             ref={input => (this.emailInput = input)}
-            onChangeTextValue={text =>
+            onChangeText={text =>
               createProfileValueChange({ prop: 'email', value: text })}
             value={email}
+            onFocus={() => { }}
           />
           {this.renderSecondEmail()}
 
@@ -338,87 +369,110 @@ class CreateProfileScreen extends Component {
             source={require('../../assets/images/ic_company.png')}
             title='Company info'
           />
-
-          <TextInput
-            placeholder={'Company'}
+          <SeparatorLine />
+          <TextInput lineWidth={1}
+            label={'Company'}
             keyboardType="default"
             returnKeyType="next"
             onSubmitEditing={() => {
               this.positionInput.focus();
             }}
             ref={input => (this.companyNameInput = input)}
-            onChangeTextValue={text =>
+            onChangeText={text =>
               createProfileValueChange({ prop: 'companyName', value: text })}
             value={companyName}
+            textError={errorCompanyName}
+            onFocus={() => { }}
           />
 
-          <TextInput
-            placeholder={'Position'}
+          <TextInput lineWidth={1}
+            label={'Position'}
             keyboardType="default"
             returnKeyType="next"
             onSubmitEditing={() => {
               this.companyAddressInput.focus();
             }}
             ref={input => (this.positionInput = input)}
-            onChangeTextValue={text =>
+            onChangeText={text =>
               createProfileValueChange({ prop: 'position', value: text })}
             value={position}
+            textError={errorPosition}
+            onFocus={() => { }}
           />
 
-          <TextInput
-            placeholder={'Company address'}
+          <TextInput lineWidth={1}
+            label={'Company address'}
             keyboardType="default"
             returnKeyType="next"
             onSubmitEditing={() => {
               this.officePhoneInput.focus();
             }}
             ref={input => (this.companyAddressInput = input)}
-            onChangeTextValue={text =>
+            onChangeText={text =>
               createProfileValueChange({ prop: 'companyAddress', value: text })}
             value={companyAddress}
+            textError={errorCompanyAddress}
+            onFocus={() => { }}
           />
 
-          <TextInput
-            placeholder={'Office no'}
+          <TextInput lineWidth={1}
+            label={'Office no'}
             keyboardType="default"
             returnKeyType="next"
             onSubmitEditing={() => {
               this.faxPhoneInput.focus();
             }}
             ref={input => (this.officePhoneInput = input)}
-            onChangeTextValue={text =>
+            onChangeText={text =>
               createProfileValueChange({ prop: 'officePhone', value: text })}
             value={officePhone}
+            onFocus={() => { }}
           />
 
-          <TextInput
-            placeholder={'Fax no'}
+          <TextInput lineWidth={1}
+            label={'Fax no'}
             keyboardType="default"
             returnKeyType="next"
             onSubmitEditing={() => {
               this.businessTypeInput.focus();
             }}
             ref={input => (this.faxPhoneInput = input)}
-            onChangeTextValue={text =>
+            onChangeText={text =>
               createProfileValueChange({ prop: 'faxPhone', value: text })}
             value={faxPhone}
+            onFocus={() => { }}
           />
 
-          <TextInput
-            placeholder={'Business type'}
+          <TextInput lineWidth={0}
+            label={'Business type'}
             keyboardType="default"
             returnKeyType="done"
             ref={input => (this.businessTypeInput = input)}
-            onChangeTextValue={text =>
+            onChangeText={text =>
               createProfileValueChange({ prop: 'businessType', value: text })}
             value={businessType}
+            onFocus={() => { }}
           />
           {/* End Content */}
 
           <Button
             title='Next'
             buttonStyle={nextBtnStyle}
-            onPress={() => { }}
+            onPress={() => createProfile({
+              infoPrefix,
+              fname,
+              mname,
+              lname,
+              suffix,
+              mobilePhone,
+              email,
+              companyName,
+              position,
+              companyAddress,
+              officePhone,
+              faxPhone,
+              businessType
+            })}
           />
         </ScrollView>
         <ActionSheet

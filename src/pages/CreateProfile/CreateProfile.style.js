@@ -43,8 +43,7 @@ export default StyleSheet.create({
     secondGroupLayoutStyle: {
         flexDirection: 'row',
         backgroundColor: '#FFFFFF',
-        alignItems: 'center',
-        height: 68,
+        alignItems: 'center', 
     },
     imgIconInputStyle: {
         height: 23,

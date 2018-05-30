@@ -1,8 +1,8 @@
-import { connect } from 'react-redux';
+import { connect } from 'react-redux'
 import CreateProfileScreen from './CreateProfile.component'
-import * as actions from '../../actions/CreateProfileAction';
+import * as actions from '../../actions/CreateProfileAction'
 
-const mapStateToProps = ({ createProfile }) => {
+const mapStateToProps = ({ createProfile, auth }) => {
     const {
         imageProfile,
         profileName,
@@ -12,8 +12,7 @@ const mapStateToProps = ({ createProfile }) => {
         lname,
         suffix,
         mobilePhone,
-        secondMobilePhone,
-        email,
+        secondMobilePhone, 
         secondEmail,
         companyName,
         position,
@@ -24,8 +23,18 @@ const mapStateToProps = ({ createProfile }) => {
         error,
         loading,
         isShowSecondMobilePhone,
-        isShowSecondEmail
-    } = createProfile;
+        isShowSecondEmail,
+        errorProfileName,
+        errorFname,
+        errorLname,
+        errorMobilePhone,
+        errorCompanyName,
+        errorPosition,
+        errorCompanyAddress,
+    } = createProfile
+    const {
+        email
+    } = auth
 
     return {
         imageProfile,
@@ -48,9 +57,16 @@ const mapStateToProps = ({ createProfile }) => {
         error,
         loading,
         isShowSecondMobilePhone,
-        isShowSecondEmail
-    };
-};
-const CreateProfileScreenContainer = connect(mapStateToProps, actions)(CreateProfileScreen);
+        isShowSecondEmail,
+        errorProfileName,
+        errorFname,
+        errorLname,
+        errorMobilePhone,
+        errorCompanyName,
+        errorPosition,
+        errorCompanyAddress,
+    }
+}
+const CreateProfileScreenContainer = connect(mapStateToProps, actions)(CreateProfileScreen)
 
-export default CreateProfileScreenContainer;
+export default CreateProfileScreenContainer

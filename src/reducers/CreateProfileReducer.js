@@ -1,5 +1,5 @@
 import {
-    CREATE_PROFILE_VALUE_CHANGE, SELECT_PHOTO_CAMERA, SELECT_PHOTO_LIBRARY
+    CREATE_PROFILE_VALUE_CHANGE, SELECT_PHOTO_CAMERA, SELECT_PHOTO_LIBRARY, CREATE_PROFILE_START, CREATE_PROFILE_SUCCESS, TEXT_INPUT_IS_REQUIRE
 } from '../constants/actionTypes';
 
 const initialState = {
@@ -24,6 +24,13 @@ const initialState = {
     loading: false,
     isShowSecondMobilePhone: false,
     isShowSecondEmail: false,
+    errorProfileName: '',
+    errorFname: '',
+    errorLname: '',
+    errorMobilePhone: '',
+    errorCompanyName: '',
+    errorPosition: '',
+    errorCompanyAddress: '',
 }
 
 export default (state = initialState, action) => {
@@ -35,6 +42,25 @@ export default (state = initialState, action) => {
             return { ...state, imageProfile: action.payload }
         case SELECT_PHOTO_LIBRARY:
             return { ...state, imageProfile: action.payload }
+        case CREATE_PROFILE_START:
+            return { ...state, loading: true, error: '' };
+        case CREATE_PROFILE_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                error: '',
+            };
+        case TEXT_INPUT_IS_REQUIRE:
+            return {
+                ...state,
+                errorProfileName: action.payload.errorProfileName,
+                errorFname: action.payload.errorFname,
+                errorLname: action.payload.errorLname,
+                errorMobilePhone: action.payload.errorMobilePhone,
+                errorCompanyName: action.payload.errorCompanyName,
+                errorPosition: action.payload.errorPosition,
+                errorCompanyAddress: action.payload.errorCompanyAddress
+            }
         default:
             return state
     }
