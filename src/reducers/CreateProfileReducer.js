@@ -1,5 +1,10 @@
 import {
-    CREATE_PROFILE_VALUE_CHANGE, SELECT_PHOTO_CAMERA, SELECT_PHOTO_LIBRARY, CREATE_PROFILE_START, CREATE_PROFILE_SUCCESS, TEXT_INPUT_IS_REQUIRE
+    CREATE_PROFILE_VALUE_CHANGE, 
+    CREATE_PROFILE_PHOTO_CAMERA, 
+    CREATE_PROFILE_PHOTO_LIBRARY, 
+    CREATE_PROFILE_START, 
+    CREATE_PROFILE_SUCCESS, 
+    TEXT_INPUT_IS_INVALID
 } from '../constants/actionTypes';
 
 const initialState = {
@@ -11,8 +16,7 @@ const initialState = {
     lname: '',
     suffix: '',
     mobilePhone: '',
-    secondMobilePhone: '',
-    email: '',
+    secondMobilePhone: '', 
     secondEmail: '',
     companyName: '',
     position: '',
@@ -34,14 +38,14 @@ const initialState = {
 }
 
 export default (state = initialState, action) => {
-    console.log(`Action: ${JSON.stringify(action)} \nState: ${JSON.stringify(state)}`);
+    // console.log(`Action: ${JSON.stringify(action)} \nState: ${JSON.stringify(state)}`);
     switch (action.type) {
         case CREATE_PROFILE_VALUE_CHANGE:
             return { ...state, [action.payload.prop]: action.payload.value, error: '' };
-        case SELECT_PHOTO_CAMERA:
-            return { ...state, imageProfile: action.payload }
-        case SELECT_PHOTO_LIBRARY:
-            return { ...state, imageProfile: action.payload }
+        case CREATE_PROFILE_PHOTO_CAMERA:
+            return { ...state, imageProfile: action.payload.imageProfile }
+        case CREATE_PROFILE_PHOTO_LIBRARY:
+            return { ...state, imageProfile: action.payload.imageProfile }
         case CREATE_PROFILE_START:
             return { ...state, loading: true, error: '' };
         case CREATE_PROFILE_SUCCESS:
@@ -50,7 +54,7 @@ export default (state = initialState, action) => {
                 loading: false,
                 error: '',
             };
-        case TEXT_INPUT_IS_REQUIRE:
+        case TEXT_INPUT_IS_INVALID:
             return {
                 ...state,
                 errorProfileName: action.payload.errorProfileName,
@@ -59,7 +63,8 @@ export default (state = initialState, action) => {
                 errorMobilePhone: action.payload.errorMobilePhone,
                 errorCompanyName: action.payload.errorCompanyName,
                 errorPosition: action.payload.errorPosition,
-                errorCompanyAddress: action.payload.errorCompanyAddress
+                errorCompanyAddress: action.payload.errorCompanyAddress,
+                loading: false,
             }
         default:
             return state

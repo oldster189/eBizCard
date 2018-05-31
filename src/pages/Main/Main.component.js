@@ -15,6 +15,10 @@ class MainScreen extends Component {
     headerBackTitle: ' '
   }
 
+  componentDidMount() {
+    
+  }
+
   render() {
     const { containerStyle } = styles;
     return (

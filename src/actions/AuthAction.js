@@ -1,6 +1,7 @@
 import { AsyncStorage } from 'react-native'
 import { NavigationActions } from 'react-navigation'
 import { LoginManager, AccessToken } from 'react-native-fbsdk'
+import { validateEmail, isEmpty, trimingAndLowercase } from '../utils/util'
 
 import {
     FACEBOOK_LOGIN_SUCCESS,
@@ -9,18 +10,19 @@ import {
     NORMAL_LOGIN_SUCCESS,
     REGISTER_VALUE_CHANGE,
     NORMAL_REGISTER_SUCCESS,
-    NORMAL_REGISTER_NOT_MATCH_PASSWORD,
     LOGIN_USER_START,
     REGISTER_USER_START,
     LOGIN_SCREEN,
-    REGISTER_SCREEN
+    REGISTER_SCREEN,
+    TEXT_INPUT_IS_INVALID,
+
 } from '../constants/actionTypes'
 
 const startLoginUser = (dispatch) => {
     dispatch({ type: LOGIN_USER_START })
 }
 
-export const facebookLogin = () => async dispatch => { 
+export const facebookLogin = () => async dispatch => {
     const token = await AsyncStorage.getItem('fb_token')
     console.log(`token: ${token}`)
     if (token) {
@@ -33,7 +35,7 @@ export const facebookLogin = () => async dispatch => {
     }
 }
 
-const doFacebookLogin = async dispatch => {   
+const doFacebookLogin = async dispatch => {
     const { isCancelled } = await LoginManager.logInWithReadPermissions([
         'public_profile', 'email'])
     if (isCancelled) {
@@ -54,9 +56,34 @@ export const loginValueChange = ({ prop, value }) => {
 
 
 export const normalLogin = ({ email, password }) => {
-    console.log(`NormalLogin: ${email}, ${password}`)
-    return {
-        type: NORMAL_LOGIN_SUCCESS
+    this.email = trimingAndLowercase(email)
+    this.password = trimingAndLowercase(password)
+    const payload = {}
+    console.log(this.email, this.password)
+    return async dispatch => {
+        startLoginUser(dispatch)
+        if (this.email === '') {
+            payload.errorEmail = 'Email is required.'
+        } else if (!validateEmail(this.email)) {
+            payload.errorEmail = 'Email is invalid e-mail address.'
+        } else {
+            delete payload.errorEmail
+        }
+
+        if (this.password === '') {
+            payload.errorPassword = 'Password is required.'
+        } else {
+            delete payload.errorPassword
+        }
+
+        if (!isEmpty(payload)) {
+            console.log('as')
+            dispatch({ type: TEXT_INPUT_IS_INVALID, payload })
+        } else {
+            console.log('asda')
+            // Call service
+            dispatch({ type: NORMAL_LOGIN_SUCCESS })
+        }
     }
 }
 
@@ -71,34 +98,60 @@ export const registerValueChange = ({ prop, value }) => {
     }
 }
 
-export const normalRegister = ({ email, password, rePassword }) => { 
-    this.email = email.replace(/\s+/g, '').toLowerCase()
-    this.password = password.replace(/\s+/g, '').toLowerCase()
-    this.rePassword = rePassword.replace(/\s+/g, '').toLowerCase()
+export const normalRegister = ({ email, password, rePassword }) => {
+    this.email = trimingAndLowercase(email)
+    this.password = trimingAndLowercase(password)
+    this.rePassword = trimingAndLowercase(rePassword)
+    const payload = {}
 
+    console.log(this.email, this.password, this.rePassword)
     return async dispatch => {
         startRegisterUser(dispatch)
-        if (this.password !== this.rePassword) {
-            dispatch({ type: NORMAL_REGISTER_NOT_MATCH_PASSWORD })  
+        if (this.email === '') {
+            payload.errorEmail = 'Email is required.'
+        } else if (!validateEmail(this.email)) {
+            payload.errorEmail = 'Email is invalid e-mail address.'
+        } else {
+            delete payload.errorEmail
+        }
+
+        if (this.password === '') {
+            payload.errorPassword = 'Password is required.'
+        } else if (this.password.length < 6) {
+            payload.errorPassword = 'Password at least 6 characters.'
+        } else {
+            delete payload.errorPassword
+        }
+
+        if (this.rePassword === '') {
+            payload.errorRePassword = 'Confirm password is required.'
+        } else if (this.password !== this.rePassword) {
+            payload.errorRePassword = 'Confirm password not match.'
+        } else {
+            delete payload.errorRePassword
+        }
+
+        if (!isEmpty(payload)) {
+            dispatch({ type: TEXT_INPUT_IS_INVALID, payload })
         } else {
             // Call service
-            dispatch({ type: NORMAL_REGISTER_SUCCESS })  
-        } 
-    } 
+            dispatch({ type: NORMAL_REGISTER_SUCCESS })
+        }
+    }
 }
 
 export const forgetPasswordScreen = () => dispatch => {
     dispatch(NavigationActions.navigate({ routeName: 'ForgetPassword' }))
 }
-     
+
 export const loginScreen = () => {
     return dispatch => {
-        dispatch({ type: LOGIN_SCREEN })  
+        dispatch({ type: LOGIN_SCREEN })
     }
 }
 
 export const registerScreen = () => {
     return dispatch => {
-        dispatch({ type: REGISTER_SCREEN })  
+        dispatch({ type: REGISTER_SCREEN })
     }
 }

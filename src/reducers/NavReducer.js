@@ -8,17 +8,18 @@ import {
   FACEBOOK_LOGIN_SUCCESS,
   NORMAL_REGISTER_SUCCESS,
   LOGIN_SCREEN,
-  REGISTER_SCREEN
+  REGISTER_SCREEN,
+  CREATE_PROFILE_SUCCESS
 } from '../constants/actionTypes';
 
 const router = AppNavigator.router;
 const mainAction = router.getActionForPathAndParams('Main');
 const loginAction = router.getActionForPathAndParams('Login');
-const tempNavState = router.getStateForAction(loginAction);
-const createProfileAction = router.getActionForPathAndParams('CreateProfile');
+const tempNavState = router.getStateForAction(mainAction);
+const createPhotoCardAction = router.getActionForPathAndParams('CreatePhotoCard');
 
 const initialNavState = router.getStateForAction(
-  createProfileAction,
+  loginAction,
   tempNavState
 );
 
@@ -26,8 +27,8 @@ export default (state = initialNavState, action) => {
   let nextState;
   switch (action.type) {
     case LOGIN:
-      nextState = router.getStateForAction(
-        NavigationActions.back(),
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'Main' }),
         state
       );
       break;
@@ -42,6 +43,12 @@ export default (state = initialNavState, action) => {
     case NORMAL_REGISTER_SUCCESS:
       nextState = AppNavigator.router.getStateForAction(
         NavigationActions.navigate({ routeName: 'CreateProfile' }),
+        state
+      );
+      break;
+    case CREATE_PROFILE_SUCCESS:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'CreatePhotoCard' }),
         state
       );
       break;

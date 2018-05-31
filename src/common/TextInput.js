@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
-import FloatLabelTextInput from 'react-native-floating-label-text-input'
 import { TextField } from 'react-native-material-textfield';
-import SeparatorLine from '../common/SeparatorLine'
 import theme from '../styles/theme.style'
 
 class TextInput extends Component {
@@ -32,7 +30,9 @@ class TextInput extends Component {
         });
         try {
             return this.props.onBlur();
-        } catch (_error) { }
+        } catch (_error) {
+            console.log(_error)
+        }
     }
 
 
@@ -56,8 +56,8 @@ class TextInput extends Component {
         return this.refs.input
     }
 
-    renderError() { 
-        if (this.props.textError === '') {
+    renderError() {
+        if (this.props.textError === undefined || this.props.textError === '') {
             return
         }
         return (
@@ -75,38 +75,34 @@ class TextInput extends Component {
                             containerStyle={{
                                 flex: 1,
                                 height: 70,
-                                padding: 0,
                                 justifyContent: 'center'
+
                             }} 
                             {...this.props}
-                            ref='input'
+                            ref='input' 
+                            fontSize={19}
                             activeLineWidth={2}
+                            labelPadding={0} 
                             onFocus={() => this.setFocus()}
                             onBlur={() => this.unsetFocus()}
-                            noBorder
                             autoCapitalize="none"
                             autoCorrect={false}
-                            leftPadding={theme.MARGIN_LEFT}
-                            placeholderTextColor={theme.PLACEHOLDER_TEXT_COLOR}
                         />
                     </View>
                     {this.renderError()}
-                </View> 
+                </View>
             </View>
         )
     }
 }
 const styles = StyleSheet.create({
     containerStyle: {
-        flex: 1,
-        backgroundColor: 'white',
-        justifyContent: 'center',
+        flex: 1, 
     },
     groupInputStyle: {
         flexDirection: 'row',
     },
     errorStyle: {
-        marginLeft: theme.MARGIN_LEFT,
         color: theme.TEXT_ERROR_COLOR,
         fontSize: theme.TEXT_ERROR_FONT,
     }

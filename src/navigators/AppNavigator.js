@@ -14,7 +14,7 @@ export const AppNavigator = createStackNavigator({
   Register: { screen: Pages.Register },
   ForgetPassword: { screen: Pages.ForgetPassword },
   CreateProfile: { screen: Pages.CreateProfile },
-  CreatePhotoCard: { screen: Pages.CreatePhtoCard },
+  CreatePhotoCard: { screen: Pages.CreatePhotoCard },
   Main: { screen: Pages.Main, },
 });
 

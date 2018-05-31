@@ -1,15 +1,18 @@
 
 import { NativeModules } from 'react-native';
+import { validateEmail, isEmpty } from '../utils/util';
 import {
-    CREATE_PROFILE_VALUE_CHANGE,
-    CHOOSE_CAMERA,
-    CHOOSE_LIBRARY,
-    SELECT_PHOTO_CAMERA,
-    SELECT_PHOTO_LIBRARY,
+    CREATE_PROFILE_VALUE_CHANGE, 
+    CREATE_PROFILE_PHOTO_CAMERA,
+    CREATE_PROFILE_PHOTO_LIBRARY,
     CREATE_PROFILE_START,
-    TEXT_INPUT_IS_REQUIRE,
+    TEXT_INPUT_IS_INVALID,
     CREATE_PROFILE_SUCCESS
 } from '../constants/actionTypes';
+import {
+    CHOOSE_CAMERA,
+    CHOOSE_LIBRARY
+} from '../constants/constants';
 
 const ImagePicker = NativeModules.ImageCropPicker;
 
@@ -43,7 +46,7 @@ const chooseLibrary = (dispatch, cropping, circular = false) => {
         includeExif: true,
     }).then(image => {
         dispatch({
-            type: SELECT_PHOTO_LIBRARY,
+            type: CREATE_PROFILE_PHOTO_LIBRARY,
             payload: {
                 imageProfile: {
                     uri: image.path,
@@ -71,7 +74,7 @@ const chooseCamera = (dispatch, cropping) => {
         includeExif: true,
     }).then(image => {
         dispatch({
-            type: SELECT_PHOTO_CAMERA,
+            type: CREATE_PROFILE_PHOTO_CAMERA,
             payload: {
                 imageProfile: {
                     uri: image.path,
@@ -103,18 +106,54 @@ export const createProfile = ({
     officePhone,
     faxPhone,
     businessType
-}) => { 
+}) => {
+    const payload = {};
     this.email = email.replace(/\s+/g, '').toLowerCase();
 
     return async dispatch => {
         startCreateProfile(dispatch)
         if (fname === '') {
-            dispatch({ type: TEXT_INPUT_IS_REQUIRE, payload: { errorFname: 'First name is Require' } })
-        } else if (lname === '') {
-            dispatch({ type: TEXT_INPUT_IS_REQUIRE, payload: { errorLname: 'Last name is Require' } })
+            payload.errorFname = 'First name is require'
+        }
+        if (lname === '') {
+            payload.errorLname = 'Last name is require'
+        }
+
+        if (mobilePhone === '') {
+            payload.errorMobilePhone = 'Mobile no is require'
+        }
+
+        if (companyName === '') {
+            payload.errorCompanyName = 'Company is require'
+        }
+
+        if (position === '') {
+            payload.errorPosition = 'Position is require'
+        }
+
+        if (companyAddress === '') {
+            payload.errorCompanyAddress = 'Company address is require'
+        } 
+        console.log(`ValidateEmail: ${validateEmail(email)}`) 
+        if (!isEmpty(payload)) {
+            dispatch({ type: TEXT_INPUT_IS_INVALID, payload })
         } else {
             // Call service
+            console.log(infoPrefix,
+                fname,
+                mname,
+                lname,
+                suffix,
+                mobilePhone,
+                email,
+                companyName,
+                position,
+                companyAddress,
+                officePhone,
+                faxPhone,
+                businessType)
             dispatch({ type: CREATE_PROFILE_SUCCESS })
         }
     }
 }
+

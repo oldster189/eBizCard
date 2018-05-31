@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ScrollView, View, TouchableOpacity, Image, } from 'react-native';
+import { ScrollView, View, TouchableOpacity, Image, } from 'react-native'; 
 import { Button, } from 'react-native-elements';
 import ActionSheet from 'react-native-actionsheet'
 
@@ -64,7 +64,7 @@ class CreateProfileScreen extends Component {
 
   renderImageProfile() {
     console.log(this.props.imageProfile)
-    if (this.props.imageProfile == null) {
+    if (this.props.imageProfile === null) {
       return (
         <Image
           resizeMode='cover'
@@ -95,17 +95,23 @@ class CreateProfileScreen extends Component {
               />
             </TouchableOpacity>
 
-            <TextInput lineWidth={0}
+            <TextInput
+              lineWidth={0}
               label={'Second mobile no'}
               keyboardType="phone-pad"
               returnKeyType="next"
+              inputContainerPadding={16}
+              labelTextStyle={{ paddingLeft: 9 }}
+              inputContainerStyle={{ paddingLeft: 9 }}
               onChangeText={text =>
                 createProfileValueChange({ prop: 'secondMobilePhone', value: text })}
               value={secondMobilePhone}
               onFocus={() => { }}
+              onBlur={() => { }}
             />
           </View>
-          <SeparatorLine />
+
+        <SeparatorLine />
         </View>
 
       )
@@ -117,7 +123,7 @@ class CreateProfileScreen extends Component {
           source={require('../../assets/images/ic_add.png')}
           onPress={() =>
             createProfileValueChange({ prop: 'isShowSecondMobilePhone', value: true })}
-        />
+        /> 
         <SeparatorLine />
       </View>
 
@@ -141,14 +147,19 @@ class CreateProfileScreen extends Component {
               />
             </TouchableOpacity>
 
-            <TextInput lineWidth={0}
+            <TextInput
+              lineWidth={0}
               label={'Second email'}
               keyboardType="email-address"
               returnKeyType="next"
+              inputContainerPadding={16}
+              labelTextStyle={{ paddingLeft: 9 }}
+              inputContainerStyle={{ paddingLeft: 9 }}
               onChangeText={text =>
                 createProfileValueChange({ prop: 'secondEmail', value: text })}
               value={secondEmail}
               onFocus={() => { }}
+              onBlur={() => { }}
             />
           </View>
         </View>
@@ -205,7 +216,7 @@ class CreateProfileScreen extends Component {
 
     } = this.props
 
-    console.log('asdasd'+this.props.errorFname)
+
     return (
       <View style={containerStyle}>
         <ScrollView
@@ -242,18 +253,23 @@ class CreateProfileScreen extends Component {
 
           {/* Begin Content */}
           <View style={{ marginTop: 10 }} />
-          <TextInput lineWidth={0}
+          <TextInput
+            lineWidth={0}
             label={'Profile name'}
             keyboardType="default"
             returnKeyType="next"
             onSubmitEditing={() => {
               this.fnameInput.focus();
             }}
+            inputContainerPadding={16}
+            labelTextStyle={{ paddingLeft: 9 }}
+            inputContainerStyle={{ paddingLeft: 9 }}
             textError={errorProfileName}
             onChangeText={text =>
               createProfileValueChange({ prop: 'profileName', value: text })}
             value={profileName}
             onFocus={() => { }}
+            onBlur={() => { }}
           />
 
           {/* Section Personal info */}
@@ -263,17 +279,23 @@ class CreateProfileScreen extends Component {
             title='Personal info'
           />
           <SeparatorLine />
-          <TextInput lineWidth={1}
+          <TextInput
+            lineWidth={1}
             editable={false}
             label={'Info prefix'}
             keyboardType="default"
+            inputContainerPadding={16}
+            labelTextStyle={{ paddingLeft: 9 }}
+            inputContainerStyle={{ paddingLeft: 9 }}
             onChangeText={text =>
               createProfileValueChange({ prop: 'infoPrefix', value: text })}
             value={infoPrefix}
             onFocus={() => { }}
+            onBlur={() => { }}
           />
 
-          <TextInput lineWidth={1}
+          <TextInput
+            lineWidth={1}
             label={'First name'}
             keyboardType="default"
             returnKeyType="next"
@@ -281,14 +303,19 @@ class CreateProfileScreen extends Component {
               this.mnameInput.focus();
             }}
             ref={input => (this.fnameInput = input)}
+            inputContainerPadding={16}
+            labelTextStyle={{ paddingLeft: 9 }}
+            inputContainerStyle={{ paddingLeft: 9 }}
             onChangeText={text =>
               createProfileValueChange({ prop: 'fname', value: text })}
             value={fname}
             textError={errorFname}
             onFocus={() => { }}
+            onBlur={() => { }}
           />
 
-          <TextInput lineWidth={1}
+          <TextInput
+            lineWidth={1}
             label={'Middle name'}
             keyboardType="default"
             returnKeyType="next"
@@ -296,13 +323,18 @@ class CreateProfileScreen extends Component {
               this.lnameInput.focus();
             }}
             ref={input => (this.mnameInput = input)}
+            inputContainerPadding={16}
+            labelTextStyle={{ paddingLeft: 9 }}
+            inputContainerStyle={{ paddingLeft: 9 }}
             onChangeText={text =>
               createProfileValueChange({ prop: 'mname', value: text })}
             value={mname}
             onFocus={() => { }}
+            onBlur={() => { }}
           />
 
-          <TextInput lineWidth={1}
+          <TextInput
+            lineWidth={1}
             label={'Last name'}
             keyboardType="default"
             returnKeyType="next"
@@ -310,14 +342,19 @@ class CreateProfileScreen extends Component {
               this.suffixInput.focus();
             }}
             ref={input => (this.lnameInput = input)}
+            inputContainerPadding={16}
+            labelTextStyle={{ paddingLeft: 9 }}
+            inputContainerStyle={{ paddingLeft: 9 }}
             onChangeText={text =>
               createProfileValueChange({ prop: 'lname', value: text })}
             value={lname}
             textError={errorLname}
             onFocus={() => { }}
+            onBlur={() => { }}
           />
 
-          <TextInput lineWidth={1}
+          <TextInput
+            lineWidth={1}
             label={'Suffix'}
             keyboardType="default"
             returnKeyType="next"
@@ -325,13 +362,18 @@ class CreateProfileScreen extends Component {
               this.mobilePhoneInput.focus();
             }}
             ref={input => (this.suffixInput = input)}
+            inputContainerPadding={16}
+            labelTextStyle={{ paddingLeft: 9 }}
+            inputContainerStyle={{ paddingLeft: 9 }}
             onChangeText={text =>
               createProfileValueChange({ prop: 'suffix', value: text })}
             value={suffix}
             onFocus={() => { }}
+            onBlur={() => { }}
           />
 
-          <TextInput lineWidth={1}
+          <TextInput
+            lineWidth={1}
             label={'Mobile no'}
             keyboardType="phone-pad"
             returnKeyType="next"
@@ -339,15 +381,20 @@ class CreateProfileScreen extends Component {
               this.emailInput.focus();
             }}
             ref={input => (this.mobilePhoneInput = input)}
+            inputContainerPadding={16}
+            labelTextStyle={{ paddingLeft: 9 }}
+            inputContainerStyle={{ paddingLeft: 9 }}
             onChangeText={text =>
               createProfileValueChange({ prop: 'mobilePhone', value: text })}
             value={mobilePhone}
             textError={errorMobilePhone}
             onFocus={() => { }}
+            onBlur={() => { }}
           />
           {this.renderSecondMobilePhone()}
 
-          <TextInput lineWidth={1}
+          <TextInput
+            lineWidth={1}
             label={'Email'}
             keyboardType="email-address"
             returnKeyType="next"
@@ -356,10 +403,14 @@ class CreateProfileScreen extends Component {
               this.companyNameInput.focus();
             }}
             ref={input => (this.emailInput = input)}
+            inputContainerPadding={16}
+            labelTextStyle={{ paddingLeft: 9 }}
+            inputContainerStyle={{ paddingLeft: 9 }}
             onChangeText={text =>
               createProfileValueChange({ prop: 'email', value: text })}
             value={email}
             onFocus={() => { }}
+            onBlur={() => { }}
           />
           {this.renderSecondEmail()}
 
@@ -370,7 +421,8 @@ class CreateProfileScreen extends Component {
             title='Company info'
           />
           <SeparatorLine />
-          <TextInput lineWidth={1}
+          <TextInput
+            lineWidth={1}
             label={'Company'}
             keyboardType="default"
             returnKeyType="next"
@@ -378,14 +430,19 @@ class CreateProfileScreen extends Component {
               this.positionInput.focus();
             }}
             ref={input => (this.companyNameInput = input)}
+            inputContainerPadding={16}
+            labelTextStyle={{ paddingLeft: 9 }}
+            inputContainerStyle={{ paddingLeft: 9 }}
             onChangeText={text =>
               createProfileValueChange({ prop: 'companyName', value: text })}
             value={companyName}
             textError={errorCompanyName}
             onFocus={() => { }}
+            onBlur={() => { }}
           />
 
-          <TextInput lineWidth={1}
+          <TextInput
+            lineWidth={1}
             label={'Position'}
             keyboardType="default"
             returnKeyType="next"
@@ -393,14 +450,19 @@ class CreateProfileScreen extends Component {
               this.companyAddressInput.focus();
             }}
             ref={input => (this.positionInput = input)}
+            inputContainerPadding={16}
+            labelTextStyle={{ paddingLeft: 9 }}
+            inputContainerStyle={{ paddingLeft: 9 }}
             onChangeText={text =>
               createProfileValueChange({ prop: 'position', value: text })}
             value={position}
             textError={errorPosition}
             onFocus={() => { }}
+            onBlur={() => { }}
           />
 
-          <TextInput lineWidth={1}
+          <TextInput
+            lineWidth={1}
             label={'Company address'}
             keyboardType="default"
             returnKeyType="next"
@@ -408,14 +470,19 @@ class CreateProfileScreen extends Component {
               this.officePhoneInput.focus();
             }}
             ref={input => (this.companyAddressInput = input)}
+            inputContainerPadding={16}
+            labelTextStyle={{ paddingLeft: 9 }}
+            inputContainerStyle={{ paddingLeft: 9 }}
             onChangeText={text =>
               createProfileValueChange({ prop: 'companyAddress', value: text })}
             value={companyAddress}
             textError={errorCompanyAddress}
             onFocus={() => { }}
+            onBlur={() => { }}
           />
 
-          <TextInput lineWidth={1}
+          <TextInput
+            lineWidth={1}
             label={'Office no'}
             keyboardType="default"
             returnKeyType="next"
@@ -423,13 +490,18 @@ class CreateProfileScreen extends Component {
               this.faxPhoneInput.focus();
             }}
             ref={input => (this.officePhoneInput = input)}
+            inputContainerPadding={16}
+            labelTextStyle={{ paddingLeft: 9 }}
+            inputContainerStyle={{ paddingLeft: 9 }}
             onChangeText={text =>
               createProfileValueChange({ prop: 'officePhone', value: text })}
             value={officePhone}
             onFocus={() => { }}
+            onBlur={() => { }}
           />
 
-          <TextInput lineWidth={1}
+          <TextInput
+            lineWidth={1}
             label={'Fax no'}
             keyboardType="default"
             returnKeyType="next"
@@ -437,21 +509,30 @@ class CreateProfileScreen extends Component {
               this.businessTypeInput.focus();
             }}
             ref={input => (this.faxPhoneInput = input)}
+            inputContainerPadding={16}
+            labelTextStyle={{ paddingLeft: 9 }}
+            inputContainerStyle={{ paddingLeft: 9 }}
             onChangeText={text =>
               createProfileValueChange({ prop: 'faxPhone', value: text })}
             value={faxPhone}
             onFocus={() => { }}
+            onBlur={() => { }}
           />
 
-          <TextInput lineWidth={0}
+          <TextInput
+            lineWidth={0}
             label={'Business type'}
             keyboardType="default"
             returnKeyType="done"
             ref={input => (this.businessTypeInput = input)}
+            inputContainerPadding={16}
+            labelTextStyle={{ paddingLeft: 9 }}
+            inputContainerStyle={{ paddingLeft: 9 }}
             onChangeText={text =>
               createProfileValueChange({ prop: 'businessType', value: text })}
             value={businessType}
             onFocus={() => { }}
+            onBlur={() => { }}
           />
           {/* End Content */}
 

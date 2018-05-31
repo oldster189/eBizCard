@@ -3,7 +3,7 @@ export { default as Login } from './Login';
 export { default as Register } from './Register';
 export { default as ForgetPassword } from './ForgetPassword';
 export { default as CreateProfile } from './CreateProfile';
-export { default as CreatePhtoCard } from './CreatePhtoCard';
+export { default as CreatePhotoCard } from './CreatePhotoCard';
 export { default as Main } from './Main';  
 export { default as ResetPassword } from './ResetPassword';  
 export { default as Settings } from './Settings';  

@@ -3,6 +3,7 @@ import CreateProfileScreen from './CreateProfile.component'
 import * as actions from '../../actions/CreateProfileAction'
 
 const mapStateToProps = ({ createProfile, auth }) => {
+    console.log(auth)
     const {
         imageProfile,
         profileName,

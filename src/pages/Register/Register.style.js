@@ -36,33 +36,34 @@ export default StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         flex: 1,
-        marginTop: 100,
+        marginTop: 50,
         marginLeft: 16,
         marginRight: 16,
         marginBottom: 8,
     }, 
     nextBtnGroupStyle: {
         alignItems: 'center',
-        marginTop: 40,
+        marginTop: 8,
     },
     inputFormGroupStyle: {
         flexDirection: 'column',
         marginLeft: 24,
         marginRight: 24,
+        marginTop: 32,
     },
     inputGroupStyle: {
-        flexDirection: 'row',
-        marginTop: 32
+        flexDirection: 'row', 
+        height: 90, 
     },
     iconImageStyle: {
         height: 24,
         width: 24,
         marginRight: 16,
-        marginTop: 6,
+        marginTop: 30,
     },
     nextButtonStyle: {
         height: 48,
-        width: 48,
+        width: 48, 
     },
     socialButtonStyle: {
         height: 48,
@@ -70,10 +71,11 @@ export default StyleSheet.create({
         marginLeft: 16,
         marginRight: 16,
     },
-    layoutButtonGroupStyle: {
+    layoutButtonGroupStyle: { 
         position: 'absolute',
-        top: (SCREEN_HEIGHT - 350),
-        width: SCREEN_WIDTH,
-        alignItems: 'center'
+        top: (SCREEN_HEIGHT - 280),
+        width: SCREEN_WIDTH, 
+        alignItems: 'center', 
+        backgroundColor: 'red',
     }
 });

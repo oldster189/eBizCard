@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, Platform } from 'react-native';
 import theme from '../../styles/theme.style'; 
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -36,7 +36,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         flex: 1,
-        marginTop: 100,
+        marginTop: 50,
         marginLeft: 16,
         marginRight: 16,
         marginBottom: 8,
@@ -44,26 +44,27 @@ export default StyleSheet.create({
     forgetPasswordTextStyle: {
         fontSize: theme.TEXT_FORGET_PASSWORD_FONT,
         color: theme.FORGET_PASSWORD_COLOR,
-        marginTop: 12,
+        marginTop: 16,
     },
     forgetPasswordGroupStyle: {
         alignItems: 'center',
         marginTop: 40,
     },
-    inputFormGroupStyle: {
+    inputFormGroupStyle: { 
         flexDirection: 'column',
         marginLeft: 24,
-        marginRight: 24,
+        marginRight: 24, 
+        marginTop: 32,
     },
     inputGroupStyle: {
-        flexDirection: 'row',
-        marginTop: 32
+        flexDirection: 'row',  
+        height: 90,  
     },
     iconImageStyle: {
         height: 24,
         width: 24,
         marginRight: 16,
-        marginTop: 6,
+        marginTop: 30,
     },
     nextButtonStyle: {
         height: 48,
@@ -76,9 +77,10 @@ export default StyleSheet.create({
         marginRight: 16,
     },
     layoutButtonGroupStyle: {
-        position: 'absolute',
-        top: (SCREEN_HEIGHT - 350),
+        position: 'absolute',   
+        top: (SCREEN_HEIGHT - 280),  
         width: SCREEN_WIDTH,
-        alignItems: 'center'
+        alignItems: 'center', 
+        backgroundColor: 'red',
     }
 });

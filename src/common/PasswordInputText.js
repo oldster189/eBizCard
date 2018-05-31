@@ -2,9 +2,11 @@ import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {
     View,
-    StyleSheet
+    StyleSheet,
+    Text
 } from 'react-native';
-import FloatLabelTextInput from 'react-native-floating-label-text-input';
+import { TextField } from 'react-native-material-textfield';
+import theme from '../styles/theme.style'
 
 export default class PasswordInputText extends React.Component {
 
@@ -18,14 +20,25 @@ export default class PasswordInputText extends React.Component {
             selection: null
         }
     }
-  
+
     setFocus() {
         this.setState({
             focused: true
         });
         try {
             return this.props.onFocus();
-        } catch (_error) { 
+        } catch (_error) {
+            console.log(_error)
+        }
+    }
+
+    unsetFocus() {
+        this.setState({
+            focused: false
+        });
+        try {
+            return this.props.onBlur();
+        } catch (_error) {
             console.log(_error)
         }
     }
@@ -68,55 +81,75 @@ export default class PasswordInputText extends React.Component {
         this.setState(newState)
     };
 
-    unsetFocus() {
-        this.setState({
-            focused: false
-        });
-        try {
-            return this.props.onBlur();
-        } catch (_error) { 
-            console.log(_error)
+    renderError() {
+        if (this.props.textError === undefined || this.props.textError === '') {
+            return
         }
+        return (
+            <Text style={styles.errorStyle}>{this.props.textError}</Text>
+        )
     }
 
-    render() { 
+    render() {
+        const { containerStyle, groupInputStyle } = styles
         return (
-            <View
-                style={{
-                    flex: 1,
-                    height: 45,
-                    backgroundColor: 'white',
-                    justifyContent: 'center',
-                    flexDirection: 'row',
-                }}
-            >
-                <FloatLabelTextInput
-                    {...this.props}
-                    ref='input'
-                    secureTextEntry={this.state.password}
-                    onFocus={() => this.setFocus()}
-                    onBlur={() => this.unsetFocus()}
-                />
-                <Icon
-                    style={styles.icon}
-                    name={this.state.icEye}
-                    size={this.props.iconSize}
-                    color={this.props.iconColor}
-                    onPress={this.changePwdType}
-                />
+            <View style={{ flex: 1 }}>
+                <View style={containerStyle}>
+                    <View
+                        style={groupInputStyle}
+                    >
+                        <TextField
+                            containerStyle={{
+                                flex: 1,
+                                height: 70,
+                                justifyContent: 'center',
+
+                            }}
+                            labelTextStyle={{ paddingLeft: 0 }}
+                            inputContainerStyle={{ paddingLeft: 0 }}
+                            {...this.props}
+                            ref='input'
+                            inputContainerPadding={8}
+                            labelPadding={0}
+                            fontSize={19}
+                            activeLineWidth={2}
+                            secureTextEntry={this.state.password}
+                            onFocus={() => this.setFocus()}
+                            onBlur={() => this.unsetFocus()}
+                        />
+                        <Icon
+                            style={styles.icon}
+                            name={this.state.icEye}
+                            size={this.props.iconSize}
+                            color={this.props.iconColor}
+                            onPress={this.changePwdType}
+                        />
+                    </View>
+                    {this.renderError()}
+                </View>
             </View>
+
         );
     }
 }
 
 export const styles = StyleSheet.create({
-
     icon: {
         position: 'absolute',
-        top: 13,
+        top: 35,
         right: 0
+    },
+    containerStyle: {
+        flex: 1,
+        backgroundColor: 'white', 
+    },
+    groupInputStyle: {
+        flexDirection: 'row', 
+    },
+    errorStyle: {
+        color: theme.TEXT_ERROR_COLOR,
+        fontSize: theme.TEXT_ERROR_FONT,
     }
-
 });
 
 PasswordInputText.defaultProps = {

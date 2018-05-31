@@ -3,8 +3,22 @@ import Register from './Register.component';
 import * as actions from '../../actions/AuthAction';
 
 const mapStateToProps = ({ auth }) => {
-    const { email, password, rePassword } = auth;
-    return { email, password, rePassword };
+    const { 
+        email, 
+        password, 
+        rePassword,
+        errorEmail,
+        errorPassword,
+        errorRePassword
+    } = auth;
+    return { 
+        email, 
+        password, 
+        rePassword,
+        errorEmail,
+        errorPassword,
+        errorRePassword 
+    };
 }; 
 
 
