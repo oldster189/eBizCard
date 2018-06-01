@@ -9,18 +9,20 @@ import {
   NORMAL_REGISTER_SUCCESS,
   LOGIN_SCREEN,
   REGISTER_SCREEN,
-  CREATE_PROFILE_SUCCESS
+  CREATE_PROFILE_SUCCESS,
+  FORGET_PASSWORD_SCREEN,
+  MAIN_SCREEN
 } from '../constants/actionTypes';
 
 const router = AppNavigator.router;
 const mainAction = router.getActionForPathAndParams('Main');
-const loginAction = router.getActionForPathAndParams('Login');
-const tempNavState = router.getStateForAction(mainAction);
-const createPhotoCardAction = router.getActionForPathAndParams('CreatePhotoCard');
+// const loginAction = router.getActionForPathAndParams('Login');
+// const tempNavState = router.getStateForAction(mainAction);
+// const createProfileAction = router.getActionForPathAndParams('CreateProfile');
+// const createPhotoCardAction = router.getActionForPathAndParams('CreatePhotoCard');
 
 const initialNavState = router.getStateForAction(
-  loginAction,
-  tempNavState
+  mainAction, 
 );
 
 export default (state = initialNavState, action) => {
@@ -61,6 +63,18 @@ export default (state = initialNavState, action) => {
     case REGISTER_SCREEN:
       nextState = AppNavigator.router.getStateForAction(
         NavigationActions.navigate({ routeName: 'Register' }),
+        state
+      );
+      break;
+    case FORGET_PASSWORD_SCREEN:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'ForgetPassword' }),
+        state
+      );
+      break;
+    case MAIN_SCREEN:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'Main' }),
         state
       );
       break;

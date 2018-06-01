@@ -13,6 +13,8 @@ export const LOGIN = 'Login';
 export const LOGOUT = 'Logout';
 export const REGISTER_SCREEN = 'REGISTER_SCREEN';
 export const LOGIN_SCREEN = 'LOGIN_SCREEN';
+export const FORGET_PASSWORD_SCREEN = 'FORGET_PASSWORD_SCREEN';
+export const MAIN_SCREEN = 'MAIN_SCREEN';
 
 //Create Profile Action Type
 export const CREATE_PROFILE_VALUE_CHANGE = 'CREATE_PROFILE_VALUE_CHANGE';

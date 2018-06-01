@@ -1,18 +1,19 @@
-import { NativeModules } from 'react-native';
+import { NativeModules } from 'react-native'
 import {
     CREATE_PHOTO_CARD_SELECT_CAMERA_FRONT,
     CREATE_PHOTO_CARD_SELECT_CAMERA_BACK,
     CREATE_PHOTO_CARD_SELECT_LIBRARY_FRONT,
-    CREATE_PHOTO_CARD_SELECT_LIBRARY_BACK
-} from '../constants/actionTypes';
+    CREATE_PHOTO_CARD_SELECT_LIBRARY_BACK,
+    MAIN_SCREEN
+} from '../constants/actionTypes'
 import {
     CHOOSE_CAMERA,
     CHOOSE_LIBRARY,
     TYPE_SELECT_CARD_FRONT,
     TYPE_SELECT_CARD_BACK
-} from '../constants/constants';
+} from '../constants/constants'
 
-const ImagePicker = NativeModules.ImageCropPicker;
+const ImagePicker = NativeModules.ImageCropPicker
 
 export const handleActionSheetPressFront = (buttonIndex) => {
     console.log('handleActionSheetPressFront')
@@ -69,8 +70,8 @@ const chooseLibrary = (dispatch, cropping, typeSelect) => {
             payload
         })
     }).catch(e => {
-        console.log(e);
-    });
+        console.log(e)
+    })
 }
 
 const chooseCamera = (dispatch, cropping, typeSelect) => {
@@ -96,6 +97,10 @@ const chooseCamera = (dispatch, cropping, typeSelect) => {
             payload
         })
     }).catch(e => {
-        console.log(e);
-    });
+        console.log(e)
+    })
 }
+
+export const mainScreen = () => dispatch => {
+    dispatch({ type: MAIN_SCREEN })
+} 

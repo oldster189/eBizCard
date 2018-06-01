@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { StatusBar, View } from 'react-native';
 import { connect } from 'react-redux';
 import { createStackNavigator } from 'react-navigation';
-import { initializeListeners } from 'react-navigation-redux-helpers';
+import { initializeListeners } from 'react-navigation-redux-helpers'; 
 
 import * as Pages from '../pages';
 import { navigationPropConstructor } from '../utils/redux';
@@ -16,7 +16,7 @@ export const AppNavigator = createStackNavigator({
   CreateProfile: { screen: Pages.CreateProfile },
   CreatePhotoCard: { screen: Pages.CreatePhotoCard },
   Main: { screen: Pages.Main, },
-});
+}); 
 
 class AppWithNavigationState extends Component {
 

@@ -66,21 +66,14 @@ class TextInput extends Component {
     }
 
     render() {
-        const { containerStyle, groupInputStyle } = styles
+        const { groupInputStyle } = styles
         return (
             <View style={{ flex: 1 }}>
-                <View style={containerStyle}>
+                <View style={{ flex: 1, backgroundColor: 'white', }}>
                     <View style={groupInputStyle} >
-                        <TextField
-                            containerStyle={{
-                                flex: 1,
-                                height: 70,
-                                justifyContent: 'center'
-
-                            }} 
+                        <TextField 
                             {...this.props}
-                            ref='input' 
-                            fontSize={19}
+                            ref='input'  
                             activeLineWidth={2}
                             labelPadding={0} 
                             onFocus={() => this.setFocus()}
@@ -95,10 +88,7 @@ class TextInput extends Component {
         )
     }
 }
-const styles = StyleSheet.create({
-    containerStyle: {
-        flex: 1, 
-    },
+const styles = StyleSheet.create({ 
     groupInputStyle: {
         flexDirection: 'row',
     },

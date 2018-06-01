@@ -1,5 +1,4 @@
-import { AsyncStorage } from 'react-native'
-import { NavigationActions } from 'react-navigation'
+import { AsyncStorage } from 'react-native' 
 import { LoginManager, AccessToken } from 'react-native-fbsdk'
 import { validateEmail, isEmpty, trimingAndLowercase } from '../utils/util'
 
@@ -14,6 +13,7 @@ import {
     REGISTER_USER_START,
     LOGIN_SCREEN,
     REGISTER_SCREEN,
+    FORGET_PASSWORD_SCREEN,
     TEXT_INPUT_IS_INVALID,
 
 } from '../constants/actionTypes'
@@ -140,18 +140,14 @@ export const normalRegister = ({ email, password, rePassword }) => {
     }
 }
 
-export const forgetPasswordScreen = () => dispatch => {
-    dispatch(NavigationActions.navigate({ routeName: 'ForgetPassword' }))
+export const forgetPasswordScreen = () => dispatch => { 
+    dispatch({ type: FORGET_PASSWORD_SCREEN })
+}
+ 
+export const loginScreen = () => dispatch => {
+    dispatch({ type: LOGIN_SCREEN })
 }
 
-export const loginScreen = () => {
-    return dispatch => {
-        dispatch({ type: LOGIN_SCREEN })
-    }
-}
-
-export const registerScreen = () => {
-    return dispatch => {
-        dispatch({ type: REGISTER_SCREEN })
-    }
+export const registerScreen = () => dispatch => {
+    dispatch({ type: REGISTER_SCREEN })
 }

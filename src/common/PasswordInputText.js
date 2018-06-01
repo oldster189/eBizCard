@@ -98,20 +98,13 @@ export default class PasswordInputText extends React.Component {
                     <View
                         style={groupInputStyle}
                     >
-                        <TextField
-                            containerStyle={{
-                                flex: 1,
-                                height: 70,
-                                justifyContent: 'center',
-
-                            }}
+                        <TextField 
                             labelTextStyle={{ paddingLeft: 0 }}
                             inputContainerStyle={{ paddingLeft: 0 }}
                             {...this.props}
                             ref='input'
                             inputContainerPadding={8}
-                            labelPadding={0}
-                            fontSize={19}
+                            labelPadding={0} 
                             activeLineWidth={2}
                             secureTextEntry={this.state.password}
                             onFocus={() => this.setFocus()}

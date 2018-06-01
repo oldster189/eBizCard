@@ -52,7 +52,8 @@ class LoginScreen extends Component {
       iconImageStyle,
       nextButtonStyle,
       layoutButtonGroupStyle,
-      socialButtonStyle
+      socialButtonStyle,
+      textInputStyle
     } = styles;
 
     const {
@@ -85,7 +86,7 @@ class LoginScreen extends Component {
                   source={require('../../assets/images/ic_mail.png')}
                   style={iconImageStyle}
                 />
-                <TextInput
+                <TextInput 
                   label={'Email'}
                   keyboardType="email-address"
                   autoCapitalize="none"
@@ -94,6 +95,8 @@ class LoginScreen extends Component {
                   onSubmitEditing={() => {
                     this.passwordInput.focus();
                   }}
+                  containerStyle={textInputStyle}
+                  fontSize={19}
                   lineWidth={1}
                   inputContainerPadding={8}
                   labelTextStyle={{ paddingLeft: 0 }}
@@ -120,6 +123,8 @@ class LoginScreen extends Component {
                   keyboardAppearance="light"
                   autoCorrect={false}
                   secureTextEntry
+                  containerStyle={textInputStyle}
+                  fontSize={19}
                   lineWidth={1}
                   returnKeyType="done"
                   ref={input => (this.passwordInput = input)}
@@ -130,7 +135,7 @@ class LoginScreen extends Component {
                   textError={errorPassword}
                 />
               </View>
-              
+
             </View>
 
             <View style={forgetPasswordGroupStyle}>

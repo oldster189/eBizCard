@@ -19,6 +19,7 @@ class CreateProfileScreen extends Component {
     createProfileValueChange: PropTypes.func,
     handleActionSheetPress: PropTypes.func,
     createProfile: PropTypes.func,
+    imageProfile: PropTypes.object,
     profileName: PropTypes.string,
     infoPrefix: PropTypes.string,
     fname: PropTypes.string,
@@ -80,7 +81,7 @@ class CreateProfileScreen extends Component {
 
   renderSecondMobilePhone() {
     const { createProfileValueChange, secondMobilePhone, isShowSecondMobilePhone } = this.props
-    const { secondGroupLayoutStyle, imgIconInputStyle } = styles
+    const { secondGroupLayoutStyle, imgIconInputStyle, textInputStyle } = styles
     if (isShowSecondMobilePhone) {
       return (
         <View>
@@ -101,6 +102,8 @@ class CreateProfileScreen extends Component {
               keyboardType="phone-pad"
               returnKeyType="next"
               inputContainerPadding={16}
+              containerStyle={textInputStyle}
+              fontSize={19}
               labelTextStyle={{ paddingLeft: 9 }}
               inputContainerStyle={{ paddingLeft: 9 }}
               onChangeText={text =>
@@ -111,7 +114,7 @@ class CreateProfileScreen extends Component {
             />
           </View>
 
-        <SeparatorLine />
+        <SeparatorLine color={styles.separatorColorStyle} />
         </View>
 
       )
@@ -124,7 +127,7 @@ class CreateProfileScreen extends Component {
           onPress={() =>
             createProfileValueChange({ prop: 'isShowSecondMobilePhone', value: true })}
         /> 
-        <SeparatorLine />
+        <SeparatorLine color={styles.separatorColorStyle} />
       </View>
 
     );
@@ -132,7 +135,7 @@ class CreateProfileScreen extends Component {
 
   renderSecondEmail() {
     const { createProfileValueChange, secondEmail, isShowSecondEmail } = this.props
-    const { secondGroupLayoutStyle, imgIconInputStyle } = styles
+    const { secondGroupLayoutStyle, imgIconInputStyle, textInputStyle } = styles
     if (isShowSecondEmail) {
       return (
         <View>
@@ -153,6 +156,8 @@ class CreateProfileScreen extends Component {
               keyboardType="email-address"
               returnKeyType="next"
               inputContainerPadding={16}
+              containerStyle={textInputStyle}
+              fontSize={19}
               labelTextStyle={{ paddingLeft: 9 }}
               inputContainerStyle={{ paddingLeft: 9 }}
               onChangeText={text =>
@@ -185,7 +190,9 @@ class CreateProfileScreen extends Component {
       profileLayoutGroupStyle,
       cameraLayoutGroupStyle,
       imgCameraStyle,
-      nextBtnStyle
+      nextBtnStyle,
+      textInputStyle,
+      separatorColorStyle
     } = styles;
 
     const {
@@ -261,6 +268,8 @@ class CreateProfileScreen extends Component {
             onSubmitEditing={() => {
               this.fnameInput.focus();
             }}
+            containerStyle={textInputStyle}
+            fontSize={19}
             inputContainerPadding={16}
             labelTextStyle={{ paddingLeft: 9 }}
             inputContainerStyle={{ paddingLeft: 9 }}
@@ -278,12 +287,14 @@ class CreateProfileScreen extends Component {
             source={require('../../assets/images/ic_personal.png')}
             title='Personal info'
           />
-          <SeparatorLine />
+          <SeparatorLine color={separatorColorStyle} />
           <TextInput
             lineWidth={1}
             editable={false}
             label={'Info prefix'}
             keyboardType="default"
+            containerStyle={textInputStyle}
+            fontSize={19}
             inputContainerPadding={16}
             labelTextStyle={{ paddingLeft: 9 }}
             inputContainerStyle={{ paddingLeft: 9 }}
@@ -303,6 +314,8 @@ class CreateProfileScreen extends Component {
               this.mnameInput.focus();
             }}
             ref={input => (this.fnameInput = input)}
+            containerStyle={textInputStyle}
+            fontSize={19}
             inputContainerPadding={16}
             labelTextStyle={{ paddingLeft: 9 }}
             inputContainerStyle={{ paddingLeft: 9 }}
@@ -323,6 +336,8 @@ class CreateProfileScreen extends Component {
               this.lnameInput.focus();
             }}
             ref={input => (this.mnameInput = input)}
+            containerStyle={textInputStyle}
+            fontSize={19}
             inputContainerPadding={16}
             labelTextStyle={{ paddingLeft: 9 }}
             inputContainerStyle={{ paddingLeft: 9 }}
@@ -342,6 +357,8 @@ class CreateProfileScreen extends Component {
               this.suffixInput.focus();
             }}
             ref={input => (this.lnameInput = input)}
+            containerStyle={textInputStyle}
+            fontSize={19}
             inputContainerPadding={16}
             labelTextStyle={{ paddingLeft: 9 }}
             inputContainerStyle={{ paddingLeft: 9 }}
@@ -362,6 +379,8 @@ class CreateProfileScreen extends Component {
               this.mobilePhoneInput.focus();
             }}
             ref={input => (this.suffixInput = input)}
+            containerStyle={textInputStyle}
+            fontSize={19}
             inputContainerPadding={16}
             labelTextStyle={{ paddingLeft: 9 }}
             inputContainerStyle={{ paddingLeft: 9 }}
@@ -381,6 +400,8 @@ class CreateProfileScreen extends Component {
               this.emailInput.focus();
             }}
             ref={input => (this.mobilePhoneInput = input)}
+            containerStyle={textInputStyle}
+            fontSize={19}
             inputContainerPadding={16}
             labelTextStyle={{ paddingLeft: 9 }}
             inputContainerStyle={{ paddingLeft: 9 }}
@@ -403,6 +424,8 @@ class CreateProfileScreen extends Component {
               this.companyNameInput.focus();
             }}
             ref={input => (this.emailInput = input)}
+            containerStyle={textInputStyle}
+            fontSize={19}
             inputContainerPadding={16}
             labelTextStyle={{ paddingLeft: 9 }}
             inputContainerStyle={{ paddingLeft: 9 }}
@@ -420,7 +443,7 @@ class CreateProfileScreen extends Component {
             source={require('../../assets/images/ic_company.png')}
             title='Company info'
           />
-          <SeparatorLine />
+          <SeparatorLine color={separatorColorStyle} />
           <TextInput
             lineWidth={1}
             label={'Company'}
@@ -430,6 +453,8 @@ class CreateProfileScreen extends Component {
               this.positionInput.focus();
             }}
             ref={input => (this.companyNameInput = input)}
+            containerStyle={textInputStyle}
+            fontSize={19}
             inputContainerPadding={16}
             labelTextStyle={{ paddingLeft: 9 }}
             inputContainerStyle={{ paddingLeft: 9 }}
@@ -450,6 +475,8 @@ class CreateProfileScreen extends Component {
               this.companyAddressInput.focus();
             }}
             ref={input => (this.positionInput = input)}
+            containerStyle={textInputStyle}
+            fontSize={19}
             inputContainerPadding={16}
             labelTextStyle={{ paddingLeft: 9 }}
             inputContainerStyle={{ paddingLeft: 9 }}
@@ -470,6 +497,8 @@ class CreateProfileScreen extends Component {
               this.officePhoneInput.focus();
             }}
             ref={input => (this.companyAddressInput = input)}
+            containerStyle={textInputStyle}
+            fontSize={19}
             inputContainerPadding={16}
             labelTextStyle={{ paddingLeft: 9 }}
             inputContainerStyle={{ paddingLeft: 9 }}
@@ -490,6 +519,8 @@ class CreateProfileScreen extends Component {
               this.faxPhoneInput.focus();
             }}
             ref={input => (this.officePhoneInput = input)}
+            containerStyle={textInputStyle}
+            fontSize={19}
             inputContainerPadding={16}
             labelTextStyle={{ paddingLeft: 9 }}
             inputContainerStyle={{ paddingLeft: 9 }}
@@ -509,6 +540,8 @@ class CreateProfileScreen extends Component {
               this.businessTypeInput.focus();
             }}
             ref={input => (this.faxPhoneInput = input)}
+            containerStyle={textInputStyle}
+            fontSize={19}
             inputContainerPadding={16}
             labelTextStyle={{ paddingLeft: 9 }}
             inputContainerStyle={{ paddingLeft: 9 }}
@@ -525,6 +558,8 @@ class CreateProfileScreen extends Component {
             keyboardType="default"
             returnKeyType="done"
             ref={input => (this.businessTypeInput = input)}
+            containerStyle={textInputStyle}
+            fontSize={19}
             inputContainerPadding={16}
             labelTextStyle={{ paddingLeft: 9 }}
             inputContainerStyle={{ paddingLeft: 9 }}

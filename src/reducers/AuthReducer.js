@@ -9,7 +9,8 @@ import {
   REGISTER_USER_START,
   REGISTER_SCREEN,
   LOGIN_SCREEN,
-  TEXT_INPUT_IS_INVALID
+  TEXT_INPUT_IS_INVALID,
+  FORGET_PASSWORD_SCREEN
 } from '../constants/actionTypes';
 
 const initialState = {
@@ -37,7 +38,7 @@ export default (state = initialState, action) => {
       return { ...state, [action.payload.prop]: action.payload.value, };
     case NORMAL_LOGIN_SUCCESS:
       return {
-        ...state, 
+        ...state,
         password: '',
         rePassword: '',
         isLoggedIn: true,
@@ -48,7 +49,7 @@ export default (state = initialState, action) => {
       };
     case NORMAL_REGISTER_SUCCESS:
       return {
-        ...state, 
+        ...state,
         password: '',
         rePassword: '',
         isLoggedIn: true,
@@ -91,6 +92,15 @@ export default (state = initialState, action) => {
         errorRePassword: '',
       }
     case LOGIN_SCREEN:
+      return {
+        ...state,
+        password: '',
+        rePassword: '',
+        errorEmail: '',
+        errorPassword: '',
+        errorRePassword: '',
+      }
+    case FORGET_PASSWORD_SCREEN:
       return {
         ...state,
         password: '',

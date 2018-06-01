@@ -2,6 +2,7 @@ import { StyleSheet, Dimensions } from 'react-native';
 import theme from '../../styles/theme.style';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
+const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 const heightBackgroundHeader = 218;
 export default StyleSheet.create({
@@ -57,5 +58,13 @@ export default StyleSheet.create({
         marginRight: theme.MARGIN_RIGHT,
         marginBottom: 24,
         marginTop: 16
+    },
+    textInputStyle: {
+        flex: 1,
+        height: 70,
+        justifyContent: 'center',
+    }, 
+    separatorColor: {
+        borderColor: theme.SEPARATOR_COLOR,
     }
 });

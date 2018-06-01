@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import TextInput from '../../common/TextInput'
 
@@ -8,6 +8,9 @@ import { LabelWithLink } from '../../common';
 import PasswordInputText from '../../common/PasswordInputText';
 import styles from './Register.style';
 import theme from '../../styles/theme.style';
+
+const SCREEN_HEIGHT = Dimensions.get('window').height;
+const SCREEN_WIDTH = Dimensions.get('window').width;
 
 
 class RegisterScreen extends Component {
@@ -31,6 +34,10 @@ class RegisterScreen extends Component {
     },
     headerTitleStyle: { color: 'white' },
     headerBackTitle: ' '
+  }
+
+  componentDidMount() {
+    console.log(SCREEN_HEIGHT, SCREEN_WIDTH)
   }
 
   componentWillReceiveProps(nextProps) {
@@ -84,7 +91,8 @@ class RegisterScreen extends Component {
       iconImageStyle,
       nextButtonStyle,
       layoutButtonGroupStyle,
-      socialButtonStyle
+      socialButtonStyle,
+      textInputStyle
     } = styles;
 
     const {
@@ -126,6 +134,8 @@ class RegisterScreen extends Component {
                   onSubmitEditing={() => {
                     this.passwordInput.focus();
                   }}
+                  containerStyle={textInputStyle}
+                  fontSize={19}
                   lineWidth={1}
                   inputContainerPadding={8}
                   labelTextStyle={{ paddingLeft: 0 }}
@@ -151,6 +161,8 @@ class RegisterScreen extends Component {
                   autoCorrect={false}
                   secureTextEntry
                   lineWidth={1}
+                  containerStyle={textInputStyle}
+                  fontSize={19}
                   ref={input => (this.passwordInput = input)}
                   returnKeyType="next"
                   onSubmitEditing={() => {
@@ -176,6 +188,8 @@ class RegisterScreen extends Component {
                   autoCorrect={false}
                   secureTextEntry
                   lineWidth={1}
+                  containerStyle={textInputStyle}
+                  fontSize={19}
                   returnKeyType="done"
                   ref={input => (this.rePasswordInput = input)}
                   onChangeText={text => registerValueChange({ prop: 'rePassword', value: text })}

@@ -1,11 +1,10 @@
 import React from 'react';
-import { View } from 'react-native';
-import theme from '../styles/theme.style';
+import { View } from 'react-native'; 
 
-const SeparatorLine = () => {
+const SeparatorLine = ({ color }) => { 
   return (
     <View>
-      <View style={{ backgroundColor: theme.SEPARATOR_COLOR, height: 1 }} />
+      <View style={{ backgroundColor: color, height: 1 }} />
     </View> 
   )
 };

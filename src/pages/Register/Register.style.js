@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from 'react-native';
+import { StyleSheet, Dimensions, Platform } from 'react-native';
 import theme from '../../styles/theme.style'; 
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
@@ -11,7 +11,7 @@ export default StyleSheet.create({
     },
     rootLayoutStyle: {
         flex: 1, 
-        height: SCREEN_HEIGHT - 100
+        height: Platform.OS === 'android' ? SCREEN_HEIGHT - 70 : null
     },
     labelSigninStyle: {
         marginBottom: 48,
@@ -35,8 +35,7 @@ export default StyleSheet.create({
     separatorGroupStyle: {
         flexDirection: 'row',
         alignItems: 'center',
-        flex: 1,
-        marginTop: 50,
+        flex: 1, 
         marginLeft: 16,
         marginRight: 16,
         marginBottom: 8,
@@ -49,17 +48,22 @@ export default StyleSheet.create({
         flexDirection: 'column',
         marginLeft: 24,
         marginRight: 24,
-        marginTop: 32,
+        marginTop: 16,
     },
     inputGroupStyle: {
         flexDirection: 'row', 
-        height: 90, 
+        height: SCREEN_HEIGHT <= 568 ? 80 : 90,
     },
+    textInputStyle: {
+        flex: 1,
+        height: SCREEN_HEIGHT <= 568 ? 55 : 65,
+        justifyContent: 'center',
+    }, 
     iconImageStyle: {
         height: 24,
         width: 24,
         marginRight: 16,
-        marginTop: 30,
+        marginTop: 26,
     },
     nextButtonStyle: {
         height: 48,
@@ -73,9 +77,8 @@ export default StyleSheet.create({
     },
     layoutButtonGroupStyle: { 
         position: 'absolute',
-        top: (SCREEN_HEIGHT - 280),
+        top: SCREEN_HEIGHT > 736 ? (SCREEN_HEIGHT - 300) : (SCREEN_HEIGHT - 200),
         width: SCREEN_WIDTH, 
-        alignItems: 'center', 
-        backgroundColor: 'red',
+        alignItems: 'center',  
     }
 });

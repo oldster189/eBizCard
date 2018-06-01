@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, ScrollView, TouchableOpacity, Image } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { Button, } from 'react-native-elements';
 import ActionSheet from 'react-native-actionsheet'
 
 import theme from '../../styles/theme.style';
+ 
+const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class CreatePhtoCardScreen extends Component {
   static navigationOptions = {
@@ -19,7 +21,7 @@ class CreatePhtoCardScreen extends Component {
         clear
         title="Skip"
         backgroundColor='tranparent'
-        onPress={() => { }}
+        onPress={() => this.props.mainScreen}
       />
     )
   }
@@ -27,6 +29,7 @@ class CreatePhtoCardScreen extends Component {
   static propTypes = {
     handleActionSheetPressFront: PropTypes.func,
     handleActionSheetPressBack: PropTypes.func,
+    mainScreen: PropTypes.func,
     photoCardFront: PropTypes.object,
     photoCardBack: PropTypes.object,
   };
@@ -46,8 +49,8 @@ class CreatePhtoCardScreen extends Component {
           <View
             style={{
               backgroundColor: '#D9D9D9',
-              height: 189,
-              width: 315,
+              width: SCREEN_WIDTH < 375 ? 270 : 315,
+              height: SCREEN_WIDTH < 375 ? 162 : 189,
               borderRadius: 8,
               alignItems: 'center',
               justifyContent: 'center'
@@ -63,8 +66,8 @@ class CreatePhtoCardScreen extends Component {
     return (
       <Image
         style={{
-          height: 189,
-          width: 315,
+          width: SCREEN_WIDTH < 375 ? 270 : 315,
+          height: SCREEN_WIDTH < 375 ? 162 : 189,
           borderRadius: 8,
           borderWidth: 1,
           borderColor: 'rgba(69, 69, 69, .40)'
@@ -80,8 +83,8 @@ class CreatePhtoCardScreen extends Component {
           <View
             style={{
               backgroundColor: '#D9D9D9',
-              width: 315,
-              height: 189,
+              width: SCREEN_WIDTH < 375 ? 270 : 315,
+              height: SCREEN_WIDTH < 375 ? 162 : 189,
               borderRadius: 8,
               alignItems: 'center',
               justifyContent: 'center'
@@ -97,8 +100,8 @@ class CreatePhtoCardScreen extends Component {
     return (
       <Image
         style={{
-          width: 315,
-          height: 189,
+          width: SCREEN_WIDTH < 375 ? 270 : 315,
+          height: SCREEN_WIDTH < 375 ? 162 : 189,
           borderRadius: 8,    
           borderWidth: 1,
           borderColor: 'rgba(69, 69, 69, .40)'
@@ -153,8 +156,8 @@ class CreatePhtoCardScreen extends Component {
               {this.renderPhotoCardFront()}
               <View
                 style={{
-                  height: 210,
-                  width: 335,
+                  height: SCREEN_WIDTH < 375 ? 180 : 210,
+                  width: SCREEN_WIDTH < 375 ? 300 : 335,
                   borderRadius: 8,
                   alignItems: 'flex-end',
                   justifyContent: 'flex-end',
@@ -187,8 +190,8 @@ class CreatePhtoCardScreen extends Component {
               {this.renderPhotoCardBack()}
               <View
                 style={{
-                  height: 210,
-                  width: 335,
+                  height: SCREEN_WIDTH < 375 ? 180 : 210,
+                  width: SCREEN_WIDTH < 375 ? 300 : 335,
                   borderRadius: 8,
                   alignItems: 'flex-end',
                   justifyContent: 'flex-end',
