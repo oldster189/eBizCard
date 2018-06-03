@@ -3,24 +3,14 @@ import { View, Text, Image, ScrollView } from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Button } from 'react-native-elements';
 import Swiper from 'react-native-swiper';
-import { SafeAreaView } from 'react-navigation';
-
+import { SafeAreaView } from 'react-navigation'; 
 import TextInfo from '../../common/TextInfo';
 import SeparatorLine from '../../common/SeparatorLine';
 import styles from './Main.style';
 import theme from '../../styles/theme.style';
 
 class MainScreen extends Component {
-
-  static navigationOptions = {
-    title: 'Main Profile',
-    headerStyle: {
-      backgroundColor: theme.NAV_BAR_COLOR,
-    },
-    headerTitleStyle: { color: 'white' },
-    headerBackTitle: ' '
-  }
-
+  
   render() {
     const {
       containerStyle,

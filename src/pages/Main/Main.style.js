@@ -50,7 +50,9 @@ export default StyleSheet.create({
         marginBottom: 10,
     },
     editButtonStyle: {  
-        width: SCREEN_WIDTH,
-        height: 50, 
+        width: 100,
+        height: 34,
+        marginTop: 8,
+        marginBottom: 8 
     }
 });

@@ -15,7 +15,7 @@ import {
 } from '../constants/actionTypes';
 
 const router = AppNavigator.router;
-const mainAction = router.getActionForPathAndParams('Main');
+const mainAction = router.getActionForPathAndParams('Home');
 // const loginAction = router.getActionForPathAndParams('Login');
 // const tempNavState = router.getStateForAction(mainAction);
 // const createProfileAction = router.getActionForPathAndParams('CreateProfile');
@@ -30,7 +30,7 @@ export default (state = initialNavState, action) => {
   switch (action.type) {
     case LOGIN:
       nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Main' }),
+        NavigationActions.navigate({ routeName: 'Home' }),
         state
       );
       break;
@@ -74,7 +74,7 @@ export default (state = initialNavState, action) => {
       break;
     case MAIN_SCREEN:
       nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Main' }),
+        NavigationActions.navigate({ routeName: 'Home' }),
         state
       );
       break;
