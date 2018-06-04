@@ -56,7 +56,7 @@ class MainScreen extends Component {
   }
  
   componentDidMount() {
-    this.props.getProfileAllData()
+    // this.props.getProfileAllData()
   }
 
   showActionSheet = () => {
@@ -79,8 +79,7 @@ class MainScreen extends Component {
       editButtonStyle
     } = styles
 
-    const { data } = this.props
-    console.log(data)
+    const { data } = this.props 
     return (
       <SafeAreaView 
         style={safeAreaViewStyle}

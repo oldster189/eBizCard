@@ -156,8 +156,18 @@ export default class RNPickerSelect extends PureComponent {
     }
 
     renderTextInputOrChildren() {
-        if (this.props.children) {
-            return <View pointerEvents="box-only">{this.props.children}</View>;
+        const { 
+            children,
+            label, 
+            lineWidth,
+            fontSize,
+            containerStyle,
+            inputContainerPadding,
+            labelTextStyle,
+            inputContainerStyle,
+        } = this.props
+        if (children) {
+            return <View pointerEvents="box-only">{children}</View>;
         }
         return (
             <View 
@@ -166,21 +176,16 @@ export default class RNPickerSelect extends PureComponent {
                     flexDirection: 'row', 
                     alignItems: 'center',
                     backgroundColor: 'white',
-                 }}
-                 
+                 }} 
             >
-                <TextInput
-                    label='Info Prefix'
-                    lineWidth={1}
-                    fontSize={19}
-                    containerStyle={{
-                        flex: 1,
-                        height: 70,
-                        justifyContent: 'center',
-                    }}
-                    inputContainerPadding={16}
-                    labelTextStyle={{ paddingLeft: 9 }}
-                    inputContainerStyle={{ paddingLeft: 9 }}
+                <TextInput 
+                    label={label}
+                    lineWidth={lineWidth}
+                    fontSize={fontSize}
+                    containerStyle={containerStyle}
+                    inputContainerPadding={inputContainerPadding}
+                    labelTextStyle={labelTextStyle}
+                    inputContainerStyle={inputContainerStyle}
                     value={this.state.selectedItem.label}
                     ref={(ref) => {
                         this.inputRef = ref;

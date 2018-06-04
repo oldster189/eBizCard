@@ -7,6 +7,6 @@ export const isEmpty = (obj) => {
     return Object.keys(obj).length === 0;
 } 
 
-export const trimingAndLowercase = (email) => {
+export const trimmingAndLowercase = (email) => {
    return email.replace(/\s+/g, '').toLowerCase()
 }

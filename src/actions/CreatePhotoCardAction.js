@@ -16,7 +16,6 @@ import {
 const ImagePicker = NativeModules.ImageCropPicker
 
 export const handleActionSheetPressFront = (buttonIndex) => {
-    console.log('handleActionSheetPressFront')
     return (dispatch) => {
         if (buttonIndex === CHOOSE_CAMERA) {
             chooseCamera(dispatch, true, TYPE_SELECT_CARD_FRONT)
@@ -27,7 +26,6 @@ export const handleActionSheetPressFront = (buttonIndex) => {
 }
 
 export const handleActionSheetPressBack = (buttonIndex) => {
-    console.log('handleActionSheetPressBack')
     return (dispatch) => {
         if (buttonIndex === CHOOSE_CAMERA) {
             chooseCamera(dispatch, true, TYPE_SELECT_CARD_BACK)

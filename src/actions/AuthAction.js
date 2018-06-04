@@ -1,6 +1,6 @@
-import { AsyncStorage } from 'react-native' 
-import { LoginManager, AccessToken } from 'react-native-fbsdk'
-import { validateEmail, isEmpty, trimingAndLowercase } from '../utils/util'
+import { AsyncStorage } from 'react-native'
+import FBSDK, { LoginManager, AccessToken } from 'react-native-fbsdk' 
+import { validateEmail, isEmpty, trimmingAndLowercase } from '../utils/util'
 
 import {
     FACEBOOK_LOGIN_SUCCESS,
@@ -18,21 +18,25 @@ import {
 
 } from '../constants/actionTypes'
 
+const { GraphRequest, GraphRequestManager } = FBSDK
+
 const startLoginUser = (dispatch) => {
     dispatch({ type: LOGIN_USER_START })
 }
 
 export const facebookLogin = () => async dispatch => {
-    const token = await AsyncStorage.getItem('fb_token')
-    console.log(`token: ${token}`)
-    if (token) {
-        // Dispatch an action saying FB login is done
-        dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: token })
-    } else {
-        // Start up FB Login process 
-        startLoginUser(dispatch)
-        doFacebookLogin(dispatch)
-    }
+    // const token = await AsyncStorage.getItem('fb_token')
+    // console.log(`token: ${token}`)
+    // if (token) {
+    //     // Dispatch an action saying FB login is done
+    //     dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: token })
+    // } else {
+    //     // Start up FB Login process 
+    //     startLoginUser(dispatch)
+    //     doFacebookLogin(dispatch)
+    // }
+    startLoginUser(dispatch)
+    doFacebookLogin(dispatch)
 }
 
 const doFacebookLogin = async dispatch => {
@@ -43,10 +47,40 @@ const doFacebookLogin = async dispatch => {
     }
 
     const { accessToken } = await AccessToken.getCurrentAccessToken()
-    await AsyncStorage.setItem('fb_token', accessToken)
-    // https://graph.facebook.com/me?fields=email,first_name,last_name,picture,friends&access_token=$token
-    dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: accessToken })
+    if (accessToken !== null) {
+
+        //Create response callback.
+        const responseInfoCallback = (error, result) => {
+            if (error) {
+                console.log(`Error get info fb_graph: ${error}`)
+                dispatch({ type: FACEBOOK_LOGIN_FAIL })
+            } else { 
+                console.log(`Success get info fb_graph: ${JSON.stringify(result)}`) 
+                dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: result })
+            }
+        }
+
+        // Get info data from fb graph api 
+        const infoRequest = new GraphRequest(
+            '/me',
+            {
+                accessToken: accessToken,
+                parameters: {
+                    fields: {
+                        string: 'email,name,first_name,middle_name,last_name,picture'
+                    }
+                }
+            },
+            responseInfoCallback
+        );
+
+        // Start the fb graph api request.
+        new GraphRequestManager().addRequest(infoRequest).start()
+    } 
 }
+
+
+
 
 export const loginValueChange = ({ prop, value }) => {
     return {
@@ -57,8 +91,8 @@ export const loginValueChange = ({ prop, value }) => {
 
 
 export const normalLogin = ({ email, password }) => {
-    this.email = trimingAndLowercase(email)
-    this.password = trimingAndLowercase(password)
+    this.email = trimmingAndLowercase(email)
+    this.password = trimmingAndLowercase(password)
     const payload = {}
     console.log(this.email, this.password)
     return async dispatch => {
@@ -77,11 +111,9 @@ export const normalLogin = ({ email, password }) => {
             delete payload.errorPassword
         }
 
-        if (!isEmpty(payload)) {
-            console.log('as')
+        if (!isEmpty(payload)) { 
             dispatch({ type: TEXT_INPUT_IS_INVALID, payload })
-        } else {
-            console.log('asda')
+        } else { 
             // Call service
             dispatch({ type: NORMAL_LOGIN_SUCCESS })
         }
@@ -100,9 +132,9 @@ export const registerValueChange = ({ prop, value }) => {
 }
 
 export const normalRegister = ({ email, password, rePassword }) => {
-    this.email = trimingAndLowercase(email)
-    this.password = trimingAndLowercase(password)
-    this.rePassword = trimingAndLowercase(rePassword)
+    this.email = trimmingAndLowercase(email)
+    this.password = trimmingAndLowercase(password)
+    this.rePassword = trimmingAndLowercase(rePassword)
     const payload = {}
 
     console.log(this.email, this.password, this.rePassword)
@@ -141,10 +173,10 @@ export const normalRegister = ({ email, password, rePassword }) => {
     }
 }
 
-export const forgetPasswordScreen = () => dispatch => { 
+export const forgetPasswordScreen = () => dispatch => {
     dispatch({ type: FORGET_PASSWORD_SCREEN })
 }
- 
+
 export const loginScreen = () => dispatch => {
     dispatch({ type: LOGIN_SCREEN })
 }

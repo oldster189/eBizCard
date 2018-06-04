@@ -10,15 +10,22 @@ import {
   REGISTER_SCREEN,
   LOGIN_SCREEN,
   TEXT_INPUT_IS_INVALID,
-  FORGET_PASSWORD_SCREEN
-} from '../constants/actionTypes';
+  FORGET_PASSWORD_SCREEN,
+  FACEBOOK_LOGIN_SUCCESS
+} from '../constants/actionTypes'; 
+import { USER_TYPE_FACEBOOK, USER_TYPE_NORMAL } from '../constants/constants';
 
 const initialState = {
   email: '',
+  fname: '',
+  mname: '',
+  lname: '',
+  link_image: '',
   password: '',
   rePassword: '',
   isLoggedIn: false,
   loading: false,
+  userType: '',
   errorEmail: '',
   errorPassword: '',
   errorRePassword: '',
@@ -36,15 +43,28 @@ export default (state = initialState, action) => {
       return { ...state, [action.payload.prop]: action.payload.value, };
     case REGISTER_VALUE_CHANGE:
       return { ...state, [action.payload.prop]: action.payload.value, };
+    case FACEBOOK_LOGIN_SUCCESS:
+      return {
+        ...state,
+        email: action.payload.email,
+        fname: action.payload.first_name,
+        mname: action.payload.middle_name,
+        lname: action.payload.last_name,
+        link_image: action.payload.picture.data.url,
+        userType: USER_TYPE_FACEBOOK,
+        isLoggedIn: true,
+        loading: false,
+      }
     case NORMAL_LOGIN_SUCCESS:
       return {
         ...state,
         password: '',
         rePassword: '',
-        isLoggedIn: true,
         errorEmail: '',
         errorPassword: '',
         errorRePassword: '',
+        userType: USER_TYPE_NORMAL,
+        isLoggedIn: true,
         loading: false
       };
     case NORMAL_REGISTER_SUCCESS:
@@ -52,10 +72,11 @@ export default (state = initialState, action) => {
         ...state,
         password: '',
         rePassword: '',
-        isLoggedIn: true,
         errorEmail: '',
         errorPassword: '',
         errorRePassword: '',
+        userType: USER_TYPE_NORMAL,
+        isLoggedIn: true,
         loading: false
       };
     case TEXT_INPUT_IS_INVALID:

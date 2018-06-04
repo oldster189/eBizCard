@@ -2,15 +2,11 @@ import { connect } from 'react-redux'
 import CreateProfileScreen from './CreateProfile.component'
 import * as actions from '../../actions/CreateProfileAction'
 
-const mapStateToProps = ({ createProfile, auth }) => {
-    console.log(auth)
+const mapStateToProps = ({ createProfile, auth }) => { 
     const {
         imageProfile,
         profileName,
-        infoPrefix,
-        fname,
-        mname,
-        lname,
+        infoPrefix, 
         suffix,
         mobilePhone,
         secondMobilePhone, 
@@ -34,8 +30,24 @@ const mapStateToProps = ({ createProfile, auth }) => {
         errorCompanyAddress,
     } = createProfile
     const {
-        email
+        email, 
+        link_image,
+        userType
     } = auth
+
+    let fname = createProfile.fname
+    let mname = createProfile.mname
+    let lname = createProfile.lname
+    if(fname === null || fname === ''){
+        fname = auth.fname
+    }
+    if(mname === null || mname === ''){
+        mname = auth.mname
+    }
+    if(lname === null || lname === ''){
+        lname = auth.lname
+    }
+    
 
     return {
         imageProfile,
@@ -44,6 +56,8 @@ const mapStateToProps = ({ createProfile, auth }) => {
         fname,
         mname,
         lname,
+        link_image,
+        userType,
         suffix,
         mobilePhone,
         secondMobilePhone,

@@ -107,8 +107,8 @@ class CreateProfileScreen extends Component {
               fontSize={19}
               labelTextStyle={{ paddingLeft: 9 }}
               inputContainerStyle={{ paddingLeft: 9 }}
-              onChangeText={text =>
-                createProfileValueChange({ prop: 'secondMobilePhone', value: text })}
+              onChangeText={value =>
+                createProfileValueChange({ prop: 'secondMobilePhone', value })}
               value={secondMobilePhone}
               onFocus={() => { }}
               onBlur={() => { }}
@@ -161,8 +161,8 @@ class CreateProfileScreen extends Component {
               fontSize={19}
               labelTextStyle={{ paddingLeft: 9 }}
               inputContainerStyle={{ paddingLeft: 9 }}
-              onChangeText={text =>
-                createProfileValueChange({ prop: 'secondEmail', value: text })}
+              onChangeText={value =>
+                createProfileValueChange({ prop: 'secondEmail', value })}
               value={secondEmail}
               onFocus={() => { }}
               onBlur={() => { }}
@@ -275,8 +275,8 @@ class CreateProfileScreen extends Component {
             labelTextStyle={{ paddingLeft: 9 }}
             inputContainerStyle={{ paddingLeft: 9 }}
             textError={errorProfileName}
-            onChangeText={text =>
-              createProfileValueChange({ prop: 'profileName', value: text })}
+            onChangeText={value =>
+              createProfileValueChange({ prop: 'profileName', value })}
             value={profileName}
             onFocus={() => { }}
             onBlur={() => { }}
@@ -288,23 +288,7 @@ class CreateProfileScreen extends Component {
             source={require('../../assets/images/ic_personal.png')}
             title='Personal info'
           />
-          <SeparatorLine color={separatorColorStyle} />
-          {/* <TextInput
-            lineWidth={1}
-            editable={false}
-            label={'Info prefix'}
-            keyboardType="default"
-            containerStyle={textInputStyle}
-            fontSize={19}
-            inputContainerPadding={16}
-            labelTextStyle={{ paddingLeft: 9 }}
-            inputContainerStyle={{ paddingLeft: 9 }}
-            onChangeText={text =>
-              createProfileValueChange({ prop: 'infoPrefix', value: text })}
-            value={infoPrefix}
-            onFocus={() => { }}
-            onBlur={() => { }}
-          /> */}
+          <SeparatorLine color={separatorColorStyle} /> 
           <Picker
             items={[
               {
@@ -318,13 +302,17 @@ class CreateProfileScreen extends Component {
               {
                 label: 'Mrs.',
                 value: 'MRS',
-              }, 
-              {
-                label: 'Other',
-                value: 'OTHER',
-              },
-            ]}
-            onValueChange={() => { }}
+              } 
+            ]} 
+            label={'Info Prefix'}  
+            lineWidth={1}
+            containerStyle={textInputStyle}
+            fontSize={19}
+            inputContainerPadding={16}
+            labelTextStyle={{ paddingLeft: 9 }}
+            inputContainerStyle={{ paddingLeft: 9 }}
+            onValueChange={(value) => createProfileValueChange({ prop: 'infoPrefix', value})}
+            value={infoPrefix}
           />
           <TextInput
             lineWidth={1}
@@ -340,8 +328,8 @@ class CreateProfileScreen extends Component {
             inputContainerPadding={16}
             labelTextStyle={{ paddingLeft: 9 }}
             inputContainerStyle={{ paddingLeft: 9 }}
-            onChangeText={text =>
-              createProfileValueChange({ prop: 'fname', value: text })}
+            onChangeText={value =>
+              createProfileValueChange({ prop: 'fname', value })}
             value={fname}
             textError={errorFname}
             onFocus={() => { }}
@@ -362,8 +350,8 @@ class CreateProfileScreen extends Component {
             inputContainerPadding={16}
             labelTextStyle={{ paddingLeft: 9 }}
             inputContainerStyle={{ paddingLeft: 9 }}
-            onChangeText={text =>
-              createProfileValueChange({ prop: 'mname', value: text })}
+            onChangeText={value =>
+              createProfileValueChange({ prop: 'mname', value })}
             value={mname}
             onFocus={() => { }}
             onBlur={() => { }}
@@ -383,8 +371,8 @@ class CreateProfileScreen extends Component {
             inputContainerPadding={16}
             labelTextStyle={{ paddingLeft: 9 }}
             inputContainerStyle={{ paddingLeft: 9 }}
-            onChangeText={text =>
-              createProfileValueChange({ prop: 'lname', value: text })}
+            onChangeText={value =>
+              createProfileValueChange({ prop: 'lname', value })}
             value={lname}
             textError={errorLname}
             onFocus={() => { }}
@@ -405,8 +393,8 @@ class CreateProfileScreen extends Component {
             inputContainerPadding={16}
             labelTextStyle={{ paddingLeft: 9 }}
             inputContainerStyle={{ paddingLeft: 9 }}
-            onChangeText={text =>
-              createProfileValueChange({ prop: 'suffix', value: text })}
+            onChangeText={value =>
+              createProfileValueChange({ prop: 'suffix', value })}
             value={suffix}
             onFocus={() => { }}
             onBlur={() => { }}
@@ -426,8 +414,8 @@ class CreateProfileScreen extends Component {
             inputContainerPadding={16}
             labelTextStyle={{ paddingLeft: 9 }}
             inputContainerStyle={{ paddingLeft: 9 }}
-            onChangeText={text =>
-              createProfileValueChange({ prop: 'mobilePhone', value: text })}
+            onChangeText={value =>
+              createProfileValueChange({ prop: 'mobilePhone', value })}
             value={mobilePhone}
             textError={errorMobilePhone}
             onFocus={() => { }}
@@ -450,8 +438,8 @@ class CreateProfileScreen extends Component {
             inputContainerPadding={16}
             labelTextStyle={{ paddingLeft: 9 }}
             inputContainerStyle={{ paddingLeft: 9 }}
-            onChangeText={text =>
-              createProfileValueChange({ prop: 'email', value: text })}
+            onChangeText={value =>
+              createProfileValueChange({ prop: 'email', value })}
             value={email}
             onFocus={() => { }}
             onBlur={() => { }}
@@ -461,7 +449,7 @@ class CreateProfileScreen extends Component {
           {/* Section Company info */}
           <View style={{ marginTop: 10 }} />
           <SeparatorHeader
-            source={require('../../assets/images/ic_company.png')}
+            source={require('../../assets/images/ic_company_gray.png')}
             title='Company info'
           />
           <SeparatorLine color={separatorColorStyle} />
@@ -479,8 +467,8 @@ class CreateProfileScreen extends Component {
             inputContainerPadding={16}
             labelTextStyle={{ paddingLeft: 9 }}
             inputContainerStyle={{ paddingLeft: 9 }}
-            onChangeText={text =>
-              createProfileValueChange({ prop: 'companyName', value: text })}
+            onChangeText={value =>
+              createProfileValueChange({ prop: 'companyName', value })}
             value={companyName}
             textError={errorCompanyName}
             onFocus={() => { }}
@@ -501,8 +489,8 @@ class CreateProfileScreen extends Component {
             inputContainerPadding={16}
             labelTextStyle={{ paddingLeft: 9 }}
             inputContainerStyle={{ paddingLeft: 9 }}
-            onChangeText={text =>
-              createProfileValueChange({ prop: 'position', value: text })}
+            onChangeText={value =>
+              createProfileValueChange({ prop: 'position', value })}
             value={position}
             textError={errorPosition}
             onFocus={() => { }}
@@ -523,8 +511,8 @@ class CreateProfileScreen extends Component {
             inputContainerPadding={16}
             labelTextStyle={{ paddingLeft: 9 }}
             inputContainerStyle={{ paddingLeft: 9 }}
-            onChangeText={text =>
-              createProfileValueChange({ prop: 'companyAddress', value: text })}
+            onChangeText={value =>
+              createProfileValueChange({ prop: 'companyAddress', value })}
             value={companyAddress}
             textError={errorCompanyAddress}
             onFocus={() => { }}
@@ -545,8 +533,8 @@ class CreateProfileScreen extends Component {
             inputContainerPadding={16}
             labelTextStyle={{ paddingLeft: 9 }}
             inputContainerStyle={{ paddingLeft: 9 }}
-            onChangeText={text =>
-              createProfileValueChange({ prop: 'officePhone', value: text })}
+            onChangeText={value =>
+              createProfileValueChange({ prop: 'officePhone', value })}
             value={officePhone}
             onFocus={() => { }}
             onBlur={() => { }}
@@ -566,8 +554,8 @@ class CreateProfileScreen extends Component {
             inputContainerPadding={16}
             labelTextStyle={{ paddingLeft: 9 }}
             inputContainerStyle={{ paddingLeft: 9 }}
-            onChangeText={text =>
-              createProfileValueChange({ prop: 'faxPhone', value: text })}
+            onChangeText={value =>
+              createProfileValueChange({ prop: 'faxPhone', value })}
             value={faxPhone}
             onFocus={() => { }}
             onBlur={() => { }}
@@ -584,8 +572,8 @@ class CreateProfileScreen extends Component {
             inputContainerPadding={16}
             labelTextStyle={{ paddingLeft: 9 }}
             inputContainerStyle={{ paddingLeft: 9 }}
-            onChangeText={text =>
-              createProfileValueChange({ prop: 'businessType', value: text })}
+            onChangeText={value =>
+              createProfileValueChange({ prop: 'businessType', value })}
             value={businessType}
             onFocus={() => { }}
             onBlur={() => { }}
