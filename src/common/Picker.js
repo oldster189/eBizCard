@@ -4,22 +4,15 @@ import {
     Picker,
     Platform,
     StyleSheet,
-    Text, 
+    Text,
     TouchableOpacity,
     TouchableWithoutFeedback,
     View,
+    Image
 } from 'react-native';
 import PropTypes from 'prop-types';
 import isEqual from 'lodash.isequal';
 import TextInput from './TextInput';
-
-
-function handlePlaceholder({ placeholder }) {
-    if (isEqual(placeholder, {})) {
-        return [];
-    }
-    return [placeholder];
-}
 
 function getSelectedItem({ items, value }) {
     return (
@@ -41,11 +34,6 @@ export default class RNPickerSelect extends PureComponent {
 
         if (itemsChanged || selectedItemChanged) {
             return {
-                // items: itemsChanged
-                //     ? handlePlaceholder({ placeholder: nextProps.placeholder }).concat(
-                //           nextProps.items
-                //       )
-                //     : prevState.items,
                 items: prevState.items,
                 selectedItem: selectedItemChanged ? newSelectedItem : prevState.selectedItem,
             };
@@ -57,7 +45,6 @@ export default class RNPickerSelect extends PureComponent {
     constructor(props) {
         super(props);
 
-        // const items = handlePlaceholder({ placeholder: props.placeholder }).concat(props.items);
         const items = props.items;
         this.state = {
             items,
@@ -134,7 +121,7 @@ export default class RNPickerSelect extends PureComponent {
 
         return (
             <View style={[styles.modalViewMiddle, this.props.style.modalViewMiddle]}>
-                <View style={{ flex: 1}} /> 
+                <View style={{ flex: 1 }} />
                 <TouchableWithoutFeedback
                     onPress={() => {
                         this.togglePicker(true);
@@ -154,7 +141,18 @@ export default class RNPickerSelect extends PureComponent {
             return null;
         }
 
-        return <View style={[styles.icon, this.props.style.icon]} />;
+        return (
+            <Image
+                style={{
+                    height: 24,
+                    width: 24,   
+                    position: 'absolute',
+                    right: 10
+                }}
+                resizeMode='contain'
+                source={require('../assets/images/ic_dropdown.png')}
+            />
+        )
     }
 
     renderTextInputOrChildren() {
@@ -162,10 +160,27 @@ export default class RNPickerSelect extends PureComponent {
             return <View pointerEvents="box-only">{this.props.children}</View>;
         }
         return (
-            <View pointerEvents="box-only">
+            <View 
+                pointerEvents="box-only"
+                style={{
+                    flexDirection: 'row', 
+                    alignItems: 'center',
+                    backgroundColor: 'white',
+                 }}
+                 
+            >
                 <TextInput
-                    placeholder='aasd'
-                    style={[this.props.style.inputIOS, this.renderPlaceholderStyle()]}
+                    label='Info Prefix'
+                    lineWidth={1}
+                    fontSize={19}
+                    containerStyle={{
+                        flex: 1,
+                        height: 70,
+                        justifyContent: 'center',
+                    }}
+                    inputContainerPadding={16}
+                    labelTextStyle={{ paddingLeft: 9 }}
+                    inputContainerStyle={{ paddingLeft: 9 }}
                     value={this.state.selectedItem.label}
                     ref={(ref) => {
                         this.inputRef = ref;
@@ -237,17 +252,26 @@ export default class RNPickerSelect extends PureComponent {
 
         return (
             <View style={[styles.viewContainer, this.props.style.viewContainer]}>
+                <TouchableWithoutFeedback
+                    onPress={() => this.renderEx()}
+                >
+                    {this.renderTextInputOrChildren()}
+                </TouchableWithoutFeedback>
                 <Picker
-                    style={[this.props.style.inputAndroid, this.renderPlaceholderStyle()]}
+                    style={{
+                        position: 'absolute',
+                        top: 0,
+                        width: 1000,
+                        height: 1000,
+                        backgroundColor: 'transparent'
+                    }}
+                    mode='dropdown'
                     onValueChange={this.onValueChange}
                     selectedValue={this.state.selectedItem.value}
                     testId="RNPickerSelectAndroid"
-                    mode={this.props.mode}
-                    enabled={!this.props.disabled}
                 >
                     {this.renderPickerItems()}
                 </Picker>
-                <View style={[styles.underline, this.props.style.underline]} />
             </View>
         );
     }
@@ -256,6 +280,7 @@ export default class RNPickerSelect extends PureComponent {
         return Platform.OS === 'ios' ? this.renderIOS() : this.renderAndroid();
     }
 }
+
 
 RNPickerSelect.propTypes = {
     onValueChange: PropTypes.func.isRequired,
@@ -305,7 +330,7 @@ const styles = StyleSheet.create({
     },
     chevron: {
         width: 15,
-        height: 15, 
+        height: 15,
         backgroundColor: 'transparent',
         borderTopWidth: 1.5,
         borderTopColor: '#D0D4DB',

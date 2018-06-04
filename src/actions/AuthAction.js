@@ -44,6 +44,7 @@ const doFacebookLogin = async dispatch => {
 
     const { accessToken } = await AccessToken.getCurrentAccessToken()
     await AsyncStorage.setItem('fb_token', accessToken)
+    // https://graph.facebook.com/me?fields=email,first_name,last_name,picture,friends&access_token=$token
     dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: accessToken })
 }
 

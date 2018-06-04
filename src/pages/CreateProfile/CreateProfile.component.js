@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ScrollView, View, TouchableOpacity, Image, } from 'react-native'; 
+import { ScrollView, View, TouchableOpacity, Image, } from 'react-native';
 import { Button, } from 'react-native-elements';
 import ActionSheet from 'react-native-actionsheet'
 
 import TextInput from '../../common/TextInput';
 import SeparatorLine from '../../common/SeparatorLine';
 import SeparatorHeader from '../../common/SeparatorHeader';
+import Picker from '../../common/Picker';
 import AddButton from '../../common/AddButton';
 
 import styles from './CreateProfile.style';
@@ -114,7 +115,7 @@ class CreateProfileScreen extends Component {
             />
           </View>
 
-        <SeparatorLine color={styles.separatorColorStyle} />
+          <SeparatorLine color={styles.separatorColorStyle} />
         </View>
 
       )
@@ -126,7 +127,7 @@ class CreateProfileScreen extends Component {
           source={require('../../assets/images/ic_add.png')}
           onPress={() =>
             createProfileValueChange({ prop: 'isShowSecondMobilePhone', value: true })}
-        /> 
+        />
         <SeparatorLine color={styles.separatorColorStyle} />
       </View>
 
@@ -288,7 +289,7 @@ class CreateProfileScreen extends Component {
             title='Personal info'
           />
           <SeparatorLine color={separatorColorStyle} />
-          <TextInput
+          {/* <TextInput
             lineWidth={1}
             editable={false}
             label={'Info prefix'}
@@ -303,8 +304,28 @@ class CreateProfileScreen extends Component {
             value={infoPrefix}
             onFocus={() => { }}
             onBlur={() => { }}
+          /> */}
+          <Picker
+            items={[
+              {
+                label: 'Mr.',
+                value: 'MR',
+              },
+              {
+                label: 'Miss',
+                value: 'MISS',
+              },
+              {
+                label: 'Mrs.',
+                value: 'MRS',
+              }, 
+              {
+                label: 'Other',
+                value: 'OTHER',
+              },
+            ]}
+            onValueChange={() => { }}
           />
-
           <TextInput
             lineWidth={1}
             label={'First name'}

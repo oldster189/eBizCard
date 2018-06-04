@@ -1,18 +1,72 @@
 import React, { Component } from 'react';
-import { View, Text, Image, ScrollView } from 'react-native';
+import PropTypes from 'prop-types';
+import { View, Text, Image, ScrollView, } from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Button } from 'react-native-elements';
 import Swiper from 'react-native-swiper';
-import { SafeAreaView } from 'react-navigation'; 
+import { SafeAreaView } from 'react-navigation';
+import ActionSheet from 'react-native-actionsheet'
+
 import TextInfo from '../../common/TextInfo';
 import SeparatorLine from '../../common/SeparatorLine';
 import styles from './Main.style';
 import theme from '../../styles/theme.style';
 
 class MainScreen extends Component {
-  
+
+  static propTypes = {
+    getProfileAllData: PropTypes.func, 
+    data: PropTypes.array, 
+  };
+
+  static navigationOptions = {
+    title: 'Home',
+    // header: ( 
+    //   /* Your custom header */
+    //   <View
+    //     style={{
+    //       height: 80,
+    //       flexDirection: 'row',
+    //       backgroundColor: theme.NAV_BAR_COLOR,
+    //       marginTop: Platform.OS === 'ios' ? 20 : 0 
+    //     }}
+    //   >
+    //     <Text>This is CustomHeader</Text>
+    //   </View>
+    // ),
+    headerStyle: {
+      backgroundColor: theme.NAV_BAR_COLOR,
+    },
+    headerTitleStyle: { color: 'white' },
+    headerBackTitle: ' ',
+    headerRight: (
+      <Button
+        title=' '
+        icon={
+          <MaterialIcon
+            name='share'
+            size={32}
+            color='white'
+          />
+        }
+        clear
+        iconRight
+      />
+    )
+  }
+ 
+  componentDidMount() {
+    this.props.getProfileAllData()
+  }
+
+  showActionSheet = () => {
+    this.ActionSheet.show()
+  }
+ 
+
   render() {
     const {
+      safeAreaViewStyle,
       containerStyle,
       headerSwipeStyle,
       paginationStyle,
@@ -24,10 +78,12 @@ class MainScreen extends Component {
       textNameCompanyStyle,
       editButtonStyle
     } = styles
+
+    const { data } = this.props
+    console.log(data)
     return (
-      <SafeAreaView
-        forceInset={{ bottom: 'always' }}
-        style={containerStyle}
+      <SafeAreaView 
+        style={safeAreaViewStyle}
       >
         <ScrollView style={containerStyle} >
 
@@ -54,7 +110,7 @@ class MainScreen extends Component {
           </View>
           {/* End Header Photo Card Swipe */}
 
-          <View style={{ backgroundColor: '#FFF', marginTop: 10 }}>
+          <View style={{ backgroundColor: '#FFF', marginTop: 10, marginBottom: 10 }}>
 
             {/* Begin Profile Info Content */}
             <View style={{ alignSelf: 'flex-end', marginTop: 4 }}>
@@ -71,11 +127,12 @@ class MainScreen extends Component {
                   />
                 }
                 clear
+                onPress={this.showActionSheet}
               />
             </View>
 
-            <View style={{ flexDirection: 'row', alignItems: 'center' }}>  
-            {/*  Begin Image Profile Group */} 
+            <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+              {/*  Begin Image Profile Group */}
               <View
                 style={{
                   marginLeft: theme.MARGIN_XX,
@@ -111,12 +168,12 @@ class MainScreen extends Component {
                     source={require('../../assets/images/add_display.png')}
                   />
                 </View>
-              </View> 
+              </View>
               {/*  End Image Profile Group */}
 
               <View style={{ marginBottom: 10, flex: 1 }}>
                 <Text style={textNameProfileStyle}>
-                  Mintra Jantarapakasdasdas
+                  Mintra Jantarapak
                   </Text>
                 <Text style={textNameCompanyStyle}>
                   Codemobiles.co.,Ltd
@@ -190,6 +247,13 @@ class MainScreen extends Component {
             </View>
           </View>
         </ScrollView>
+        <ActionSheet
+          ref={o => { this.ActionSheet = o }}
+          title='Select Language Display'
+          options={['Default', 'Add more Language', 'Cancel']} 
+          cancelButtonIndex={2}
+          onPress={() => {}}
+        />
       </SafeAreaView>
 
     );

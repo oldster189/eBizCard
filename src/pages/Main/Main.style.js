@@ -5,6 +5,10 @@ import theme from '../../styles/theme.style';
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 export default StyleSheet.create({
+    safeAreaViewStyle: {
+        flex: 1,
+        backgroundColor: theme.BACKGROUND_CONTAINER_COLOR, 
+    },
     containerStyle: {
         flex: 1,
         backgroundColor: theme.BACKGROUND_CONTAINER_COLOR,

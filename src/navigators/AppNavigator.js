@@ -1,75 +1,115 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { StatusBar, View } from 'react-native'
+import { StatusBar, View, Image } from 'react-native'
 import { connect } from 'react-redux'
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation'
-import { initializeListeners } from 'react-navigation-redux-helpers'
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import { initializeListeners } from 'react-navigation-redux-helpers' 
 
 import * as Pages from '../pages'
 import { navigationPropConstructor } from '../utils/redux'
 import theme from '../styles/theme.style';
 
 const MainTab = createStackNavigator({
-  Home: {
+  Main: {
     screen: Pages.Main,
-    path: '/',
-    navigationOptions: {
-      title: 'Welcome', 
-    },
+  }
+})
+
+const StorageTab = createStackNavigator({
+  Storage: {
+    screen: Pages.Storage,
   }
 })
 
 const SettingsTab = createStackNavigator({
   Settings: {
     screen: Pages.Settings,
-    path: '/',
     navigationOptions: {
-      title: 'Settings', 
-    },
+      title: 'Settings',
+      headerStyle: {
+        backgroundColor: theme.NAV_BAR_COLOR,
+      },
+      headerTitleStyle: { color: theme.TITLE_NAV_BAR_COLOR },
+      headerBackTitle: ' '
+    }
   }
 })
 
 const Tabs = createBottomTabNavigator({
   MainTab: {
-    screen: Pages.Main,
+    screen: MainTab,
     path: '/',
-    navigationOptions: { 
-      tabBarLabel: 'Home', 
-      tabBarIcon: ({ tintColor, focused }) => (
-        <Ionicons
-          name={focused ? 'ios-home' : 'ios-home-outline'}
-          size={26}
-          style={{ color: tintColor }}
+    navigationOptions: {
+      tabBarLabel: 'Home',
+      tabBarIcon: ({ focused }) => (
+        <Image
+          style={{
+            height: 28,
+            width: 28, 
+          }}
+          resizeMode='contain'
+          source={
+            focused
+              ? require('../assets/images/ic_profile_select.png')
+              : require('../assets/images/ic_profile.png')
+          }
+        />
+      ),
+    },
+  },
+  StorageTab: {
+    screen: StorageTab,
+    path: '/storage',
+    navigationOptions: {
+      tabBarLabel: 'Storage',
+      tabBarIcon: ({ focused }) => (
+        <Image
+          style={{
+            height: 28,
+            width: 28, 
+          }}
+          resizeMode='contain'
+          source={
+            focused
+              ? require('../assets/images/ic_card_select.png')
+              : require('../assets/images/ic_card.png')
+          }
         />
       ),
     },
   },
   SettingsTab: {
-    screen: Pages.Settings,
+    screen: SettingsTab,
     path: '/settings',
     navigationOptions: {
-      tabBarLabel: 'Settings', 
-      tabBarIcon: ({ tintColor, focused }) => (
-        <Ionicons
-          name={focused ? 'ios-settings' : 'ios-settings-outline'}
-          size={26}
-          style={{ color: tintColor }}
+      tabBarLabel: 'Settings',
+      tabBarIcon: ({ focused }) => (
+        <Image
+          style={{
+            height: 28,
+            width: 28, 
+          }}
+          resizeMode='contain'
+          source={
+            focused
+              ? require('../assets/images/ic_setting_select.png')
+              : require('../assets/images/ic_setting.png')
+          }
         />
       ),
     },
-  }
-},
-{
-  tabBarOptions: {
-    showLabel: false,
-    headerMode: 'screen', 
   },
-}
+},
+  {
+    tabBarOptions: {
+      showLabel: false,
+      headerMode: 'screen',
+    },
+  }
 )
 
 Tabs.navigationOptions = ({ navigation }) => {
-  let { routeName } = navigation.state.routes[navigation.state.index];
+  const { routeName } = navigation.state.routes[navigation.state.index];
   let title;
   if (routeName === 'SettingsTab') {
     title = 'Settings';
@@ -88,13 +128,10 @@ export const AppNavigator = createStackNavigator({
   ForgetPassword: { screen: Pages.ForgetPassword },
   CreateProfile: { screen: Pages.CreateProfile },
   CreatePhotoCard: { screen: Pages.CreatePhotoCard },
-  Home: { 
-    screen: Tabs ,
-    navigationOptions: { 
-      headerStyle: {
-        backgroundColor: theme.NAV_BAR_COLOR,
-      },
-      headerTitleStyle: { color: theme.TITLE_NAV_BAR_COLOR },
+  Home: {
+    screen: Tabs,
+    navigationOptions: {
+      header: null,
     }
   },
 })
