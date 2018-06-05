@@ -1,29 +1,36 @@
 import { StyleSheet, Dimensions, Platform } from 'react-native';
-import theme from '../../styles/theme.style'; 
+import theme from '../../styles/theme.style';
 
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
+const SCREEN_HEIGHT_IPHONE_X = 812;
+const SMALL_SCREEN_HEIGHT = 568;
 export default StyleSheet.create({
-    containerStyle: {
+    safeAreaStyle: {
         flex: 1,
         backgroundColor: theme.BACKGROUND_AUTH_CONTAINER_COLOR,
     },
-    rootLayoutStyle: {
-        flex: 1, 
+    scrollViewStyle: {
+        flex: 1,
+        backgroundColor: theme.BACKGROUND_AUTH_CONTAINER_COLOR,
+    },
+    containerStyle: {
+        flex: 1,
         height: Platform.OS === 'android' ? SCREEN_HEIGHT - 70 : null
     },
-    labelSigninStyle: {
+    labelSignInStyle: {
         marginBottom: 48,
     },
-    registerGroupBtnStyle: {
+    socialButtonGroupStyle: {
         flexDirection: 'row',
         justifyContent: 'center',
         marginBottom: 8,
     },
     lineSeparatorStyle: {
         height: 1,
-        width: (SCREEN_WIDTH / 4),
+        width: null,
+        flex: 1,
         backgroundColor: theme.SEPARATOR_COLOR,
     },
     textSeparatorStyle: {
@@ -32,33 +39,33 @@ export default StyleSheet.create({
         marginLeft: 8,
         marginRight: 8,
     },
-    separatorGroupStyle: {
+    separatorLayoutStyle: {
         flexDirection: 'row',
         alignItems: 'center',
-        flex: 1, 
+        flex: 1,
         marginLeft: 16,
         marginRight: 16,
         marginBottom: 8,
-    }, 
+    },
     nextBtnGroupStyle: {
         alignItems: 'center',
         marginTop: 8,
     },
-    inputFormGroupStyle: {
+    formGroupStyle: {
         flexDirection: 'column',
         marginLeft: 24,
         marginRight: 24,
         marginTop: 16,
     },
     inputGroupStyle: {
-        flexDirection: 'row', 
-        height: SCREEN_HEIGHT <= 568 ? 80 : 90,
+        flexDirection: 'row',
+        height: SCREEN_HEIGHT <= SMALL_SCREEN_HEIGHT ? 80 : 90,
     },
     textInputStyle: {
         flex: 1,
-        height: SCREEN_HEIGHT <= 568 ? 55 : 65,
+        height: SCREEN_HEIGHT <= SMALL_SCREEN_HEIGHT ? 55 : 65,
         justifyContent: 'center',
-    }, 
+    },
     iconImageStyle: {
         height: 24,
         width: 24,
@@ -67,7 +74,7 @@ export default StyleSheet.create({
     },
     nextButtonStyle: {
         height: 48,
-        width: 48, 
+        width: 48,
     },
     socialButtonStyle: {
         height: 48,
@@ -75,14 +82,16 @@ export default StyleSheet.create({
         marginLeft: 16,
         marginRight: 16,
     },
-    layoutButtonGroupStyle: { 
+    containerBottomStyle: {
         position: 'absolute',
-        top: SCREEN_HEIGHT > 736 ? (SCREEN_HEIGHT - 300) : (SCREEN_HEIGHT - 200),
-        width: SCREEN_WIDTH, 
-        alignItems: 'center',  
+        top: SCREEN_HEIGHT >= SCREEN_HEIGHT_IPHONE_X
+            ? (SCREEN_HEIGHT - 300)
+            : (SCREEN_HEIGHT - 200),
+        width: SCREEN_WIDTH,
+        alignItems: 'center',
     },
-    errorStyle: {
+    textErrorStyle: {
         color: theme.TEXT_ERROR_COLOR,
-        fontSize: theme.TEXT_ERROR_FONT, 
+        fontSize: theme.TEXT_ERROR_FONT,
     }
 });

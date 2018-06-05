@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { View, StyleSheet, Text } from 'react-native'
-import { TextField } from 'react-native-material-textfield';
+import { TextField } from 'react-native-material-textfield'
 import theme from '../styles/theme.style'
 
 class TextInput extends Component {
@@ -27,9 +27,9 @@ class TextInput extends Component {
     unsetFocus() {
         this.setState({
             focused: false
-        });
+        })
         try {
-            return this.props.onBlur();
+            return this.props.onBlur()
         } catch (_error) {
             console.log(_error)
         }
@@ -61,7 +61,7 @@ class TextInput extends Component {
             return
         }
         return (
-            <Text style={this.props.errorStyle}>{this.props.textError}</Text>
+            <Text style={this.props.textErrorStyle}>{this.props.textError}</Text>
         )
     }
 
@@ -71,11 +71,11 @@ class TextInput extends Component {
             <View style={{ flex: 1 }}>
                 <View style={{ flex: 1, backgroundColor: 'white', }}>
                     <View style={groupInputStyle} >
-                        <TextField 
+                        <TextField
                             {...this.props}
-                            ref='input'  
+                            ref='input'
                             activeLineWidth={2}
-                            labelPadding={0} 
+                            labelPadding={0}
                             onFocus={() => this.setFocus()}
                             onBlur={() => this.unsetFocus()}
                             autoCapitalize="none"
@@ -88,7 +88,17 @@ class TextInput extends Component {
         )
     }
 }
-const styles = StyleSheet.create({ 
+
+TextInput.defaultProps = {
+    lineWidth: 1,
+    fontSize: theme.TEXT_FONT,
+    inputContainerPadding: 16,
+    labelTextStyle: theme.MARGIN_LEFT,
+    inputContainerStyle: theme.MARGIN_LEFT,
+    returnKeyType: 'next'
+}
+
+const styles = StyleSheet.create({
     groupInputStyle: {
         flexDirection: 'row',
     }

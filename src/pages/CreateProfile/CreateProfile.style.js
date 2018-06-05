@@ -5,31 +5,39 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 
 const heightBackgroundHeader = 218;
 export default StyleSheet.create({
-    containerStyle: {
+    safeAreaStyle: {
         flex: 1,
         backgroundColor: theme.BACKGROUND_CONTAINER_COLOR,
     },
-    imgBackgroundHeaderStyle: {
+    containerStyle: {
+        flex: 1, 
+        backgroundColor: theme.BACKGROUND_CONTAINER_COLOR,
+    },
+    scrollViewStyle: {
+        flex: 1, 
+        backgroundColor: theme.BACKGROUND_CONTAINER_COLOR,
+    },
+    backgroundImageHeaderStyle: {
         height: heightBackgroundHeader,
         width: null,
     },
-    imgProfileAndCameraLayoutGroupStyle: {
+    containerHeaderStyle: {
         position: 'absolute',
         left: (SCREEN_WIDTH / 2) - 90, //90 ระยะที่ประมาณเอา
         top: (heightBackgroundHeader / 2) - 90,
     },
-    profileLayoutGroupStyle: {
+    profileImageLayoutStyle: {
         alignItems: 'flex-end',
         justifyContent: 'flex-end',
         height: 160,
         width: 160,
     },
-    imgProfileStyle: {
+    profileImageStyle: {
         height: 138,
         width: 138,
         borderRadius: 69
     },
-    imgProgressStyle: {
+    imageProgressStyle: {
         width: 138,
         height: 138,
         position: 'absolute'
@@ -38,7 +46,7 @@ export default StyleSheet.create({
         borderRadius: 69, 
         overflow: 'hidden'
     },
-    cameraLayoutGroupStyle: {
+    addImageButtonLayoutStyle: {
         alignItems: 'flex-end',
         justifyContent: 'flex-end',
         height: 165,
@@ -49,7 +57,7 @@ export default StyleSheet.create({
         height: 45,
         width: 45,
     },
-    secondGroupLayoutStyle: {
+    secondInputLayoutStyle: {
         flexDirection: 'row',
         backgroundColor: '#FFFFFF',
         alignItems: 'center',
@@ -75,9 +83,9 @@ export default StyleSheet.create({
     separatorColor: {
         borderColor: theme.SEPARATOR_COLOR,
     },
-    errorStyle: {
+    textErrorStyle: {
         color: theme.TEXT_ERROR_COLOR,
         fontSize: theme.TEXT_ERROR_FONT,
         marginLeft: theme.MARGIN_LEFT,
-    }
+    }, 
 });

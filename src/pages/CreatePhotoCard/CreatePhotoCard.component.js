@@ -7,8 +7,8 @@ import ActionSheet from 'react-native-actionsheet'
 import Spinner from 'react-native-loading-spinner-overlay';
 import styles from '../CreatePhotoCard/CreatePhotoCard.style';
 import theme from '../../styles/theme.style';
- 
-class CreatePhtoCardScreen extends Component {
+
+class CreatePhotoCardScreen extends Component {
   static navigationOptions = {
     title: 'Capture your card',
     headerStyle: {
@@ -20,18 +20,23 @@ class CreatePhtoCardScreen extends Component {
       <Button
         clear
         title="Skip"
-        backgroundColor='tranparent'
+        backgroundColor='transparent'
         onPress={() => this.props.mainScreen}
       />
     )
   }
 
   static propTypes = {
+    //Action Creator
     handleActionSheetPressFront: PropTypes.func,
     handleActionSheetPressBack: PropTypes.func,
     mainScreen: PropTypes.func,
-    photoCardFront: PropTypes.object,
-    photoCardBack: PropTypes.object,
+
+    //Data 
+    frontBusinessCard: PropTypes.object,
+    backBusinessCard: PropTypes.object,
+
+    //Loading
     loading: PropTypes.bool,
   };
 
@@ -43,59 +48,63 @@ class CreatePhtoCardScreen extends Component {
     this.ActionSheetBack.show()
   }
 
-  renderPhotoCardFront() {
-    const { photoCardFront } = this.props
+  renderFrontBusinessCard() {
+    const { frontBusinessCard } = this.props
     const {
-      contentDefaultPhotoStyle,
+      backgroundDefaultPhotoStyle,
+      backgroundPickerPhotoStyle,
       textPlaceholderStyle,
-      contentSelectPhotoStyle
     } = styles
 
-    if (photoCardFront === null || photoCardFront === '') {
+    if (frontBusinessCard) {
+      // Image from picker
       return (
-        <View>
-          <View style={contentDefaultPhotoStyle}>
-            {/* Text Placeholder  */}
-            <Text style={textPlaceholderStyle}> Front side </Text>
-          </View>
-        </View>
+        <Image
+          source={frontBusinessCard}
+          style={backgroundPickerPhotoStyle}
+          resizeMode='cover'
+        />
       )
     }
+
+    // Front Image Default
     return (
-      // Image from select picker
-      <Image
-        source={photoCardFront}
-        style={contentSelectPhotoStyle}
-        resizeMode='cover'
-      />
+      <View>
+        <View style={backgroundDefaultPhotoStyle}>
+          {/* Text Placeholder  */}
+          <Text style={textPlaceholderStyle}> Front side </Text>
+        </View>
+      </View>
     )
   }
 
-  renderPhotoCardBack() {
-    const { photoCardBack } = this.props
+  renderFrontBusinessCard() {
+    const { backBusinessCard } = this.props
     const {
-      contentDefaultPhotoStyle,
+      backgroundDefaultPhotoStyle,
+      backgroundPickerPhotoStyle,
       textPlaceholderStyle,
-      contentSelectPhotoStyle
     } = styles
 
-    if (photoCardBack === null || photoCardBack === '') {
+    if (backBusinessCard) {
+      // Image from picker
       return (
-        <View>
-          <View style={contentDefaultPhotoStyle}>
-            {/* Text Placeholder  */}
-            <Text style={textPlaceholderStyle}> Back side </Text>
-          </View>
-        </View>
+        <Image
+          source={backBusinessCard}
+          style={backgroundPickerPhotoStyle}
+          resizeMode='cover'
+        />
       )
     }
+
+    // Back Image Default
     return (
-      // Image from select picker
-      <Image
-        source={photoCardBack}
-        style={contentSelectPhotoStyle}
-        resizeMode='cover'
-      />
+      <View>
+        <View style={backgroundDefaultPhotoStyle}>
+          {/* Text Placeholder  */}
+          <Text style={textPlaceholderStyle}> Back side </Text>
+        </View>
+      </View>
     )
   }
 
@@ -108,9 +117,9 @@ class CreatePhtoCardScreen extends Component {
 
     const {
       safeAreaStyle,
-      containerStyle,
       scrollViewStyle,
-      cardContentStyle,
+      containerStyle,
+      contentStyle,
       addPhotoButtonStyle,
       imageIconStyle,
       nextButtonStyle
@@ -128,8 +137,8 @@ class CreatePhtoCardScreen extends Component {
           <View style={containerStyle}>
 
             {/* START FRONT SIDE CONTENT */}
-            <View style={cardContentStyle}>
-              {this.renderPhotoCardFront()}
+            <View style={contentStyle}>
+              {this.renderFrontBusinessCard()}
 
               {/* Button Add Image Layout*/}
               <View style={addPhotoButtonStyle}>
@@ -145,8 +154,8 @@ class CreatePhtoCardScreen extends Component {
             {/* END FRONT SIDE CONTENT */}
 
             {/* START BACK SIDE CONTENT */}
-            <View style={cardContentStyle}>
-              {this.renderPhotoCardBack()}
+            <View style={contentStyle}>
+              {this.renderFrontBusinessCard()}
 
               {/* Button Add Image Layout*/}
               <View style={addPhotoButtonStyle}>
@@ -194,4 +203,4 @@ class CreatePhtoCardScreen extends Component {
   }
 }
 
-export default CreatePhtoCardScreen;
+export default CreatePhotoCardScreen;

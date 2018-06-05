@@ -4,8 +4,8 @@ import * as actions from '../../actions/CreateProfileAction'
 
 const mapStateToProps = ({ createProfile, auth }) => { 
     const {
-        imageProfile, 
         infoPrefix, 
+        profileImage, 
         suffix,
         mobilePhone,
         secondMobilePhone, 
@@ -16,13 +16,13 @@ const mapStateToProps = ({ createProfile, auth }) => {
         officePhone,
         faxPhone,
         businessType,
-        error,
         loading,
         isShowSecondMobilePhone,
         isShowSecondEmail,
+        errorMessage,
         errorProfileName,
-        errorFname,
-        errorLname,
+        errorFirstName,
+        errorLastName,
         errorMobilePhone,
         errorCompanyName,
         errorPosition,
@@ -36,21 +36,21 @@ const mapStateToProps = ({ createProfile, auth }) => {
         fbId
     } = auth
 
-    const { fname, mname, lname, profileName } = createProfile  
-   
-    const fristName = fname !== '' ? fname : auth.fname 
-    const middleName = mname !== '' ? mname : auth.mname 
-    const lastName = lname !== '' ? lname : auth.lname 
-    const fullname = profileName !== '' ? profileName : auth.fullname 
+    let { firstName, middleName, lastName, profileName } = createProfile 
+
+    firstName = firstName !== '' ? firstName : auth.firstName 
+    middleName = middleName !== '' ? middleName : auth.middleName 
+    lastName = lastName !== '' ? lastName : auth.lastName 
+    profileName = profileName !== '' ? profileName : auth.fullName 
      
     return {
-        imageProfile,
-        profileName: fullname,
         infoPrefix,
+        profileImage,
+        profileName,
         fbId,
-        fname: fristName,
-        mname: middleName,
-        lname: lastName,
+        firstName,
+        middleName,
+        lastName,
         link_image,
         userType,
         suffix,
@@ -64,13 +64,13 @@ const mapStateToProps = ({ createProfile, auth }) => {
         officePhone,
         faxPhone,
         businessType,
-        error,
         loading,
+        errorMessage,
         isShowSecondMobilePhone,
         isShowSecondEmail,
         errorProfileName,
-        errorFname,
-        errorLname,
+        errorFirstName,
+        errorLastName,
         errorMobilePhone,
         errorCompanyName,
         errorPosition,

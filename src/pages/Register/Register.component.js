@@ -1,31 +1,36 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, Image, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, Image, ScrollView, TouchableOpacity, } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import Spinner from 'react-native-loading-spinner-overlay';
-import TextInput from '../../common/TextInput'
 
+import TextInput from '../../common/TextInput'
 import { LabelWithLink } from '../../common';
 import PasswordInputText from '../../common/PasswordInputText';
 import styles from './Register.style';
 import theme from '../../styles/theme.style';
 
-const SCREEN_HEIGHT = Dimensions.get('window').height;
-const SCREEN_WIDTH = Dimensions.get('window').width;
-
-
 class RegisterScreen extends Component {
+
   static propTypes = {
+    //Action Creator
     registerValueChange: PropTypes.func,
     normalRegister: PropTypes.func,
     facebookLogin: PropTypes.func,
     loginScreen: PropTypes.func,
+
+    //Data
     email: PropTypes.string,
     password: PropTypes.string,
     rePassword: PropTypes.string,
+
+    //Error
+    errorMessage: PropTypes.string,
     errorEmail: PropTypes.string,
     errorPassword: PropTypes.string,
     errorRePassword: PropTypes.string,
+
+    //Loading
     loading: PropTypes.bool,
   };
 
@@ -38,64 +43,30 @@ class RegisterScreen extends Component {
     headerBackTitle: ' '
   }
 
-  componentDidMount() {
-    console.log(SCREEN_HEIGHT, SCREEN_WIDTH)
-  }
-
-  componentWillReceiveProps(nextProps) {
-    const { error } = nextProps;
-    if (error !== '') {
-      // alert(error)
-      console.log(`error: ${error}`)
-    }
-  }
-
-  onClickSigninGoogle() {
+  onClickSignInGoogle() {
     console.log('Click Sign in Google!');
   }
 
-  showErrorEmail() {
-    return (
-      <Text style={{ color: 'red', marginLeft: 40, marginTop: 6, backgroundColor: 'green' }}>
-        Email is isRequired
-      </Text>
-    )
-  }
-
-  showErrorPassword() {
-    return (
-      <Text style={{ color: 'red', marginLeft: 40, marginTop: 6, backgroundColor: 'green' }}>
-        Password is isRequired
-      </Text>
-    )
-  }
-
-  showErrorConfirmPassword() {
-    return (
-      <Text style={{ color: 'red', marginLeft: 40, marginTop: 6, backgroundColor: 'green' }}>
-        Confirm is isRequired
-      </Text>
-    )
-  }
 
   render() {
     const {
+      safeAreaStyle,
+      scrollViewStyle,
       containerStyle,
-      rootLayoutStyle,
-      labelSigninStyle,
-      registerGroupBtnStyle,
+      labelSignInStyle,
+      socialButtonGroupStyle,
       lineSeparatorStyle,
-      separatorGroupStyle,
+      separatorLayoutStyle,
       textSeparatorStyle,
       nextBtnGroupStyle,
-      inputFormGroupStyle,
+      formGroupStyle,
       inputGroupStyle,
       iconImageStyle,
       nextButtonStyle,
-      layoutButtonGroupStyle,
+      containerBottomStyle,
       socialButtonStyle,
       textInputStyle,
-      errorStyle
+      textErrorStyle
     } = styles;
 
     const {
@@ -116,99 +87,107 @@ class RegisterScreen extends Component {
     return (
       <SafeAreaView
         forceInset={{ bottom: 'always' }}
-        style={containerStyle}
+        style={safeAreaStyle}
       >
-        <Spinner visible={loading} textStyle={{ color: '#FFF' }} /> 
         <ScrollView
-          style={containerStyle}
+          style={scrollViewStyle}
           keyboardShouldPersistTaps='handled'
         >
-          <View style={rootLayoutStyle}>
-            <View style={inputFormGroupStyle}>
+          <View style={containerStyle}>
+            <View style={formGroupStyle}>
               <View style={inputGroupStyle}>
+                {/* Icon Image */}
                 <Image
                   source={require('../../assets/images/ic_mail_auth.png')}
                   style={iconImageStyle}
                 />
                 <TextInput
                   label={'Email'}
+                  containerStyle={textInputStyle}
                   keyboardType="email-address"
+                  returnKeyType="next" 
+                  inputContainerPadding={8} 
+                  labelTextStyle={{ paddingLeft: 0 }}
+                  inputContainerStyle={{ paddingLeft: 0 }}
                   autoCapitalize="none"
                   autoCorrect={false}
-                  returnKeyType="next"
+                  onChangeText={text =>
+                    registerValueChange({ prop: 'email', value: text })}
+                  value={email}
+                  textError={errorEmail}
+                  textErrorStyle={textErrorStyle}
                   onSubmitEditing={() => {
                     this.passwordInput.focus();
                   }}
-                  containerStyle={textInputStyle}
-                  fontSize={19}
-                  lineWidth={1}
-                  inputContainerPadding={8}
-                  labelTextStyle={{ paddingLeft: 0 }}
-                  inputContainerStyle={{ paddingLeft: 0 }}
-                  onChangeText={text => registerValueChange({ prop: 'email', value: text })}
-                  value={email}
-                  onFocus={() => { }}
                   onBlur={() => { }}
+                  onFocus={() => { }}
                   blurOnSubmit={false}
-                  textError={errorEmail}
-                  errorStyle={errorStyle}
                 />
               </View>
+
               <View style={inputGroupStyle}>
+                {/* Icon Image */}
                 <Image
                   source={require('../../assets/images/ic_password.png')}
                   style={iconImageStyle}
                 />
                 <PasswordInputText
                   label="Password"
-                  keyboardType="default"
-                  autoCapitalize="none"
-                  keyboardAppearance="light"
-                  autoCorrect={false}
-                  secureTextEntry
-                  lineWidth={1}
                   containerStyle={textInputStyle}
-                  fontSize={19}
-                  ref={input => (this.passwordInput = input)}
+                  keyboardType="default"
                   returnKeyType="next"
+                  lineWidth={1}
+                  autoCorrect={false}
+                  autoCapitalize="none"
+                  secureTextEntry
+                  fontSize={theme.TEXT_FONT}
+                  onChangeText={text =>
+                    registerValueChange({ prop: 'password', value: text })}
+                  value={password}
+                  textError={errorPassword}
+                  textErrorStyle={textErrorStyle}
                   onSubmitEditing={() => {
                     this.rePasswordInput.focus();
                   }}
-                  onChangeText={text => registerValueChange({ prop: 'password', value: text })}
-                  value={password}
-                  onFocus={() => { }}
+                  ref={input => (this.passwordInput = input)}
                   onBlur={() => { }}
-                  textError={errorPassword}
+                  onFocus={() => { }}
                 />
               </View>
+
               <View style={inputGroupStyle}>
+                {/* Icon Image */}
                 <Image
                   source={require('../../assets/images/ic_password.png')}
                   style={iconImageStyle}
                 />
                 <PasswordInputText
                   label="Confirm Password"
+                  containerStyle={textInputStyle}
                   keyboardType="default"
+                  returnKeyType="done"
+                  lineWidth={1}
                   autoCapitalize="none"
-                  keyboardAppearance="light"
                   autoCorrect={false}
                   secureTextEntry
-                  lineWidth={1}
-                  containerStyle={textInputStyle}
-                  fontSize={19}
-                  returnKeyType="done"
-                  ref={input => (this.rePasswordInput = input)}
-                  onChangeText={text => registerValueChange({ prop: 'rePassword', value: text })}
+                  fontSize={theme.TEXT_FONT}
+                  onChangeText={text =>
+                    registerValueChange({ prop: 'rePassword', value: text })}
                   value={rePassword}
-                  onFocus={() => { }}
-                  onBlur={() => { }}
                   textError={errorRePassword}
+                  textErrorStyle={textErrorStyle}
+                  ref={input => (this.rePasswordInput = input)}
+                  onBlur={() => { }}
+                  onFocus={() => { }}
                 />
               </View>
             </View>
 
+            {/* Next Button */}
             <View style={nextBtnGroupStyle}>
-              <TouchableOpacity onPress={() => normalRegister({ email, password, rePassword })}>
+              <TouchableOpacity
+                onPress={() => normalRegister({ email, password, rePassword })}
+              >
                 <Image
                   source={require('../../assets/images/button_next.png')}
                   style={nextButtonStyle}
@@ -217,41 +196,48 @@ class RegisterScreen extends Component {
             </View>
           </View>
 
-          <View style={layoutButtonGroupStyle}>
-            <View>
-              <View style={separatorGroupStyle} >
-                <View style={lineSeparatorStyle} />
-                <Text style={textSeparatorStyle}>
-                  Or sign up with
-              </Text>
-                <View style={lineSeparatorStyle} />
+          <View style={containerBottomStyle}>
+            <View style={separatorLayoutStyle} >
+              {/* Line Separator */}
+              <View style={lineSeparatorStyle} />
+              {/* Text Separator */}
+              <Text style={textSeparatorStyle}> Or sign up with </Text>
+              {/* Line Separator */}
+              <View style={lineSeparatorStyle} />
+            </View>
+            <View style={socialButtonGroupStyle}>
 
-              </View>
-              <View style={registerGroupBtnStyle}>
-                <TouchableOpacity onPress={facebookLogin}>
-                  <Image
-                    source={require('../../assets/images/ic_facebook.png')}
-                    style={socialButtonStyle}
-                  />
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => this.onClickSigninGoogle()}>
-                  <Image
-                    source={require('../../assets/images/ic_google.png')}
-                    style={socialButtonStyle}
-                  />
-                </TouchableOpacity>
-              </View>
-              <View style={labelSigninStyle}>
-                <LabelWithLink
-                  textDesc={'you have account already'}
-                  textLink='Sign in now'
-                  onPress={loginScreen}
+              {/* Facebook Login */}
+              <TouchableOpacity onPress={facebookLogin}>
+                <Image
+                  source={require('../../assets/images/ic_facebook.png')}
+                  style={socialButtonStyle}
                 />
-              </View>
+              </TouchableOpacity>
+
+              {/* Google Login */}
+              <TouchableOpacity onPress={() => this.onClickSignInGoogle()}>
+                <Image
+                  source={require('../../assets/images/ic_google.png')}
+                  style={socialButtonStyle}
+                />
+              </TouchableOpacity>
+            </View>
+
+            {/* Button Sign in  */}
+            <View style={labelSignInStyle}>
+              <LabelWithLink
+                textDesc={'you have account already'}
+                textLink='Sign in now'
+                onPress={loginScreen}
+              />
             </View>
           </View>
 
         </ScrollView>
+
+        {/* Loading */}
+        <Spinner visible={loading} />
       </SafeAreaView>
     );
   }

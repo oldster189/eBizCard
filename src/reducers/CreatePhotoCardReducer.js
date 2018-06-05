@@ -7,20 +7,20 @@ import {
 
 
 const initialState = {
-    photoCardFront: null,
-    photoCardBack: null,
+    frontBusinessCard: null,
+    backBusinessCard: null,
 }
 
 export default (state = initialState, action) => {
     switch (action.type) {
         case CREATE_PHOTO_CARD_SELECT_CAMERA_FRONT:
-            return { ...state, photoCardFront: action.payload.photoCardFront }
+            return { ...state, frontBusinessCard: action.payload.frontBusinessCard }
         case CREATE_PHOTO_CARD_SELECT_LIBRARY_FRONT:
-            return { ...state, photoCardFront: action.payload.photoCardFront }
+            return { ...state, frontBusinessCard: action.payload.frontBusinessCard }
         case CREATE_PHOTO_CARD_SELECT_CAMERA_BACK:
-            return { ...state, photoCardBack: action.payload.photoCardBack }
+            return { ...state, backBusinessCard: action.payload.backBusinessCard }
         case CREATE_PHOTO_CARD_SELECT_LIBRARY_BACK:
-            return { ...state, photoCardBack: action.payload.photoCardBack }
+            return { ...state, backBusinessCard: action.payload.backBusinessCard }
         default:
             return state
     }

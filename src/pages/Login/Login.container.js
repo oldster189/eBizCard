@@ -6,6 +6,7 @@ const mapStateToProps = ({ auth }) => {
     const {
         email,
         password,
+        errorMessage,
         errorEmail,
         errorPassword,
         loading
@@ -13,6 +14,7 @@ const mapStateToProps = ({ auth }) => {
     return {
         email,
         password,
+        errorMessage,
         errorEmail,
         errorPassword,
         loading

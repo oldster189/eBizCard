@@ -1,6 +1,6 @@
 
 import { NativeModules } from 'react-native';
-import { validateEmail, isEmpty } from '../utils/util';
+import { isEmpty } from '../utils/util';
 import {
     CREATE_PROFILE_VALUE_CHANGE, 
     CREATE_PROFILE_PHOTO_CAMERA,
@@ -16,7 +16,7 @@ import {
 
 const ImagePicker = NativeModules.ImageCropPicker;
 
-export const createProfileValueChange = ({ prop, value }) => {
+export const inputValueChange = ({ prop, value }) => {
     return {
         type: CREATE_PROFILE_VALUE_CHANGE,
         payload: { prop, value }
@@ -48,7 +48,7 @@ const chooseLibrary = (dispatch, cropping, circular = false) => {
         dispatch({
             type: CREATE_PROFILE_PHOTO_LIBRARY,
             payload: {
-                imageProfile: {
+                profileImage: {
                     uri: image.path,
                     width: image.width,
                     height: image.height,
@@ -76,7 +76,7 @@ const chooseCamera = (dispatch, cropping) => {
         dispatch({
             type: CREATE_PROFILE_PHOTO_CAMERA,
             payload: {
-                imageProfile: {
+                profileImage: {
                     uri: image.path,
                     width: image.width,
                     height: image.height
@@ -94,9 +94,9 @@ const startCreateProfile = (dispatch) => {
 
 export const createProfile = ({
     infoPrefix,
-    fname,
-    mname,
-    lname,
+    firstName,
+    middleName,
+    lastName,
     suffix,
     mobilePhone,
     email,
@@ -112,37 +112,36 @@ export const createProfile = ({
 
     return async dispatch => {
         startCreateProfile(dispatch)
-        if (fname === '') {
-            payload.errorFname = 'First name is require'
+        if (!firstName) {
+            payload.errorFirstName = 'First name is require.'
         }
-        if (lname === '') {
-            payload.errorLname = 'Last name is require'
-        }
-
-        if (mobilePhone === '') {
-            payload.errorMobilePhone = 'Mobile no is require'
+        if (!lastName) {
+            payload.errorLastName = 'Last name is require.'
         }
 
-        if (companyName === '') {
-            payload.errorCompanyName = 'Company is require'
+        if (!mobilePhone) {
+            payload.errorMobilePhone = 'Mobile no is require.'
         }
 
-        if (position === '') {
-            payload.errorPosition = 'Position is require'
+        if (!companyName) {
+            payload.errorCompanyName = 'Company is require.'
         }
 
-        if (companyAddress === '') {
-            payload.errorCompanyAddress = 'Company address is require'
-        } 
-        console.log(`ValidateEmail: ${validateEmail(email)}`) 
+        if (!position) {
+            payload.errorPosition = 'Position is require.'
+        }
+
+        if (!companyAddress) {
+            payload.errorCompanyAddress = 'Company address is require.'
+        }  
         if (!isEmpty(payload)) {
             dispatch({ type: TEXT_INPUT_IS_INVALID, payload })
         } else {
             // Call service
             console.log(infoPrefix,
-                fname,
-                mname,
-                lname,
+                firstName,
+                middleName,
+                lastName,
                 suffix,
                 mobilePhone,
                 email,

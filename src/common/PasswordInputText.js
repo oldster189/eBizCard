@@ -5,8 +5,7 @@ import {
     StyleSheet,
     Text
 } from 'react-native';
-import { TextField } from 'react-native-material-textfield';
-import theme from '../styles/theme.style'
+import { TextField } from 'react-native-material-textfield'; 
 
 export default class PasswordInputText extends React.Component {
 
@@ -86,7 +85,7 @@ export default class PasswordInputText extends React.Component {
             return
         }
         return (
-            <Text style={styles.errorStyle}>{this.props.textError}</Text>
+            <Text style={this.props.textErrorStyle}>{this.props.textError}</Text>
         )
     }
 
@@ -99,11 +98,11 @@ export default class PasswordInputText extends React.Component {
                         style={groupInputStyle}
                     >
                         <TextField 
-                            labelTextStyle={{ paddingLeft: 0 }}
-                            inputContainerStyle={{ paddingLeft: 0 }}
                             {...this.props}
                             ref='input'
-                            inputContainerPadding={8}
+                            inputContainerPadding={8} 
+                            labelTextStyle={{ paddingLeft: 0 }}
+                            inputContainerStyle={{ paddingLeft: 0 }}
                             labelPadding={0} 
                             activeLineWidth={2}
                             secureTextEntry={this.state.password}
@@ -139,14 +138,10 @@ export const styles = StyleSheet.create({
     },
     groupInputStyle: {
         flexDirection: 'row', 
-    },
-    errorStyle: {
-        color: theme.TEXT_ERROR_COLOR,
-        fontSize: theme.TEXT_ERROR_FONT,
-    }
+    }, 
 });
 
 PasswordInputText.defaultProps = {
-    iconSize: 18,
+    iconSize: 18, 
 }
 

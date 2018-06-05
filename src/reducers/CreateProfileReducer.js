@@ -7,13 +7,13 @@ import {
     TEXT_INPUT_IS_INVALID
 } from '../constants/actionTypes';
 
-const initialState = {
-    imageProfile: null,
-    profileName: '',
+const initialState = { 
     infoPrefix: 'Ms.',
-    fname: '',
-    mname: '',
-    lname: '',
+    profileImage: null,
+    profileName: '',
+    firstName: '',
+    middleName: '',
+    lastName: '',
     suffix: '',
     mobilePhone: '',
     secondMobilePhone: '', 
@@ -24,13 +24,13 @@ const initialState = {
     officePhone: '',
     faxPhone: '',
     businessType: '',
-    error: '',
+    errorMessage: '',
     loading: false,
     isShowSecondMobilePhone: false,
     isShowSecondEmail: false,
     errorProfileName: '',
-    errorFname: '',
-    errorLname: '',
+    errorFirstName: '',
+    errorLastName: '',
     errorMobilePhone: '',
     errorCompanyName: '',
     errorPosition: '',
@@ -41,25 +41,25 @@ export default (state = initialState, action) => {
     // console.log(`Action: ${JSON.stringify(action)} \nState: ${JSON.stringify(state)}`);
     switch (action.type) {
         case CREATE_PROFILE_VALUE_CHANGE:
-            return { ...state, [action.payload.prop]: action.payload.value, error: '' };
+            return { ...state, [action.payload.prop]: action.payload.value, errorMessage: '' };
         case CREATE_PROFILE_PHOTO_CAMERA:
-            return { ...state, imageProfile: action.payload.imageProfile }
+            return { ...state, profileImage: action.payload.profileImage }
         case CREATE_PROFILE_PHOTO_LIBRARY:
-            return { ...state, imageProfile: action.payload.imageProfile }
+            return { ...state, profileImage: action.payload.profileImage }
         case CREATE_PROFILE_START:
-            return { ...state, loading: true, error: '' };
+            return { ...state, loading: true, errorMessage: '' };
         case CREATE_PROFILE_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                error: '',
+                errorMessage: '',
             };
         case TEXT_INPUT_IS_INVALID:
             return {
                 ...state,
                 errorProfileName: action.payload.errorProfileName,
-                errorFname: action.payload.errorFname,
-                errorLname: action.payload.errorLname,
+                errorFirstName: action.payload.errorFirstName,
+                errorLastName: action.payload.errorLastName,
                 errorMobilePhone: action.payload.errorMobilePhone,
                 errorCompanyName: action.payload.errorCompanyName,
                 errorPosition: action.payload.errorPosition,

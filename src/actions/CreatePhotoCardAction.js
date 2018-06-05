@@ -48,14 +48,14 @@ const chooseLibrary = (dispatch, cropping, typeSelect) => {
     }).then(image => {
         const payload = {}
         if (typeSelect === TYPE_SELECT_CARD_FRONT) {
-            payload.photoCardFront = {
+            payload.frontBusinessCard = {
                 uri: image.path,
                 width: image.width,
                 height: image.height,
                 mime: image.mime
             }
         } else {
-            payload.photoCardBack = {
+            payload.backBusinessCard = {
                 uri: image.path,
                 width: image.width,
                 height: image.height,
@@ -85,9 +85,9 @@ const chooseCamera = (dispatch, cropping, typeSelect) => {
     }).then(image => {
         const payload = {}
         if (typeSelect === TYPE_SELECT_CARD_FRONT) {
-            payload.photoCardFront = { uri: image.path, width: image.width, height: image.height }
+            payload.frontBusinessCard = { uri: image.path, width: image.width, height: image.height }
         } else {
-            payload.photoCardBack = { uri: image.path, width: image.width, height: image.height }
+            payload.backBusinessCard = { uri: image.path, width: image.width, height: image.height }
         }
         dispatch({
             type: (typeSelect === TYPE_SELECT_CARD_FRONT) ? 

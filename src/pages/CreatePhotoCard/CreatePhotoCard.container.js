@@ -4,17 +4,20 @@ import * as actions from '../../actions/CreatePhotoCardAction';
 
 const mapStateToProps = ({ createPhotoCard }) => {
     const {
-        photoCardFront,
-        photoCardBack,
+        frontBusinessCard,
+        backBusinessCard,
         loading
     } = createPhotoCard
     return {
-        photoCardFront,
-        photoCardBack,
+        frontBusinessCard,
+        backBusinessCard,
         loading
     }
 }
  
-const CreatePhotoCardScreenContainer = connect(mapStateToProps, actions)(CreatePhotoCardScreen);
+const CreatePhotoCardScreenContainer = connect(
+    mapStateToProps, 
+    actions
+)(CreatePhotoCardScreen);
 
 export default CreatePhotoCardScreenContainer;
