@@ -11,18 +11,23 @@ import {
   LOGIN_SCREEN,
   TEXT_INPUT_IS_INVALID,
   FORGET_PASSWORD_SCREEN,
-  FACEBOOK_LOGIN_SUCCESS
-} from '../constants/actionTypes'; 
+  FACEBOOK_LOGIN_SUCCESS,
+  NORMAL_REGISTER_FAIL,
+  NORMAL_LOGIN_FAIL
+} from '../constants/actionTypes';
 import { USER_TYPE_FACEBOOK, USER_TYPE_NORMAL } from '../constants/constants';
 
 const initialState = {
   email: '',
+  fbId: '',
   fname: '',
   mname: '',
   lname: '',
+  fullname: '',
   link_image: '',
   password: '',
   rePassword: '',
+  user_token: '',
   isLoggedIn: false,
   loading: false,
   userType: '',
@@ -47,9 +52,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         email: action.payload.email,
+        fbId: action.payload.id,
         fname: action.payload.first_name,
         mname: action.payload.middle_name,
         lname: action.payload.last_name,
+        fullname: action.payload.name,
         link_image: action.payload.picture.data.url,
         userType: USER_TYPE_FACEBOOK,
         isLoggedIn: true,
@@ -58,6 +65,7 @@ export default (state = initialState, action) => {
     case NORMAL_LOGIN_SUCCESS:
       return {
         ...state,
+        user_token: action.payload.token,
         password: '',
         rePassword: '',
         errorEmail: '',
@@ -67,7 +75,30 @@ export default (state = initialState, action) => {
         isLoggedIn: true,
         loading: false
       };
+    case NORMAL_LOGIN_FAIL:
+      return {
+        ...state,
+        password: '',
+        rePassword: '',
+        errorEmail: '',
+        errorPassword: '',
+        errorRePassword: '', 
+        loading: false
+      }
     case NORMAL_REGISTER_SUCCESS:
+      return {
+        ...state,
+        user_token: action.payload.token,
+        password: '',
+        rePassword: '',
+        errorEmail: '',
+        errorPassword: '',
+        errorRePassword: '',
+        userType: USER_TYPE_NORMAL,
+        isLoggedIn: true,
+        loading: false
+      };
+    case NORMAL_REGISTER_FAIL:
       return {
         ...state,
         password: '',
@@ -75,10 +106,8 @@ export default (state = initialState, action) => {
         errorEmail: '',
         errorPassword: '',
         errorRePassword: '',
-        userType: USER_TYPE_NORMAL,
-        isLoggedIn: true,
         loading: false
-      };
+      }
     case TEXT_INPUT_IS_INVALID:
       return {
         ...state,

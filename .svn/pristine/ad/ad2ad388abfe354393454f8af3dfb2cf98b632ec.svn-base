@@ -1,0 +1,38 @@
+dependencies: \
+  /Users/codemobiles/Documents/GitHub/eBizCard/node_modules/react-native-image-crop-picker/ios/src/ImageCropPicker.m \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Target\ Support\ Files/RNImageCropPicker/RNImageCropPicker-prefix.pch \
+  /Users/codemobiles/Documents/GitHub/eBizCard/node_modules/react-native-image-crop-picker/ios/src/ImageCropPicker.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Public/React/React/RCTBridgeModule.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Public/React/React/RCTDefines.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Private/React/RCTImageLoader.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Public/React/React/RCTBridge.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Public/React/React/RCTBridgeDelegate.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Public/React/React/RCTJavaScriptLoader.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Public/React/React/RCTFrameUpdate.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Public/React/React/RCTInvalidating.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Private/React/RCTResizeMode.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Public/React/React/RCTConvert.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Public/React/React/RCTAnimationType.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Public/React/React/RCTBorderStyle.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Public/React/React/RCTLog.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Public/React/React/RCTAssert.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Public/React/React/RCTUtils.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Public/React/React/RCTPointerEvents.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Public/React/React/RCTTextDecorationLineType.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Private/yoga/Yoga.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Private/yoga/YGEnums.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Private/yoga/YGMacros.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Public/React/React/RCTURLRequestHandler.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Public/React/React/RCTURLRequestDelegate.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Private/QBImagePickerController/QBImagePickerController.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Private/RSKImageCropper/RSKImageCropper.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Private/RSKImageCropper/CGGeometry+RSKImageCropper.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Private/RSKImageCropper/RSKImageCropViewController.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Private/RSKImageCropper/RSKImageCropViewController+Protected.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Private/RSKImageCropper/RSKImageScrollView.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Private/RSKImageCropper/RSKInternalUtility.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Private/RSKImageCropper/RSKTouchView.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Private/RSKImageCropper/UIApplication+RSKImageCropper.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/Pods/Headers/Private/RSKImageCropper/UIImage+RSKImageCropper.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/node_modules/react-native-image-crop-picker/ios/src/UIImage+Resize.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/node_modules/react-native-image-crop-picker/ios/src/Compression.h

@@ -1,6 +1,8 @@
-import { AsyncStorage } from 'react-native'
-import FBSDK, { LoginManager, AccessToken } from 'react-native-fbsdk' 
+// import { AsyncStorage } from 'react-native'
+import FBSDK, { LoginManager, AccessToken } from 'react-native-fbsdk'
+import axios from 'axios';
 import { validateEmail, isEmpty, trimmingAndLowercase } from '../utils/util'
+
 
 import {
     FACEBOOK_LOGIN_SUCCESS,
@@ -15,8 +17,11 @@ import {
     REGISTER_SCREEN,
     FORGET_PASSWORD_SCREEN,
     TEXT_INPUT_IS_INVALID,
+    NORMAL_REGISTER_FAIL,
+    NORMAL_LOGIN_FAIL,
 
 } from '../constants/actionTypes'
+import { REGISTER_TYPE_NORMAL, BASE_URL, LOGIN_TYPE_NORMAL } from '../constants/constants';
 
 const { GraphRequest, GraphRequestManager } = FBSDK
 
@@ -41,21 +46,20 @@ export const facebookLogin = () => async dispatch => {
 
 const doFacebookLogin = async dispatch => {
     const { isCancelled } = await LoginManager.logInWithReadPermissions([
-        'public_profile', 'email'])
+        'public_profile', 'email', 'user_birthday'])
     if (isCancelled) {
         return dispatch({ type: FACEBOOK_LOGIN_FAIL })
     }
 
     const { accessToken } = await AccessToken.getCurrentAccessToken()
     if (accessToken !== null) {
-
         //Create response callback.
         const responseInfoCallback = (error, result) => {
             if (error) {
                 console.log(`Error get info fb_graph: ${error}`)
                 dispatch({ type: FACEBOOK_LOGIN_FAIL })
-            } else { 
-                console.log(`Success get info fb_graph: ${JSON.stringify(result)}`) 
+            } else {
+                console.log(`Success get info fb_graph: ${JSON.stringify(result)}`)
                 dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: result })
             }
         }
@@ -64,7 +68,7 @@ const doFacebookLogin = async dispatch => {
         const infoRequest = new GraphRequest(
             '/me',
             {
-                accessToken: accessToken,
+                accessToken,
                 parameters: {
                     fields: {
                         string: 'email,name,first_name,middle_name,last_name,picture'
@@ -76,11 +80,8 @@ const doFacebookLogin = async dispatch => {
 
         // Start the fb graph api request.
         new GraphRequestManager().addRequest(infoRequest).start()
-    } 
+    }
 }
-
-
-
 
 export const loginValueChange = ({ prop, value }) => {
     return {
@@ -89,12 +90,11 @@ export const loginValueChange = ({ prop, value }) => {
     }
 }
 
-
 export const normalLogin = ({ email, password }) => {
     this.email = trimmingAndLowercase(email)
     this.password = trimmingAndLowercase(password)
     const payload = {}
-    console.log(this.email, this.password)
+
     return async dispatch => {
         startLoginUser(dispatch)
         if (this.email === '') {
@@ -111,11 +111,23 @@ export const normalLogin = ({ email, password }) => {
             delete payload.errorPassword
         }
 
-        if (!isEmpty(payload)) { 
+        if (!isEmpty(payload)) {
             dispatch({ type: TEXT_INPUT_IS_INVALID, payload })
-        } else { 
-            // Call service
-            dispatch({ type: NORMAL_LOGIN_SUCCESS })
+        } else {
+            // Call service 
+            try {
+                const response = await axios.post(`${BASE_URL}/signin`, {
+                    email: this.email,
+                    password: this.password,
+                    type: LOGIN_TYPE_NORMAL
+                })
+                console.log(`Response Login: ${JSON.stringify(response.data.token)}`)
+                dispatch({ type: NORMAL_LOGIN_SUCCESS, payload: response.data.token })
+            } catch (error) {
+                const message = JSON.parse(error.request._response)
+                console.log(`Error Login: ${message}`)
+                dispatch({ type: NORMAL_LOGIN_FAIL, payload: message })
+            }
         }
     }
 }
@@ -137,7 +149,6 @@ export const normalRegister = ({ email, password, rePassword }) => {
     this.rePassword = trimmingAndLowercase(rePassword)
     const payload = {}
 
-    console.log(this.email, this.password, this.rePassword)
     return async dispatch => {
         startRegisterUser(dispatch)
         if (this.email === '') {
@@ -168,7 +179,19 @@ export const normalRegister = ({ email, password, rePassword }) => {
             dispatch({ type: TEXT_INPUT_IS_INVALID, payload })
         } else {
             // Call service
-            dispatch({ type: NORMAL_REGISTER_SUCCESS })
+            try {
+                const response = await axios.post(`${BASE_URL}/signup`, {
+                    email: this.email,
+                    password: this.password,
+                    type: REGISTER_TYPE_NORMAL
+                })
+                console.log(`Response Register: ${JSON.stringify(response.data)}`)
+                dispatch({ type: NORMAL_REGISTER_SUCCESS, payload: response.data.token })
+            } catch (error) {
+                const message = JSON.parse(error.request._response)
+                console.log(`Error Register: ${message}`)
+                dispatch({ type: NORMAL_REGISTER_FAIL, payload: message })
+            }
         }
     }
 }

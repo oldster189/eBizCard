@@ -1,0 +1,6 @@
+dependencies: \
+  /Users/codemobiles/Documents/eBizCard/node_modules/react-native/third-party/folly-2016.09.26.00/folly/portability/BitsFunctexcept.cpp \
+  /Users/codemobiles/Documents/eBizCard/node_modules/react-native/React/../third-party/folly-2016.09.26.00/folly/portability/BitsFunctexcept.h \
+  /Users/codemobiles/Documents/eBizCard/node_modules/react-native/React/../third-party/folly-2016.09.26.00/folly/portability/Config.h \
+  /Users/codemobiles/Documents/eBizCard/node_modules/react-native/React/../third-party/folly-2016.09.26.00/folly/Portability.h \
+  /Users/codemobiles/Documents/eBizCard/node_modules/react-native/React/../third-party/folly-2016.09.26.00/folly/CPortability.h

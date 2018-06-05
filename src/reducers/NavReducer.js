@@ -18,7 +18,7 @@ const router = AppNavigator.router;
 const mainAction = router.getActionForPathAndParams('Home');
 const loginAction = router.getActionForPathAndParams('Login');
 const tempNavState = router.getStateForAction(mainAction);
-const createProfileAction = router.getActionForPathAndParams('CreateProfile');
+// const createProfileAction = router.getActionForPathAndParams('CreateProfile');
 // const createPhotoCardAction = router.getActionForPathAndParams('CreatePhotoCard');
 
 const initialNavState = router.getStateForAction(

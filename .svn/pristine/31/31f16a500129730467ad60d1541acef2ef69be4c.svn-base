@@ -1,0 +1,13 @@
+dependencies: \
+  /Users/codemobiles/Documents/GitHub/eBizCard/node_modules/react-native/Libraries/NativeAnimation/Drivers/RCTEventAnimation.m \
+  /Users/codemobiles/Documents/GitHub/eBizCard/node_modules/react-native/Libraries/NativeAnimation/Drivers/RCTEventAnimation.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTEventDispatcher.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridge.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeDelegate.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTJavaScriptLoader.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeModule.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTFrameUpdate.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTInvalidating.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTValueAnimatedNode.h \
+  /Users/codemobiles/Documents/GitHub/eBizCard/node_modules/react-native/Libraries/NativeAnimation/Nodes/RCTAnimatedNode.h

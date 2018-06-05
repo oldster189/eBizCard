@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="48c7f54c2515a2312d3a4481d10c43fbb807f3af">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-1.3.0_2fdcb788cce694e9bf8f38dc4a6025e65e6ed706.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/okio-1.13.0_748585cca4e8fb5f87c4cf4517bc919602cb3477.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.android/facebook-login/4.33.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="95dbd34766d3f158ef20de4b5b0206118e960709">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.android-facebook-login-4.33.0_5b2e5a5cfb2b8e742b43188bc180687fa2c7eb0c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.android/facebook-messenger/4.33.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="6d3dda07fbd30171edc150e4f13884fce5cd9926">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.android-facebook-messenger-4.33.0_8d26e09ad87fb636e1891d5a019a801d31b8a70f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/27.0.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="14bfdbf5594d4d7c320de20831849050788ab1e3">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.android.support-cardview-v7-27.0.2_9e9790d1835c60bc4c461e85dab96cafe387e20d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.55.4/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="e31331bdf6b5952badadbfc171f04b95c55d3b16">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.react-react-native-0.55.4_b2311f1a82ef9e3512feeeb20f6d31441fccdd51.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/27.0.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="bcd0bcdef85b31a656af76e39c0c95ce70800772">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-27.0.2_48e51302a6647b8fde71dcf56af3cab8be297ec8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/eBizCard/react-native-fbsdk/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="44f21b570dd38d9a7ebe2c9587febfde2f493e99">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/eBizCard-react-native-fbsdk-unspecified_99f8244beda77901595bcee36581e03e801bc6fd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.android/facebook-login/4.33.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="95dbd34766d3f158ef20de4b5b0206118e960709">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.android-facebook-login-4.33.0_5b2e5a5cfb2b8e742b43188bc180687fa2c7eb0c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.55.4/jars/libs/infer-annotations-4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="9809e90be788acdb479b2b44e2112f3295a03068">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/infer-annotations-4.0_fa6e1daf2e001df58c24f02d026d5623dddfb885.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/.gradle/caches/modules-2/files-2.1/com.squareup.okio/okio/1.13.0/a9283170b7305c8d92d25aff02a6ab7e45d06cbe/okio-1.13.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="a9283170b7305c8d92d25aff02a6ab7e45d06cbe">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/okio-1.13.0_748585cca4e8fb5f87c4cf4517bc919602cb3477.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.android/facebook-common/4.33.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="4d9151b05d74c7d17dba9485cbb56be7e16ed9aa">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.android-facebook-common-4.33.0_d88e415eb301d6635461a1e9f20565771321be7f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.android/facebook-messenger/4.33.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6d3dda07fbd30171edc150e4f13884fce5cd9926">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.android-facebook-messenger-4.33.0_8d26e09ad87fb636e1891d5a019a801d31b8a70f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/27.0.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="25c8cb628374f9a2d59ff9e1172753751e9a9f84">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-27.0.2_0be00c606b8c0671cdc73ce01c8861fd59de54d7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/android.arch.core/runtime/1.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="71d380aeac037e63bab7bda2ba211777e16a2f42">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/android.arch.core-runtime-1.1.0_eba31bea1d7fb3779a86836396c6372355a6b462.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.55.4/jars/libs/infer-annotations-4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="9809e90be788acdb479b2b44e2112f3295a03068">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/infer-annotations-4.0_fa6e1daf2e001df58c24f02d026d5623dddfb885.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.android.support/support-media-compat/27.0.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="25c8cb628374f9a2d59ff9e1172753751e9a9f84">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-media-compat-27.0.2_0be00c606b8c0671cdc73ce01c8861fd59de54d7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="48c7f54c2515a2312d3a4481d10c43fbb807f3af">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-1.3.0_2fdcb788cce694e9bf8f38dc4a6025e65e6ed706.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/.gradle/caches/modules-2/files-2.1/android.arch.core/common/1.1.0/8007981f7d7540d89cd18471b8e5dcd2b4f99167/common-1.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="8007981f7d7540d89cd18471b8e5dcd2b4f99167">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/common-1.1.0_7e4172de5f71945d36cf1a926d9a8239eb9afbbc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.android.support/cardview-v7/27.0.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="14bfdbf5594d4d7c320de20831849050788ab1e3">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.android.support-cardview-v7-27.0.2_9e9790d1835c60bc4c461e85dab96cafe387e20d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.android.support/support-core-utils/27.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="9a2ea9818b2f556b6663c0e7376bd664ee6c7550">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-utils-27.1.0_e2671ec64423ae2da24579b1532020068b567f6c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/27.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="755c70a5a4e439030f67311dbafaa67b111377a6">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-27.1.0_0e8673350fe47351e009c9534e1319d5a1f9fa0f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.android.support/customtabs/27.0.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="cdebcd9e0580b35115f655f8dc8ed7a66a8ef0fc">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.android.support-customtabs-27.0.2_60781f6c065a0c90239236409b54392e7c06f568.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.android.support/support-fragment/27.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="fe6c8fbfeeb1454c3eb605c9b66662991681fd55">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-fragment-27.1.0_04ea6138cf781183c74d45ebdbe72746695441f8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/27.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="705378853cb9f264315d7a0a8edb6743d72efe9b">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-27.1.0_b4a998503cf121f2aa466d6591c5de52c71197ee.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp3/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c03c08c9934b23c8c09c803345ec51a74119127b">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-okhttp3-1.3.0_8eb03e4b58c76189fd152d651ee57f9d17ff393f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-urlconnection/3.6.0/3f9b16b774f2c36cfd86dd2053d0b3059531dacc/okhttp-urlconnection-3.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="3f9b16b774f2c36cfd86dd2053d0b3059531dacc">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-3.6.0_83a05288d7a3bfc094f60d0b796351b0a6b545c8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/javax.inject-1_f1ec67054b93adf7f72d6095cab0c774aebf2627.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.fbui.textlayoutbuilder/textlayoutbuilder/1.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="f90b593491e4044903f0bbf68dc3fa2790b151b9">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.fbui.textlayoutbuilder-textlayoutbuilder-1.0.0_e157780b5cc3b759b7aafecc32ab83512a9168fc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.github.yalantis/ucrop/2.2.2-native/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="3bed41dc3164f618b7c22f37116f60b2017046e7">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.github.yalantis-ucrop-2.2.2-native_100be45a4c23d335b83987d44743b12ff5d1d8fd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.33.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="b1c250352bb7bbd5ea1982ca5165f2a81f36b530">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.android-facebook-android-sdk-4.33.0_bd3e3d6ec33babcf7c2bafbf31c3a7ce72161221.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="fe85b87215e405f5917d40ae4960488ac9224b74">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fresco-1.3.0_d1ceb2c09611b44df2406da6c74a3d6c30c7b751.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/.gradle/caches/modules-2/files-2.1/io.reactivex.rxjava2/rxjava/2.1.0/2fdf84dedcaaeabb9d70cde9dbb8aad4eccb80a1/rxjava-2.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="2fdf84dedcaaeabb9d70cde9dbb8aad4eccb80a1">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/rxjava-2.1.0_e2966895c6a9344ce564c79ccff9d0157d9ec7e1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.react/react-native/0.55.4/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="e31331bdf6b5952badadbfc171f04b95c55d3b16">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.react-react-native-0.55.4_b2311f1a82ef9e3512feeeb20f6d31441fccdd51.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="72128af126ddd7d6252da9357fe560d3abcdfb0c">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-base-1.3.0_d872faa48371255c9c2795fbee5e12c86b4f41cc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/.gradle/caches/modules-2/files-2.1/com.google.zxing/core/3.3.0/73c49077166faa4c3c0059c5f583d1d7bd1475fe/core-3.3.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="73c49077166faa4c3c0059c5f583d1d7bd1475fe">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/core-3.3.0_bf156f1cb801a899310c61d33d9fbd5314662305.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.8.1/4d060ca3190df0eda4dc13415532a12e15ca5f11/okhttp-3.8.1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="4d060ca3190df0eda4dc13415532a12e15ca5f11">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/okhttp-3.8.1_3b7283c417efdbe604214d8d1a4b6ef2e2433499.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="c65a2e39d54023bac3aef64a2f0cff89289c7ff6">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-drawee-1.3.0_cfe65ff96e2c8dcd567fb6786ff556dc60b77cfd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.android/facebook-share/4.33.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="f64aa03e24769f0e10f35f1c08e4d004b5db067b">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.android-facebook-share-4.33.0_570a8f7f17a28e11c0b002aa608a3040384223e6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/.gradle/caches/modules-2/files-2.1/com.facebook.fbui.textlayoutbuilder/staticlayout-proxy/1.0/f162442a19fff13995fbd51ba414d9ee05579080/staticlayout-proxy-1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="f162442a19fff13995fbd51ba414d9ee05579080">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/staticlayout-proxy-1.0_9039755a347b1e7082b89192fec3ad2804ea30e1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/eBizCard/react-native-vector-icons/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f2cf527de8d0bd35d72088fafea02395ba4a9eec">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/eBizCard-react-native-vector-icons-unspecified_0baa19ffef25442f5dd32adf5522e01c056e33a0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.0/5871fb60dc68d67da54a663c3fd636a10a532948/jsr305-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/jsr305-3.0.0_108a56b7fbe96edc28d30e8bc17f946a5ebcc6d2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-applinks/1.4.0/8ad21bf21784dacce5f2043afb97218cc377e835/bolts-applinks-1.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="8ad21bf21784dacce5f2043afb97218cc377e835">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/bolts-applinks-1.4.0_40e5e5011efa82fd2de14c63e5106d022434d94c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="37345de2ed2772f385eaeec37a9c2ff0fea99ad7">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fbcore-1.3.0_521d799f322496def8ab78ab866dae01b8e7f4db.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/.gradle/caches/modules-2/files-2.1/android.arch.lifecycle/common/1.1.0/edf3f7bfb84a7521d0599efa3b0113a0ee90f85/common-1.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="0edf3f7bfb84a7521d0599efa3b0113a0ee90f85">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/common-1.1.0_1db1f3f0b093ddc3abba602734b476bacaa0e3eb.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.soloader/soloader/0.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.soloader-soloader-0.1.0_9a5de046de07331eb2639630eb7dd6d5a9c17413.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/android.arch.lifecycle/viewmodel/1.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="1fd3ceac7f415975323d52c6c6057db409a907f6">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/android.arch.lifecycle-viewmodel-1.1.0_3de0f59675db133f660ea1c7ea939abd249ae814.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.soloader/soloader/0.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="8f615bca00639150c9eb6175d4b5471193f70794">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.soloader-soloader-0.1.0_9a5de046de07331eb2639630eb7dd6d5a9c17413.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.android/facebook-places/4.33.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6ab689d36e3c7425adf1e32986075045d1baf4b2">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.android-facebook-places-4.33.0_e231edce7ee60998be9fa362c74da46a9203d213.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/android.arch.lifecycle/runtime/1.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="e2bbe48deed35056023eed2cdc0cc92e5c7d3617">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/android.arch.lifecycle-runtime-1.1.0_177fd3aef18b1102681a02edb567847a096b0285.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.android/facebook-applinks/4.33.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="82ea5a937ab84229fbd2f3fc8cf2a72cbdf0ee0f">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.android-facebook-applinks-4.33.0_466febc36770ad1c46f228042e6da725843c6810.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/eBizCard/react-native-image-crop-picker/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="027d2413ec20fea1eaced29ae0901cc9e3f498fa">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/eBizCard-react-native-image-crop-picker-unspecified_c5fa1bb8a9218de5249e7fb5976a272884d64daa.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/bolts-tasks-1.4.0_7d4e15fcb889874de71ba3432a01701d9cd6f5d7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.android.support/support-compat/27.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="3d46095629eedbd5b79b4d129428fc499473a73b">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-compat-27.1.0_c7783f3c6891bb4b6b8f76faadac87661d0d2c26.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.android/facebook-core/4.33.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="b478831814c5b6a1337f9e75d696d5faa6973519">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.android-facebook-core-4.33.0_405d056458e1f67598ea956c750353a9542e1b0d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.android/facebook-places/4.33.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="6ab689d36e3c7425adf1e32986075045d1baf4b2">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.android-facebook-places-4.33.0_e231edce7ee60998be9fa362c74da46a9203d213.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-applinks/1.4.0/8ad21bf21784dacce5f2043afb97218cc377e835/bolts-applinks-1.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="8ad21bf21784dacce5f2043afb97218cc377e835">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/bolts-applinks-1.4.0_40e5e5011efa82fd2de14c63e5106d022434d94c.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/.gradle/caches/modules-2/files-2.1/com.facebook.fbui.textlayoutbuilder/staticlayout-proxy/1.0/f162442a19fff13995fbd51ba414d9ee05579080/staticlayout-proxy-1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f162442a19fff13995fbd51ba414d9ee05579080">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/staticlayout-proxy-1.0_9039755a347b1e7082b89192fec3ad2804ea30e1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.android/facebook-share/4.33.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f64aa03e24769f0e10f35f1c08e4d004b5db067b">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.android-facebook-share-4.33.0_570a8f7f17a28e11c0b002aa608a3040384223e6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/.gradle/caches/modules-2/files-2.1/com.google.code.findbugs/jsr305/3.0.0/5871fb60dc68d67da54a663c3fd636a10a532948/jsr305-3.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="5871fb60dc68d67da54a663c3fd636a10a532948">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/jsr305-3.0.0_108a56b7fbe96edc28d30e8bc17f946a5ebcc6d2.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/android.arch.lifecycle/livedata-core/1.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="8a9fd7c97f1d13f97f3b52f9d2e54cd857d5acf9">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/android.arch.lifecycle-livedata-core-1.1.0_8531bad3438bdce11b106c9b91eeebfeb0444397.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/eBizCard/react-native-vector-icons/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="f2cf527de8d0bd35d72088fafea02395ba4a9eec">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/eBizCard-react-native-vector-icons-unspecified_0baa19ffef25442f5dd32adf5522e01c056e33a0.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fbcore/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="37345de2ed2772f385eaeec37a9c2ff0fea99ad7">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fbcore-1.3.0_521d799f322496def8ab78ab866dae01b8e7f4db.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.android/facebook-android-sdk/4.33.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b1c250352bb7bbd5ea1982ca5165f2a81f36b530">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.android-facebook-android-sdk-4.33.0_bd3e3d6ec33babcf7c2bafbf31c3a7ce72161221.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/.gradle/caches/modules-2/files-2.1/com.parse.bolts/bolts-tasks/1.4.0/d85884acf6810a3bbbecb587f239005cbc846dc4/bolts-tasks-1.4.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/bolts-tasks-1.4.0_7d4e15fcb889874de71ba3432a01701d9cd6f5d7.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.android/facebook-common/4.33.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="4d9151b05d74c7d17dba9485cbb56be7e16ed9aa">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.android-facebook-common-4.33.0_d88e415eb301d6635461a1e9f20565771321be7f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/.gradle/caches/modules-2/files-2.1/org.reactivestreams/reactive-streams/1.0.0/14b8c877d98005ba3941c9257cfe09f6ed0e0d74/reactive-streams-1.0.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="14b8c877d98005ba3941c9257cfe09f6ed0e0d74">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/reactive-streams-1.0.0_68b49ea7cfa737ca13e91eba3e3f11cb129c3f67.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-okhttp3/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="c03c08c9934b23c8c09c803345ec51a74119127b">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-okhttp3-1.3.0_8eb03e4b58c76189fd152d651ee57f9d17ff393f.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp-urlconnection/3.6.0/3f9b16b774f2c36cfd86dd2053d0b3059531dacc/okhttp-urlconnection-3.6.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="3f9b16b774f2c36cfd86dd2053d0b3059531dacc">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/okhttp-urlconnection-3.6.0_83a05288d7a3bfc094f60d0b796351b0a6b545c8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/27.0.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="bcd0bcdef85b31a656af76e39c0c95ce70800772">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-27.0.2_48e51302a6647b8fde71dcf56af3cab8be297ec8.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.android/facebook-core/4.33.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="b478831814c5b6a1337f9e75d696d5faa6973519">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.android-facebook-core-4.33.0_405d056458e1f67598ea956c750353a9542e1b0d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.fresco/imagepipeline-base/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="72128af126ddd7d6252da9357fe560d3abcdfb0c">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-imagepipeline-base-1.3.0_d872faa48371255c9c2795fbee5e12c86b4f41cc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/.gradle/caches/modules-2/files-2.1/com.android.support/support-annotations/27.1.0/39ded76b5e1ce1c5b2688e1d25cdc20ecee32007/support-annotations-27.1.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="39ded76b5e1ce1c5b2688e1d25cdc20ecee32007">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/support-annotations-27.1.0_ba1ca70bc58c57818e096bd51f888ef73489346d.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/.gradle/caches/modules-2/files-2.1/com.google.zxing/core/3.3.0/73c49077166faa4c3c0059c5f583d1d7bd1475fe/core-3.3.0.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="73c49077166faa4c3c0059c5f583d1d7bd1475fe">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/core-3.3.0_bf156f1cb801a899310c61d33d9fbd5314662305.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.android.support/support-core-ui/27.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="6f209b73a488f358673f39317df394bd7a99c05e">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-core-ui-27.1.0_ace5020763d41a91cc2784aef97f78a17404f8cc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.fresco/drawee/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="c65a2e39d54023bac3aef64a2f0cff89289c7ff6">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-drawee-1.3.0_cfe65ff96e2c8dcd567fb6786ff556dc60b77cfd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.android.support/customtabs/27.0.2/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="cdebcd9e0580b35115f655f8dc8ed7a66a8ef0fc">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.android.support-customtabs-27.0.2_60781f6c065a0c90239236409b54392e7c06f568.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/27.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="5c66801c7ac6def4ffef7859925b12ce7940438e">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-27.1.0_ba07261fb40b41a8e7170cd38cf7a2b41f737ad1.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/eBizCard/react-native-fbsdk/unspecified/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="44f21b570dd38d9a7ebe2c9587febfde2f493e99">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/eBizCard-react-native-fbsdk-unspecified_99f8244beda77901595bcee36581e03e801bc6fd.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.android/facebook-applinks/4.33.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="82ea5a937ab84229fbd2f3fc8cf2a72cbdf0ee0f">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.android-facebook-applinks-4.33.0_466febc36770ad1c46f228042e6da725843c6810.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.fbui.textlayoutbuilder/textlayoutbuilder/1.0.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="f90b593491e4044903f0bbf68dc3fa2790b151b9">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.fbui.textlayoutbuilder-textlayoutbuilder-1.0.0_e157780b5cc3b759b7aafecc32ab83512a9168fc.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/com.facebook.fresco/fresco/1.3.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="fe85b87215e405f5917d40ae4960488ac9224b74">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/com.facebook.fresco-fresco-1.3.0_d1ceb2c09611b44df2406da6c74a3d6c30c7b751.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/exploded-aar/id.zelory/compressor/2.1.0/jars/classes.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="27.0.3"
+        sha1="6b1555196d65ffa1174f6f49efb2f278905f537a">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/id.zelory-compressor-2.1.0_c00787353ccf835fcc2956a8187a1ebb8794cd75.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="/Users/codemobiles/.gradle/caches/modules-2/files-2.1/javax.inject/javax.inject/1/6975da39a7040257bd51d21a231b76c915872d38/javax.inject-1.jar"
+        jumboMode="false"
+        optimize="true"
+        revision="26.0.2"
+        sha1="6975da39a7040257bd51d21a231b76c915872d38">
+        <dex dex="/Users/codemobiles/Documents/GitHub/eBizCard/android/app/build/intermediates/pre-dexed/debug/javax.inject-1_f1ec67054b93adf7f72d6095cab0c774aebf2627.jar" />
+    </item>
+
+</items>
