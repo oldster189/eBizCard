@@ -1,5 +1,0 @@
- extern const unsigned char eBizCardVersionString[];
- extern const double eBizCardVersionNumber;
-
- const unsigned char eBizCardVersionString[] __attribute__ ((used)) = "@(#)PROGRAM:eBizCard  PROJECT:eBizCard-1" "\n";
- const double eBizCardVersionNumber __attribute__ ((used)) = (double)1.;

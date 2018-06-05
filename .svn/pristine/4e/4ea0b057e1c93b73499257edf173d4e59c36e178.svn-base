@@ -1,6 +1,0 @@
-dependencies: \
-  /Users/codemobiles/Documents/GitHub/eBizCard/node_modules/react-native-image-crop-picker/ios/QBImagePicker/QBImagePicker/QBVideoIndicatorView.m \
-  /Users/codemobiles/Documents/GitHub/eBizCard/ios/build/Build/Intermediates.noindex/QBImagePicker.build/Debug-iphonesimulator/QBImagePicker.build/module.modulemap \
-  /Users/codemobiles/Documents/GitHub/eBizCard/node_modules/react-native-image-crop-picker/ios/QBImagePicker/QBImagePicker/QBVideoIndicatorView.h \
-  /Users/codemobiles/Documents/GitHub/eBizCard/node_modules/react-native-image-crop-picker/ios/QBImagePicker/QBImagePicker/QBVideoIconView.h \
-  /Users/codemobiles/Documents/GitHub/eBizCard/node_modules/react-native-image-crop-picker/ios/QBImagePicker/QBImagePicker/QBSlomoIconView.h

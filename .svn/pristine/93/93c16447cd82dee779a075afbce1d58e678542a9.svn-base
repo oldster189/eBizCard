@@ -1,8 +1,0 @@
-dependencies: \
-  /Users/codemobiles/Documents/GitHub/eBizCard/node_modules/react-native/Libraries/Network/RCTDataRequestHandler.m \
-  /Users/codemobiles/Documents/GitHub/eBizCard/node_modules/react-native/Libraries/Network/RCTDataRequestHandler.h \
-  /Users/codemobiles/Documents/GitHub/eBizCard/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTInvalidating.h \
-  /Users/codemobiles/Documents/GitHub/eBizCard/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTURLRequestHandler.h \
-  /Users/codemobiles/Documents/GitHub/eBizCard/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTBridgeModule.h \
-  /Users/codemobiles/Documents/GitHub/eBizCard/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTDefines.h \
-  /Users/codemobiles/Documents/GitHub/eBizCard/ios/build/Build/Products/Debug-iphonesimulator/include/React/RCTURLRequestDelegate.h

@@ -1,9 +1,0 @@
-dependencies: \
-  /Users/codemobiles/Documents/eBizCard/node_modules/react-native/React/Inspector/RCTInspectorPackagerConnection.m \
-  /Users/codemobiles/Documents/eBizCard/node_modules/react-native/React/Inspector/RCTInspectorPackagerConnection.h \
-  /Users/codemobiles/Documents/eBizCard/node_modules/react-native/React/Base/RCTDefines.h \
-  /Users/codemobiles/Documents/eBizCard/node_modules/react-native/React/Inspector/RCTInspector.h \
-  /Users/codemobiles/Documents/eBizCard/node_modules/react-native/React/Base/RCTLog.h \
-  /Users/codemobiles/Documents/eBizCard/node_modules/react-native/React/Base/RCTAssert.h \
-  /Users/codemobiles/Documents/eBizCard/node_modules/react-native/React/Base/RCTUtils.h \
-  /Users/codemobiles/Documents/eBizCard/node_modules/react-native/React/../Libraries/WebSocket/RCTSRWebSocket.h
