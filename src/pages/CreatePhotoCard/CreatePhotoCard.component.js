@@ -78,7 +78,7 @@ class CreatePhotoCardScreen extends Component {
     )
   }
 
-  renderFrontBusinessCard() {
+  renderBackBusinessCard() {
     const { backBusinessCard } = this.props
     const {
       backgroundDefaultPhotoStyle,
@@ -155,7 +155,7 @@ class CreatePhotoCardScreen extends Component {
 
             {/* START BACK SIDE CONTENT */}
             <View style={contentStyle}>
-              {this.renderFrontBusinessCard()}
+              {this.renderBackBusinessCard()}
 
               {/* Button Add Image Layout*/}
               <View style={addPhotoButtonStyle}>

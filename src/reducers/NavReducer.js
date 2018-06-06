@@ -6,24 +6,26 @@ import {
   LOGOUT,
   NORMAL_LOGIN_SUCCESS,
   FACEBOOK_LOGIN_SUCCESS,
+  CREATE_ACCOUNT_SOCIAL_SUCCESS,
   NORMAL_REGISTER_SUCCESS,
   LOGIN_SCREEN,
   REGISTER_SCREEN,
   CREATE_PROFILE_SUCCESS,
   FORGET_PASSWORD_SCREEN,
-  MAIN_SCREEN
+  MAIN_SCREEN,
+  CREATE_PROFILE_SCREEN
 } from '../constants/actionTypes';
 
 const router = AppNavigator.router;
 const mainAction = router.getActionForPathAndParams('Home');
 const loginAction = router.getActionForPathAndParams('Login');
-const registerAction = router.getActionForPathAndParams('Register');
+// const registerAction = router.getActionForPathAndParams('Register');
 const tempNavState = router.getStateForAction(mainAction);
 const createProfileAction = router.getActionForPathAndParams('CreateProfile');
-const createPhotoCardAction = router.getActionForPathAndParams('CreatePhotoCard');
+// const createPhotoCardAction = router.getActionForPathAndParams('CreatePhotoCard');
 
 const initialNavState = router.getStateForAction(
-  createProfileAction, 
+  createProfileAction,
   tempNavState
 );
 
@@ -42,11 +44,17 @@ export default (state = initialNavState, action) => {
         state
       );
       break;
-    case NORMAL_LOGIN_SUCCESS:
-    case FACEBOOK_LOGIN_SUCCESS:
+    case CREATE_ACCOUNT_SOCIAL_SUCCESS:
     case NORMAL_REGISTER_SUCCESS:
       nextState = AppNavigator.router.getStateForAction(
         NavigationActions.navigate({ routeName: 'CreateProfile' }),
+        state
+      );
+      break; 
+    case NORMAL_LOGIN_SUCCESS:
+    case FACEBOOK_LOGIN_SUCCESS:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'Home' }),
         state
       );
       break;
@@ -71,6 +79,12 @@ export default (state = initialNavState, action) => {
     case FORGET_PASSWORD_SCREEN:
       nextState = AppNavigator.router.getStateForAction(
         NavigationActions.navigate({ routeName: 'ForgetPassword' }),
+        state
+      );
+      break;
+    case CREATE_PROFILE_SCREEN:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'CreateProfile' }),
         state
       );
       break;

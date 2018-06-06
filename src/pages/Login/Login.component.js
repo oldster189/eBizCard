@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, Image, ScrollView, TouchableOpacity, } from 'react-native';
+import { View, Text, Image, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import Spinner from 'react-native-loading-spinner-overlay';
 
@@ -46,6 +46,21 @@ class LoginScreen extends Component {
     console.log('Click Sign in Google!');
   }
 
+  renderErrorDialog() {
+    const { errorMessage } = this.props
+    console.log(errorMessage)
+    if (errorMessage) {
+      Alert.alert(
+        '',
+        errorMessage,
+        [
+          { text: 'OK', onPress: () => console.log('OK Pressed') },
+        ],
+        { cancelable: false }
+      )
+    }
+  }
+  
   render() {
     const {
       safeAreaStyle,
@@ -131,7 +146,7 @@ class LoginScreen extends Component {
                 />
                 <PasswordInputText
                   label="Password"
-                  containerStyle={textInputStyle} 
+                  containerStyle={textInputStyle}
                   returnKeyType="done"
                   lineWidth={1}
                   autoCorrect={false}
@@ -208,8 +223,11 @@ class LoginScreen extends Component {
 
         </ScrollView>
 
-        {/* Loading */}
+
+        {/* Loading */} 
         <Spinner visible={loading} />
+
+        {this.renderErrorDialog()}
       </SafeAreaView>
 
     );

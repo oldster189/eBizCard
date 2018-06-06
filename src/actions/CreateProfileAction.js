@@ -1,17 +1,21 @@
 
-import { NativeModules } from 'react-native';
+import { NativeModules, AsyncStorage } from 'react-native';
+import axios from 'axios';
 import { isEmpty } from '../utils/util';
 import {
-    CREATE_PROFILE_VALUE_CHANGE, 
+    CREATE_PROFILE_VALUE_CHANGE,
     CREATE_PROFILE_PHOTO_CAMERA,
     CREATE_PROFILE_PHOTO_LIBRARY,
     CREATE_PROFILE_START,
     TEXT_INPUT_IS_INVALID,
-    CREATE_PROFILE_SUCCESS
+    CREATE_PROFILE_SUCCESS,
+    ERROR_NETWORK
 } from '../constants/actionTypes';
 import {
     CHOOSE_CAMERA,
-    CHOOSE_LIBRARY
+    CHOOSE_LIBRARY,
+    USER_TOKEN,
+    BASE_URL_API
 } from '../constants/constants';
 
 const ImagePicker = NativeModules.ImageCropPicker;
@@ -45,18 +49,18 @@ const chooseLibrary = (dispatch, cropping, circular = false) => {
         compressImageQuality: 1,
         includeExif: true,
     }).then(image => {
-        dispatch({
-            type: CREATE_PROFILE_PHOTO_LIBRARY,
-            payload: {
-                profileImage: {
-                    uri: image.path,
-                    width: image.width,
-                    height: image.height,
-                    mime: image.mime
-                }
-            }
-
-        })
+        uploadImageToServer(dispatch, image)
+        // dispatch({
+        //     type: CREATE_PROFILE_PHOTO_LIBRARY,
+        //     payload: {
+        //         profileImage: {
+        //             uri: image.path,
+        //             width: image.width,
+        //             height: image.height,
+        //             mime: image.mime
+        //         }
+        //     }
+        // })
     }).catch(e => {
         console.log(e);
     });
@@ -73,6 +77,7 @@ const chooseCamera = (dispatch, cropping) => {
         compressImageQuality: 1,
         includeExif: true,
     }).then(image => {
+        uploadImageToServer(dispatch, image)
         dispatch({
             type: CREATE_PROFILE_PHOTO_CAMERA,
             payload: {
@@ -91,6 +96,29 @@ const chooseCamera = (dispatch, cropping) => {
 const startCreateProfile = (dispatch) => {
     dispatch({ type: CREATE_PROFILE_START });
 };
+
+const uploadImageToServer = async (dispatch, image) => {
+    try {
+        const data = new FormData()
+        data.append('profile_image', {
+            uri: image.path,
+            type: 'image/jpeg',
+            name: 'testPhotoName'
+        })
+        // const userToken = await AsyncStorage.getItem(USER_TOKEN)
+        const config = { headers: { 'Content-Type': 'multipart/form-data;', 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjI1OTIwMDAwMDAsImRhdGEiOnsiaWQiOiI1YjE2NjcyM2RiNmI5MjUxZjczYTM0NmQifSwiaWF0IjoxNTI4MjU2MDkxfQ.zzbhWTIuFCzhJrHhfPv_jflbIPp16gdrtyWTHe4Q3JE' } }
+        const response = await axios.put(`${BASE_URL_API}/profile/image`, data, config)
+        console.log(`Response: ${JSON.stringify(response)}`)
+    } catch (error) {
+        const message = error.response.data.message
+        console.log(`Error Upload image: ${error}`);
+        return dispatch({
+            type: ERROR_NETWORK,
+            payload: { errorMessage: message }
+        })
+    }
+
+}
 
 export const createProfile = ({
     infoPrefix,
@@ -133,7 +161,7 @@ export const createProfile = ({
 
         if (!companyAddress) {
             payload.errorCompanyAddress = 'Company address is require.'
-        }  
+        }
         if (!isEmpty(payload)) {
             dispatch({ type: TEXT_INPUT_IS_INVALID, payload })
         } else {

@@ -11,9 +11,12 @@ import {
   LOGIN_SCREEN,
   TEXT_INPUT_IS_INVALID,
   FORGET_PASSWORD_SCREEN,
+  CREATE_ACCOUNT_SOCIAL_SUCCESS,
   FACEBOOK_LOGIN_SUCCESS,
-  NORMAL_REGISTER_FAIL,
-  NORMAL_LOGIN_FAIL
+  NORMAL_REGISTER_FAIL, 
+  CREATE_PROFILE_SCREEN,
+  FACEBOOK_LOGIN_FAIL,
+  ERROR_NETWORK
 } from '../constants/actionTypes';
 import { USER_TYPE_FACEBOOK, USER_TYPE_NORMAL } from '../constants/constants';
 
@@ -30,7 +33,7 @@ const initialState = {
   user_token: '',
   isLoggedIn: false,
   loading: false,
-  userType: '',
+  userType: USER_TYPE_NORMAL,
   errorMessage: '',
   errorEmail: '',
   errorPassword: '',
@@ -38,7 +41,7 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  console.log(`Action: ${JSON.stringify(action)} \nState: ${JSON.stringify(state)}`);
+  console.log(`Action: ${JSON.stringify(action)} State: ${JSON.stringify(state)}`);
 
   switch (action.type) {
     case LOGIN:
@@ -49,7 +52,7 @@ export default (state = initialState, action) => {
       return { ...state, [action.payload.prop]: action.payload.value, };
     case REGISTER_VALUE_CHANGE:
       return { ...state, [action.payload.prop]: action.payload.value, };
-    case FACEBOOK_LOGIN_SUCCESS:
+    case CREATE_ACCOUNT_SOCIAL_SUCCESS:
       return {
         ...state,
         email: action.payload.email,
@@ -60,17 +63,52 @@ export default (state = initialState, action) => {
         fullName: action.payload.name,
         link_image: action.payload.picture.data.url,
         userType: USER_TYPE_FACEBOOK,
-        isLoggedIn: true, 
         errorMessage: '',
         errorEmail: '',
         errorPassword: '',
         errorRePassword: '',
+        isLoggedIn: true,
+        loading: false,
+      }
+    case FACEBOOK_LOGIN_SUCCESS:
+      return {
+        ...state,
+        password: '',
+        rePassword: '',
+        errorMessage: '',
+        errorEmail: '',
+        errorPassword: '',
+        errorRePassword: '',
+        isLoggedIn: true,
+        loading: false,
+      }
+    case FACEBOOK_LOGIN_FAIL:
+      return {
+        ...state,
+        password: '',
+        rePassword: '',
+        errorMessage: '',
+        errorEmail: '',
+        errorPassword: '',
+        errorRePassword: '',
+        isLoggedIn: true,
+        loading: false,
+      }
+    case ERROR_NETWORK:
+      return {
+        ...state,
+        password: '',
+        rePassword: '',
+        errorMessage: action.payload.errorMessage,
+        errorEmail: '',
+        errorPassword: '',
+        errorRePassword: '',
+        isLoggedIn: true,
         loading: false,
       }
     case NORMAL_LOGIN_SUCCESS:
       return {
         ...state,
-        user_token: action.payload.token,
         password: '',
         rePassword: '',
         errorMessage: '',
@@ -80,22 +118,10 @@ export default (state = initialState, action) => {
         userType: USER_TYPE_NORMAL,
         isLoggedIn: true,
         loading: false
-      };
-    case NORMAL_LOGIN_FAIL:
-      return {
-        ...state,
-        password: '',
-        rePassword: '',
-        errorMessage: action.payload.errorMessage,
-        errorEmail: '',
-        errorPassword: '',
-        errorRePassword: '',  
-        loading: false
-      }
+      }; 
     case NORMAL_REGISTER_SUCCESS:
       return {
         ...state,
-        user_token: action.payload.token,
         password: '',
         rePassword: '',
         errorMessage: '',
@@ -153,6 +179,7 @@ export default (state = initialState, action) => {
         errorEmail: '',
         errorPassword: '',
         errorRePassword: '',
+        loading: false
       }
     case LOGIN_SCREEN:
       return {
@@ -163,6 +190,7 @@ export default (state = initialState, action) => {
         errorEmail: '',
         errorPassword: '',
         errorRePassword: '',
+        loading: false
       }
     case FORGET_PASSWORD_SCREEN:
       return {
@@ -173,6 +201,19 @@ export default (state = initialState, action) => {
         errorEmail: '',
         errorPassword: '',
         errorRePassword: '',
+        loading: false
+      }
+    case CREATE_PROFILE_SCREEN:
+      return {
+        ...state,
+        password: '',
+        rePassword: '',
+        errorMessage: '',
+        errorEmail: '',
+        errorPassword: '',
+        errorRePassword: '',
+        isLoggedIn: true,
+        loading: false
       }
     default:
       return {
@@ -183,6 +224,7 @@ export default (state = initialState, action) => {
         errorEmail: '',
         errorPassword: '',
         errorRePassword: '',
+        loading: false
       };
   }
 }; 
