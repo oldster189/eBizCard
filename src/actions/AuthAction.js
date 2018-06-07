@@ -70,7 +70,7 @@ const doFacebookLogin = async dispatch => {
                     return dispatch({ type: FACEBOOK_LOGIN_FAIL })
                 }
 
-                // Check status page for chenge page.
+                // Check status page for change page.
                 const statusPageResult = await getStatusForChangePage(dispatch, result.email)
 
                 if (statusPageResult === 'ACCOUNT') {
@@ -82,7 +82,7 @@ const doFacebookLogin = async dispatch => {
                     await AsyncStorage.removeItem(USER_TOKEN)
                     await AsyncStorage.setItem(USER_TOKEN, userToken)
 
-                    console.log('Facebook login successfuly!!')
+                    console.log('Facebook login successfully!!')
 
                     // Next to page ProfileScreen.
                     return dispatch({ type: CREATE_ACCOUNT_SOCIAL_SUCCESS, payload: result })
@@ -202,10 +202,10 @@ export const normalLogin = ({ email, password }) => {
             await AsyncStorage.removeItem(USER_TOKEN)
             await AsyncStorage.setItem(USER_TOKEN, userToken)
 
-            // Check status page for chenge page.
+            // Check status page for change page.
             const statusPageResult = await getStatusForChangePage(dispatch, email)
 
-            console.log('Login successfuly!!')
+            console.log('Login successfully!!')
 
             if (statusPageResult === 'PROFILE') {
                 // Next to page ProfileScreen.
@@ -320,7 +320,7 @@ export const normalRegister = ({ email, password, rePassword }) => async dispatc
         await AsyncStorage.removeItem(USER_TOKEN)
         await AsyncStorage.setItem(USER_TOKEN, userToken)
 
-        console.log('Register successfuly!')
+        console.log('Register successfully!')
         return dispatch({
             type: NORMAL_REGISTER_SUCCESS,
             payload: response.data.token

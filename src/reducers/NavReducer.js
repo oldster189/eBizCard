@@ -11,21 +11,19 @@ import {
   LOGIN_SCREEN,
   REGISTER_SCREEN,
   CREATE_PROFILE_SUCCESS,
-  FORGET_PASSWORD_SCREEN, 
+  FORGET_PASSWORD_SCREEN,
   CREATE_PROFILE_SCREEN,
-  MAIN_SCREEN
+  MAIN_SCREEN,
+  HOME_RESET_TO_LOGIN_SCREEN
 } from '../constants/actionTypes';
 
 const router = AppNavigator.router;
 const mainAction = router.getActionForPathAndParams('Home');
 const loginAction = router.getActionForPathAndParams('Login');
-const registerAction = router.getActionForPathAndParams('Register');
-const tempNavState = router.getStateForAction(mainAction);
-const createProfileAction = router.getActionForPathAndParams('CreateProfile');
-const createPhotoCardAction = router.getActionForPathAndParams('CreatePhotoCard');
+const tempNavState = router.getStateForAction(loginAction);
 
 const initialNavState = router.getStateForAction(
-  mainAction, 
+  mainAction,
 );
 
 export default (state = initialNavState, action) => {
@@ -49,7 +47,7 @@ export default (state = initialNavState, action) => {
         NavigationActions.navigate({ routeName: 'CreateProfile' }),
         state
       );
-      break; 
+      break;
     case NORMAL_LOGIN_SUCCESS:
     case FACEBOOK_LOGIN_SUCCESS:
       nextState = AppNavigator.router.getStateForAction(
@@ -90,6 +88,12 @@ export default (state = initialNavState, action) => {
     case MAIN_SCREEN:
       nextState = AppNavigator.router.getStateForAction(
         NavigationActions.navigate({ routeName: 'Home' }),
+        state
+      );
+      break;
+    case HOME_RESET_TO_LOGIN_SCREEN:
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: 'Login' }),
         state
       );
       break;

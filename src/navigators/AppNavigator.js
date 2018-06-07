@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { StatusBar, View, Image } from 'react-native'
 import { connect } from 'react-redux'
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation'
-import { initializeListeners } from 'react-navigation-redux-helpers' 
+import { initializeListeners } from 'react-navigation-redux-helpers'
 
 import * as Pages from '../pages'
 import { navigationPropConstructor } from '../utils/redux'
@@ -45,7 +45,7 @@ const Tabs = createBottomTabNavigator({
         <Image
           style={{
             height: 28,
-            width: 28, 
+            width: 28,
           }}
           resizeMode='contain'
           source={
@@ -66,7 +66,7 @@ const Tabs = createBottomTabNavigator({
         <Image
           style={{
             height: 28,
-            width: 28, 
+            width: 28,
           }}
           resizeMode='contain'
           source={
@@ -87,7 +87,7 @@ const Tabs = createBottomTabNavigator({
         <Image
           style={{
             height: 28,
-            width: 28, 
+            width: 28,
           }}
           resizeMode='contain'
           source={
@@ -134,7 +134,10 @@ export const AppNavigator = createStackNavigator({
       header: null,
     }
   },
-})
+}, {
+    stateName: 'MainAppNav', 
+    initialRouteName: 'Login'
+  })
 
 class AppWithNavigationState extends Component {
 

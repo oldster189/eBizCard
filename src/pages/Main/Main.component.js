@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, Image, ScrollView, Alert, AsyncStorage } from 'react-native';
+import { View, Text, Image, ScrollView, Alert } from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Button } from 'react-native-elements';
 import Swiper from 'react-native-swiper';
-import { SafeAreaView } from 'react-navigation';
+import { SafeAreaView, NavigationActions } from 'react-navigation';
 import Spinner from 'react-native-loading-spinner-overlay';
 import ActionSheet from 'react-native-actionsheet'
 
@@ -15,8 +15,9 @@ import theme from '../../styles/theme.style';
 
 class MainScreen extends Component {
 
- componentDidMount() { 
-    this.props.getProfileDefault()
+  componentDidMount() {
+    this.props.checkAuth()
+   
   }
 
   showActionSheet = () => {
@@ -147,7 +148,7 @@ class MainScreen extends Component {
                       borderRadius: 34,
                     }}
                     resizeMode='contain'
-                    source={require(`http://192.168.200.30:8081/images/profile/${data.info.profile_image}`)}
+                    source={require('../../assets/images/add_display.png')}
                   />
                 </View>
               </View>
