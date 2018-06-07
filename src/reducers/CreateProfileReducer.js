@@ -1,13 +1,14 @@
 import {
-    CREATE_PROFILE_VALUE_CHANGE, 
-    CREATE_PROFILE_PHOTO_CAMERA, 
-    CREATE_PROFILE_PHOTO_LIBRARY, 
-    CREATE_PROFILE_START, 
-    CREATE_PROFILE_SUCCESS, 
-    TEXT_INPUT_IS_INVALID
+    CREATE_PROFILE_VALUE_CHANGE,
+    CREATE_PROFILE_PHOTO_CAMERA,
+    CREATE_PROFILE_PHOTO_LIBRARY,
+    CREATE_PROFILE_START,
+    CREATE_PROFILE_SUCCESS,
+    TEXT_INPUT_IS_INVALID,
+    ERROR_NETWORK
 } from '../constants/actionTypes';
 
-const initialState = { 
+const initialState = {
     infoPrefix: 'Ms.',
     profileImage: null,
     profileName: '',
@@ -16,7 +17,7 @@ const initialState = {
     lastName: '',
     suffix: '',
     mobilePhone: '',
-    secondMobilePhone: '', 
+    secondMobilePhone: '',
     secondEmail: '',
     companyName: '',
     position: '',
@@ -35,6 +36,7 @@ const initialState = {
     errorCompanyName: '',
     errorPosition: '',
     errorCompanyAddress: '',
+    profileData: null
 }
 
 export default (state = initialState, action) => {
@@ -51,9 +53,30 @@ export default (state = initialState, action) => {
         case CREATE_PROFILE_SUCCESS:
             return {
                 ...state,
-                loading: false,
+                profileData: action.payload,
                 errorMessage: '',
+                errorProfileName: '',
+                errorFirstName: '',
+                errorLastName: '',
+                errorMobilePhone: '',
+                errorCompanyName: '',
+                errorPosition: '',
+                errorCompanyAddress: '',
+                loading: false,
             };
+        case ERROR_NETWORK:
+            return {
+                ...state, 
+                errorMessage: action.payload.errorMessage,
+                errorProfileName: '',
+                errorFirstName: '',
+                errorLastName: '',
+                errorMobilePhone: '',
+                errorCompanyName: '',
+                errorPosition: '',
+                errorCompanyAddress: '',
+                loading: false,
+            }
         case TEXT_INPUT_IS_INVALID:
             return {
                 ...state,

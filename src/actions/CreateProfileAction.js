@@ -1,7 +1,7 @@
 
 import { NativeModules, AsyncStorage } from 'react-native';
 import axios from 'axios';
-import { isEmpty } from '../utils/util';
+import { isEmpty, trimmingAndLowercase } from '../utils/util';
 import {
     CREATE_PROFILE_VALUE_CHANGE,
     CREATE_PROFILE_PHOTO_CAMERA,
@@ -9,7 +9,8 @@ import {
     CREATE_PROFILE_START,
     TEXT_INPUT_IS_INVALID,
     CREATE_PROFILE_SUCCESS,
-    ERROR_NETWORK
+    ERROR_NETWORK,
+    CREATE_PROFILE_FAIL
 } from '../constants/actionTypes';
 import {
     CHOOSE_CAMERA,
@@ -105,8 +106,8 @@ const uploadImageToServer = async (dispatch, image) => {
             type: 'image/jpeg',
             name: 'testPhotoName'
         })
-        // const userToken = await AsyncStorage.getItem(USER_TOKEN)
-        const config = { headers: { 'Content-Type': 'multipart/form-data;', 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjI1OTIwMDAwMDAsImRhdGEiOnsiaWQiOiI1YjE2NjcyM2RiNmI5MjUxZjczYTM0NmQifSwiaWF0IjoxNTI4MjU2MDkxfQ.zzbhWTIuFCzhJrHhfPv_jflbIPp16gdrtyWTHe4Q3JE' } }
+        const userToken = await AsyncStorage.getItem(USER_TOKEN)
+        const config = { headers: { 'Content-Type': 'multipart/form-data;', 'x-access-token': userToken } }
         const response = await axios.put(`${BASE_URL_API}/profile/image`, data, config)
         console.log(`Response: ${JSON.stringify(response)}`)
     } catch (error) {
@@ -120,14 +121,18 @@ const uploadImageToServer = async (dispatch, image) => {
 
 }
 
-export const createProfile = ({
+export const createProfile = ({ 
+    profileImage,
+    profileName,
     infoPrefix,
     firstName,
     middleName,
     lastName,
     suffix,
     mobilePhone,
+    secondMobilePhone,
     email,
+    secondEmail,
     companyName,
     position,
     companyAddress,
@@ -136,7 +141,7 @@ export const createProfile = ({
     businessType
 }) => {
     const payload = {};
-    this.email = email.replace(/\s+/g, '').toLowerCase();
+    this.email = trimmingAndLowercase(email)
 
     return async dispatch => {
         startCreateProfile(dispatch)
@@ -163,24 +168,82 @@ export const createProfile = ({
             payload.errorCompanyAddress = 'Company address is require.'
         }
         if (!isEmpty(payload)) {
-            dispatch({ type: TEXT_INPUT_IS_INVALID, payload })
-        } else {
-            // Call service
-            console.log(infoPrefix,
-                firstName,
-                middleName,
-                lastName,
-                suffix,
-                mobilePhone,
-                email,
-                companyName,
-                position,
-                companyAddress,
-                officePhone,
-                faxPhone,
-                businessType)
-            dispatch({ type: CREATE_PROFILE_SUCCESS })
+            return dispatch({ type: TEXT_INPUT_IS_INVALID, payload })
         }
+        // Call service
+        const result = await doCreateProfile(dispatch, 
+            profileImage,
+            profileName,
+            infoPrefix,
+            firstName,
+            middleName,
+            lastName,
+            suffix,
+            mobilePhone,
+            secondMobilePhone,
+            email,
+            secondEmail,
+            companyName,
+            position,
+            companyAddress,
+            officePhone,
+            faxPhone,
+            businessType)
+        console.log(result)
+        dispatch({ type: CREATE_PROFILE_SUCCESS, payload: result }) 
+    }
+}
+
+const doCreateProfile = async (
+    dispatch, 
+    profileImage,
+    profileName,
+    infoPrefix,
+    firstName,
+    middleName,
+    lastName,
+    suffix,
+    mobilePhone,
+    secondMobilePhone,
+    email,
+    secondEmail,
+    companyName,
+    position,
+    companyAddress,
+    officePhone,
+    faxPhone,
+    businessType
+) => {
+    try {
+        const url = `${BASE_URL_API}/profile`
+        const userToken = await AsyncStorage.getItem(USER_TOKEN)
+        console.log(userToken)
+        const config = { headers: { 'x-access-token': userToken } }
+
+        const response = await axios.post(url, { 
+            profile_image: 'dummy.jpg',
+            profile_name: profileName,
+            info_prefix: infoPrefix,
+            first_name: firstName,
+            middle_name: middleName,
+            last_name: lastName,
+            suffix,
+            mobile_phone: mobilePhone,
+            mobile_phone_second: secondMobilePhone,
+            email,
+            email_second: secondEmail,
+            company_name: companyName,
+            position,
+            company_address: companyAddress,
+            company_phone: officePhone,
+            company_fax: faxPhone,
+            businness_type: businessType
+        }, config)
+        return response.data.data[0]
+    } catch (error) {
+        const message = error.response.data.message
+        console.log(`Error Create Profile: ${message}`)
+        return dispatch({ type: ERROR_NETWORK, payload: { errorMessage: message } })
     }
 }
 

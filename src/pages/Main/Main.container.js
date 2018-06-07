@@ -4,10 +4,15 @@ import * as actions from '../../actions/MainAction';
  
 const mapStateToProps = ({ mainProfile }) => {
     const { 
-        data 
+        data,
+        errorMessage,
+        loading 
     } = mainProfile
+    
     return {
-        data
+        data,
+        errorMessage,
+        loading 
     }
 }
   

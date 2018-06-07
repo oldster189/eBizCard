@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, Image, ScrollView, TouchableOpacity, } from 'react-native';
+import { View, Text, Image, ScrollView, TouchableOpacity, Alert } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import Spinner from 'react-native-loading-spinner-overlay';
 
@@ -47,6 +47,29 @@ class RegisterScreen extends Component {
     console.log('Click Sign in Google!');
   }
 
+  renderErrorDialog() {
+    const { errorMessage } = this.props
+    console.log(errorMessage)
+    if (errorMessage) {
+      Alert.alert(
+        '',
+        errorMessage,
+        [
+          { text: 'OK', onPress: () => console.log('OK Pressed') },
+        ],
+        { cancelable: false }
+      )
+    }
+  }
+
+  renderLoading() {
+    const { loading } = this.props
+    if (loading) {
+      return (
+        <Spinner visible />
+      )
+    }
+  }
 
   render() {
     const {
@@ -237,7 +260,8 @@ class RegisterScreen extends Component {
         </ScrollView>
 
         {/* Loading */}
-        <Spinner visible={loading} />
+        {/* {this.renderLoading()} */}
+        {this.renderErrorDialog()}
       </SafeAreaView>
     );
   }

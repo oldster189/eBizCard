@@ -213,7 +213,7 @@ class CreateProfileScreen extends Component {
               containerStyle={textInputStyle}
               keyboardType="phone-pad"
               returnKeyType="done"
-              lineWidth={0}  
+              lineWidth={0}
               onChangeText={value =>
                 inputValueChange({ prop: 'secondMobilePhone', value })}
               value={secondMobilePhone}
@@ -264,7 +264,7 @@ class CreateProfileScreen extends Component {
               containerStyle={textInputStyle}
               keyboardType="email-address"
               returnKeyType="done"
-              lineWidth={0} 
+              lineWidth={0}
               onChangeText={value =>
                 inputValueChange({ prop: 'secondEmail', value })}
               value={secondEmail}
@@ -303,8 +303,9 @@ class CreateProfileScreen extends Component {
     const {
       inputValueChange,
       handleActionSheetPress,
-      createProfile,
+      createProfile, 
 
+      profileImage,
       infoPrefix,
       profileName,
       firstName,
@@ -312,7 +313,9 @@ class CreateProfileScreen extends Component {
       lastName,
       suffix,
       mobilePhone,
+      secondMobilePhone,
       email,
+      secondEmail,
       companyName,
       position,
       companyAddress,
@@ -363,8 +366,8 @@ class CreateProfileScreen extends Component {
             <View style={{ marginTop: 10 }} />
             <TextInput
               label={'Profile name'}
-              containerStyle={textInputStyle} 
-              lineWidth={0} 
+              containerStyle={textInputStyle}
+              lineWidth={0}
               onChangeText={value =>
                 inputValueChange({ prop: 'profileName', value })}
               value={profileName}
@@ -387,14 +390,14 @@ class CreateProfileScreen extends Component {
             <Picker
               label={'Info Prefix'}
               containerStyle={textInputStyle}
-              items={infoPrefixArray} 
+              items={infoPrefixArray}
               onValueChange={(value) =>
                 inputValueChange({ prop: 'infoPrefix', value })}
               value={infoPrefix}
             />
             <TextInput
               label={'First name'}
-              containerStyle={textInputStyle} 
+              containerStyle={textInputStyle}
               onChangeText={value =>
                 inputValueChange({ prop: 'firstName', value })}
               value={firstName}
@@ -410,7 +413,7 @@ class CreateProfileScreen extends Component {
 
             <TextInput
               label={'Middle name'}
-              containerStyle={textInputStyle} 
+              containerStyle={textInputStyle}
               onChangeText={value =>
                 inputValueChange({ prop: 'middleName', value })}
               value={middleName}
@@ -424,7 +427,7 @@ class CreateProfileScreen extends Component {
 
             <TextInput
               label={'Last name'}
-              containerStyle={textInputStyle} 
+              containerStyle={textInputStyle}
               onChangeText={value =>
                 inputValueChange({ prop: 'lastName', value })}
               value={lastName}
@@ -440,7 +443,7 @@ class CreateProfileScreen extends Component {
 
             <TextInput
               label={'Suffix'}
-              containerStyle={textInputStyle} 
+              containerStyle={textInputStyle}
               onChangeText={value =>
                 inputValueChange({ prop: 'suffix', value })}
               value={suffix}
@@ -455,7 +458,7 @@ class CreateProfileScreen extends Component {
             <TextInput
               label={'Mobile no'}
               containerStyle={textInputStyle}
-              keyboardType="phone-pad" 
+              keyboardType="phone-pad"
               onChangeText={value =>
                 inputValueChange({ prop: 'mobilePhone', value })}
               value={mobilePhone}
@@ -473,7 +476,7 @@ class CreateProfileScreen extends Component {
             <TextInput
               label={'Email'}
               containerStyle={textInputStyle}
-              keyboardType="email-address" 
+              keyboardType="email-address"
               onChangeText={value =>
                 inputValueChange({ prop: 'email', value })}
               value={email}
@@ -496,7 +499,7 @@ class CreateProfileScreen extends Component {
             <SeparatorLine color={separatorColorStyle} />
             <TextInput
               label={'Company'}
-              containerStyle={textInputStyle} 
+              containerStyle={textInputStyle}
               onChangeText={value =>
                 inputValueChange({ prop: 'companyName', value })}
               value={companyName}
@@ -512,7 +515,7 @@ class CreateProfileScreen extends Component {
 
             <TextInput
               label={'Position'}
-              containerStyle={textInputStyle} 
+              containerStyle={textInputStyle}
               onChangeText={value =>
                 inputValueChange({ prop: 'position', value })}
               value={position}
@@ -528,7 +531,7 @@ class CreateProfileScreen extends Component {
 
             <TextInput
               label={'Company address'}
-              containerStyle={textInputStyle} 
+              containerStyle={textInputStyle}
               onChangeText={value =>
                 inputValueChange({ prop: 'companyAddress', value })}
               value={companyAddress}
@@ -544,7 +547,7 @@ class CreateProfileScreen extends Component {
 
             <TextInput
               label={'Office no'}
-              containerStyle={textInputStyle} 
+              containerStyle={textInputStyle}
               onChangeText={value =>
                 inputValueChange({ prop: 'officePhone', value })}
               value={officePhone}
@@ -558,7 +561,7 @@ class CreateProfileScreen extends Component {
 
             <TextInput
               label={'Fax no'}
-              containerStyle={textInputStyle} 
+              containerStyle={textInputStyle}
               onChangeText={value =>
                 inputValueChange({ prop: 'faxPhone', value })}
               value={faxPhone}
@@ -572,8 +575,8 @@ class CreateProfileScreen extends Component {
 
             <TextInput
               label={'Business type'}
-              containerStyle={textInputStyle} 
-              lineWidth={0} 
+              containerStyle={textInputStyle}
+              lineWidth={0}
               onChangeText={value =>
                 inputValueChange({ prop: 'businessType', value })}
               value={businessType}
@@ -587,13 +590,17 @@ class CreateProfileScreen extends Component {
               title='Next'
               buttonStyle={nextBtnStyle}
               onPress={() => createProfile({
+                profileImage,
+                profileName,
                 infoPrefix,
                 firstName,
                 middleName,
                 lastName,
                 suffix,
                 mobilePhone,
+                secondMobilePhone,
                 email,
+                secondEmail,
                 companyName,
                 position,
                 companyAddress,
@@ -615,7 +622,7 @@ class CreateProfileScreen extends Component {
         />
 
         {/* Loading  */}
-        <Spinner visible={loading} />
+        {/* <Spinner visible={loading} /> */}
       </SafeAreaView>
     );
   }

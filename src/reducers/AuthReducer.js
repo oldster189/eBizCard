@@ -6,7 +6,7 @@ import {
   NORMAL_LOGIN_SUCCESS,
   NORMAL_REGISTER_SUCCESS,
   LOGIN_USER_START,
-  REGISTER_USER_START,
+  REGISTER_START_LOADING,
   REGISTER_SCREEN,
   LOGIN_SCREEN,
   TEXT_INPUT_IS_INVALID,
@@ -49,9 +49,23 @@ export default (state = initialState, action) => {
     case LOGOUT:
       return { ...state, isLoggedIn: false };
     case LOGIN_VALUE_CHANGE:
-      return { ...state, [action.payload.prop]: action.payload.value, };
+      return { 
+        ...state, 
+        [action.payload.prop]: action.payload.value,   
+        errorMessage: '',
+        errorEmail: '',
+        errorPassword: '',
+        errorRePassword: '',
+      };
     case REGISTER_VALUE_CHANGE:
-      return { ...state, [action.payload.prop]: action.payload.value, };
+      return { 
+        ...state, 
+        [action.payload.prop]: action.payload.value, 
+        errorMessage: '',
+        errorEmail: '',
+        errorPassword: '',
+        errorRePassword: '',
+      };
     case CREATE_ACCOUNT_SOCIAL_SUCCESS:
       return {
         ...state,
@@ -161,7 +175,7 @@ export default (state = initialState, action) => {
         errorPassword: '',
         errorRePassword: '',
       };
-    case REGISTER_USER_START:
+    case REGISTER_START_LOADING:
       return {
         ...state,
         loading: true,

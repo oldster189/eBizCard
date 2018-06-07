@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, Image, ScrollView, } from 'react-native';
+import { View, Text, Image, ScrollView, Alert, AsyncStorage } from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Button } from 'react-native-elements';
 import Swiper from 'react-native-swiper';
 import { SafeAreaView } from 'react-navigation';
+import Spinner from 'react-native-loading-spinner-overlay';
 import ActionSheet from 'react-native-actionsheet'
 
 import TextInfo from '../../common/TextInfo';
@@ -14,55 +15,36 @@ import theme from '../../styles/theme.style';
 
 class MainScreen extends Component {
 
-  static propTypes = {
-    getProfileAllData: PropTypes.func, 
-    data: PropTypes.array, 
-  };
-
-  static navigationOptions = {
-    title: 'Home',
-    // header: ( 
-    //   /* Your custom header */
-    //   <View
-    //     style={{
-    //       height: 80,
-    //       flexDirection: 'row',
-    //       backgroundColor: theme.NAV_BAR_COLOR,
-    //       marginTop: Platform.OS === 'ios' ? 20 : 0 
-    //     }}
-    //   >
-    //     <Text>This is CustomHeader</Text>
-    //   </View>
-    // ),
-    headerStyle: {
-      backgroundColor: theme.NAV_BAR_COLOR,
-    },
-    headerTitleStyle: { color: 'white' },
-    headerBackTitle: ' ',
-    headerRight: (
-      <Button
-        title=' '
-        icon={
-          <MaterialIcon
-            name='share'
-            size={32}
-            color='white'
-          />
-        }
-        clear
-        iconRight
-      />
-    )
-  }
- 
-  componentDidMount() {
-    // this.props.getProfileAllData()
+ componentDidMount() { 
+    this.props.getProfileDefault()
   }
 
   showActionSheet = () => {
     this.ActionSheet.show()
   }
- 
+
+  renderErrorDialog() {
+    const { errorMessage } = this.props
+    if (errorMessage) {
+      Alert.alert(
+        '',
+        errorMessage,
+        [
+          { text: 'OK', onPress: () => console.log('OK Pressed') },
+        ],
+        { cancelable: false }
+      )
+    }
+  }
+
+  renderLoading() {
+    const { loading } = this.props
+    if (loading) {
+      return (
+        <Spinner visible />
+      )
+    }
+  }
 
   render() {
     const {
@@ -79,9 +61,9 @@ class MainScreen extends Component {
       editButtonStyle
     } = styles
 
-    const { data } = this.props 
+    const { data } = this.props
     return (
-      <SafeAreaView 
+      <SafeAreaView
         style={safeAreaViewStyle}
       >
         <ScrollView style={containerStyle} >
@@ -94,6 +76,7 @@ class MainScreen extends Component {
               paginationStyle={paginationStyle}
               dotStyle={dotStyle}
               activeDotStyle={activeDotStyle}
+              loop={false}
             >
               <Image
                 resizeMode='cover'
@@ -164,7 +147,7 @@ class MainScreen extends Component {
                       borderRadius: 34,
                     }}
                     resizeMode='contain'
-                    source={require('../../assets/images/add_display.png')}
+                    source={require(`http://192.168.200.30:8081/images/profile/${data.info.profile_image}`)}
                   />
                 </View>
               </View>
@@ -249,14 +232,69 @@ class MainScreen extends Component {
         <ActionSheet
           ref={o => { this.ActionSheet = o }}
           title='Select Language Display'
-          options={['Default', 'Add more Language', 'Cancel']} 
+          options={['Default', 'Add more Language', 'Cancel']}
           cancelButtonIndex={2}
-          onPress={() => {}}
+          onPress={() => { }}
         />
+
+        {/* Loading */}
+        {/* {this.renderLoading()} */}
+        {this.renderErrorDialog()}
       </SafeAreaView>
 
     );
   }
 }
+
+MainScreen.propTypes = {
+  //Action Creator
+  getProfileDefault: PropTypes.func,
+
+  //Data
+  data: PropTypes.object,
+
+  //Error
+  errorMessage: PropTypes.string,
+
+  //Loading
+  loading: PropTypes.bool
+};
+
+MainScreen.navigationOptions = {
+  title: 'Home',
+  // header: ( 
+  //   /* Your custom header */
+  //   <View
+  //     style={{
+  //       height: 80,
+  //       flexDirection: 'row',
+  //       backgroundColor: theme.NAV_BAR_COLOR,
+  //       marginTop: Platform.OS === 'ios' ? 20 : 0 
+  //     }}
+  //   >
+  //     <Text>This is CustomHeader</Text>
+  //   </View>
+  // ),
+  headerStyle: {
+    backgroundColor: theme.NAV_BAR_COLOR,
+  },
+  headerTitleStyle: { color: 'white' },
+  headerBackTitle: ' ',
+  headerRight: (
+    <Button
+      title=' '
+      icon={
+        <MaterialIcon
+          name='share'
+          size={32}
+          color='white'
+        />
+      }
+      clear
+      iconRight
+    />
+  )
+}
+
 
 export default MainScreen;

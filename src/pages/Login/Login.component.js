@@ -12,43 +12,12 @@ import theme from '../../styles/theme.style';
 
 class LoginScreen extends Component {
 
-  static propTypes = {
-    //Action Creator
-    loginValueChange: PropTypes.func,
-    normalLogin: PropTypes.func,
-    facebookLogin: PropTypes.func,
-    registerScreen: PropTypes.func,
-    forgetPasswordScreen: PropTypes.func,
-
-    //Data
-    email: PropTypes.string,
-    password: PropTypes.string,
-
-    //Error
-    errorMessage: PropTypes.string,
-    errorEmail: PropTypes.string,
-    errorPassword: PropTypes.string,
-
-    //Loading
-    loading: PropTypes.bool,
-  };
-
-  static navigationOptions = {
-    title: 'Sign in',
-    headerStyle: {
-      backgroundColor: theme.NAV_BAR_COLOR,
-    },
-    headerTitleStyle: { color: theme.TITLE_NAV_BAR_COLOR },
-    headerBackTitle: ' '
-  }
-
   onClickSignInGoogle() {
     console.log('Click Sign in Google!');
   }
 
   renderErrorDialog() {
-    const { errorMessage } = this.props
-    console.log(errorMessage)
+    const { errorMessage } = this.props 
     if (errorMessage) {
       Alert.alert(
         '',
@@ -60,7 +29,16 @@ class LoginScreen extends Component {
       )
     }
   }
-  
+
+  renderLoading() {
+    const { loading } = this.props
+    if (loading) {
+      return (
+        <Spinner visible />
+      )
+    }
+  }
+
   render() {
     const {
       safeAreaStyle,
@@ -224,14 +202,44 @@ class LoginScreen extends Component {
         </ScrollView>
 
 
-        {/* Loading */} 
-        <Spinner visible={loading} />
-
+        {/* Loading */}
+        {/* {this.renderLoading()} */}
         {this.renderErrorDialog()}
       </SafeAreaView>
 
     );
   }
 }
+
+LoginScreen.propTypes = {
+  //Action Creator
+  loginValueChange: PropTypes.func,
+  normalLogin: PropTypes.func,
+  facebookLogin: PropTypes.func,
+  registerScreen: PropTypes.func,
+  forgetPasswordScreen: PropTypes.func,
+
+  //Data
+  email: PropTypes.string,
+  password: PropTypes.string,
+
+  //Error
+  errorMessage: PropTypes.string,
+  errorEmail: PropTypes.string,
+  errorPassword: PropTypes.string,
+
+  //Loading
+  loading: PropTypes.bool,
+};
+
+LoginScreen.navigationOptions = {
+  title: 'Sign in',
+  headerStyle: {
+    backgroundColor: theme.NAV_BAR_COLOR,
+  },
+  headerTitleStyle: { color: theme.TITLE_NAV_BAR_COLOR },
+  headerBackTitle: ' '
+}
+
 
 export default LoginScreen;

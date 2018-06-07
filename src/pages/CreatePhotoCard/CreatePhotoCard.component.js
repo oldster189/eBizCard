@@ -7,38 +7,17 @@ import ActionSheet from 'react-native-actionsheet'
 import Spinner from 'react-native-loading-spinner-overlay';
 import styles from '../CreatePhotoCard/CreatePhotoCard.style';
 import theme from '../../styles/theme.style';
+import { MAIN_SCREEN } from '../../constants/actionTypes';
 
 class CreatePhotoCardScreen extends Component {
-  static navigationOptions = {
-    title: 'Capture your card',
-    headerStyle: {
-      backgroundColor: theme.NAV_BAR_COLOR,
-    },
-    headerTitleStyle: { color: 'white' },
-    headerBackTitle: ' ',
-    headerRight: (
-      <Button
-        clear
-        title="Skip"
-        backgroundColor='transparent'
-        onPress={() => this.props.mainScreen}
-      />
-    )
+ 
+  componentDidMount() {
+    this.props.navigation.setParams({ handleSave: this.saveDetails });
   }
-
-  static propTypes = {
-    //Action Creator
-    handleActionSheetPressFront: PropTypes.func,
-    handleActionSheetPressBack: PropTypes.func,
-    mainScreen: PropTypes.func,
-
-    //Data 
-    frontBusinessCard: PropTypes.object,
-    backBusinessCard: PropTypes.object,
-
-    //Loading
-    loading: PropTypes.bool,
-  };
+ 
+  saveDetails() {
+    
+  }
 
   showActionSheetFront = () => {
     this.ActionSheetFront.show()
@@ -202,5 +181,41 @@ class CreatePhotoCardScreen extends Component {
     );
   }
 }
+
+CreatePhotoCardScreen.navigationOptions = ({ navigation }) => { 
+  return {
+    title: 'Capture your card',
+    headerStyle: {
+      backgroundColor: theme.NAV_BAR_COLOR,
+    },
+    headerTitleStyle: { color: 'white' },
+    headerBackTitle: ' ',
+    headerRight: (
+      <Button
+        clear
+        title="Skip"
+        onPress={() => { navigation.dispatch({ type: MAIN_SCREEN }) }}
+      />
+    )
+  }
+}
+
+CreatePhotoCardScreen.propTypes = {
+  //Action Creator
+  handleActionSheetPressFront: PropTypes.func,
+  handleActionSheetPressBack: PropTypes.func,
+  mainScreen: PropTypes.func,
+
+  //Data 
+  profileData: PropTypes.object,
+  frontBusinessCard: PropTypes.string,
+  backBusinessCard: PropTypes.object,
+
+  //Error
+  errorMessage: PropTypes.string,
+
+  //Loading
+  loading: PropTypes.bool,
+};
 
 export default CreatePhotoCardScreen;

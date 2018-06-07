@@ -12,3 +12,4 @@ export const REGISTER_TYPE_SOCIAL = 'social';
 export const LOGIN_TYPE_NORMAL = 'normal';
 export const LOGIN_TYPE_SOCIAL = 'social'; 
 export const USER_TOKEN = 'USER_TOKEN';
+export const FACEBOOK_TOKEN = 'FACEBOOK_TOKEN';

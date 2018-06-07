@@ -63,7 +63,7 @@ const chooseLibrary = (dispatch, cropping, typeSelect) => {
             }
         }
         dispatch({
-            type: (typeSelect === TYPE_SELECT_CARD_FRONT) ? 
+            type: (typeSelect === TYPE_SELECT_CARD_FRONT) ?
                 CREATE_PHOTO_CARD_SELECT_LIBRARY_FRONT : CREATE_PHOTO_CARD_SELECT_LIBRARY_BACK,
             payload
         })
@@ -85,13 +85,21 @@ const chooseCamera = (dispatch, cropping, typeSelect) => {
     }).then(image => {
         const payload = {}
         if (typeSelect === TYPE_SELECT_CARD_FRONT) {
-            payload.frontBusinessCard = { uri: image.path, width: image.width, height: image.height }
+            payload.frontBusinessCard = {
+                uri: image.path,
+                width: image.width,
+                height: image.height
+            }
         } else {
-            payload.backBusinessCard = { uri: image.path, width: image.width, height: image.height }
+            payload.backBusinessCard = {
+                uri: image.path,
+                width: image.width,
+                height: image.height
+            }
         }
         dispatch({
-            type: (typeSelect === TYPE_SELECT_CARD_FRONT) ? 
-            CREATE_PHOTO_CARD_SELECT_CAMERA_FRONT : CREATE_PHOTO_CARD_SELECT_CAMERA_BACK,
+            type: (typeSelect === TYPE_SELECT_CARD_FRONT) ?
+                CREATE_PHOTO_CARD_SELECT_CAMERA_FRONT : CREATE_PHOTO_CARD_SELECT_CAMERA_BACK,
             payload
         })
     }).catch(e => {
