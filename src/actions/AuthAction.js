@@ -37,7 +37,7 @@ import {
 
 const { GraphRequest, GraphRequestManager } = FBSDK
 
-export const facebookLogin = () => dispatch => { 
+export const facebookLogin = () => dispatch => {
     // Show loading progress.
     loginStartLoading(dispatch)
     doFacebookLogin(dispatch)
@@ -58,11 +58,11 @@ const doFacebookLogin = async dispatch => {
         }
         // Get token facebook.
         const { accessToken } = await AccessToken.getCurrentAccessToken()
-         
+
         await AsyncStorage.removeItem(FACEBOOK_TOKEN)
         await AsyncStorage.setItem(FACEBOOK_TOKEN, accessToken)
 
-        if (accessToken !== null) { 
+        if (accessToken !== null) {
             //Create response callback for fb_graph.
             const responseInfoCallback = async (errorGraphRequest, result) => {
                 if (errorGraphRequest) {
@@ -110,7 +110,7 @@ const doFacebookLogin = async dispatch => {
             );
 
             // Start the fb graph api request.
-            new GraphRequestManager().addRequest(infoRequest).start()  
+            new GraphRequestManager().addRequest(infoRequest).start()
         }
     } catch (error) {
         // Error common.
@@ -208,10 +208,15 @@ export const normalLogin = ({ email, password }) => {
             console.log('Login successfully!!')
 
             if (statusPageResult === 'PROFILE') {
-                // Next to page ProfileScreen.
-                return dispatch({ type: CREATE_PROFILE_SCREEN })
+                // Next to page ProfileScreen. 
+                dispatch({ type: CREATE_PROFILE_SCREEN })
+                dispatch({
+                    type: 'Navigation/RESET',
+                    actions: [{ type: 'Navigate', routeName: 'CreateProfile' }],
+                    index: 0
+                })
             } else if (statusPageResult === 'HOME') {
-                // Next to page HomeScreen.
+                // Next to page HomeScreen. 
                 return dispatch({ type: NORMAL_LOGIN_SUCCESS })
             }
         } catch (error) {

@@ -93,8 +93,8 @@ TextInput.defaultProps = {
     lineWidth: 1,
     fontSize: theme.TEXT_FONT,
     inputContainerPadding: 16,
-    labelTextStyle: theme.MARGIN_LEFT,
-    inputContainerStyle: theme.MARGIN_LEFT,
+    labelTextStyle: { paddingLeft: theme.MARGIN_LEFT },
+    inputContainerStyle: { paddingLeft: theme.PADDING_LEFT },
     returnKeyType: 'next'
 }
 

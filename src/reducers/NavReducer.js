@@ -2,8 +2,6 @@
 import { NavigationActions } from 'react-navigation';
 import { AppNavigator } from '../navigators/AppNavigator';
 import {
-  LOGIN,
-  LOGOUT,
   NORMAL_LOGIN_SUCCESS,
   FACEBOOK_LOGIN_SUCCESS,
   CREATE_ACCOUNT_SOCIAL_SUCCESS,
@@ -18,29 +16,18 @@ import {
 } from '../constants/actionTypes';
 
 const router = AppNavigator.router;
-const mainAction = router.getActionForPathAndParams('Home');
+const mainAction = router.getActionForPathAndParams('CreateProfile');
 const loginAction = router.getActionForPathAndParams('Login');
 const tempNavState = router.getStateForAction(loginAction);
 
 const initialNavState = router.getStateForAction(
   mainAction,
+  tempNavState
 );
 
 export default (state = initialNavState, action) => {
   let nextState;
   switch (action.type) {
-    case LOGIN:
-      nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Home' }),
-        state
-      );
-      break;
-    case LOGOUT:
-      nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Login' }),
-        state
-      );
-      break;
     case CREATE_ACCOUNT_SOCIAL_SUCCESS:
     case NORMAL_REGISTER_SUCCESS:
       nextState = AppNavigator.router.getStateForAction(
@@ -79,12 +66,6 @@ export default (state = initialNavState, action) => {
         state
       );
       break;
-    case CREATE_PROFILE_SCREEN:
-      nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'CreateProfile' }),
-        state
-      );
-      break;
     case MAIN_SCREEN:
       nextState = AppNavigator.router.getStateForAction(
         NavigationActions.navigate({ routeName: 'Home' }),
@@ -97,6 +78,7 @@ export default (state = initialNavState, action) => {
         state
       );
       break;
+
     default:
       nextState = AppNavigator.router.getStateForAction(action, state);
       break;

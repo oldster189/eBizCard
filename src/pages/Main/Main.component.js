@@ -4,24 +4,144 @@ import { View, Text, Image, ScrollView, Alert } from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Button } from 'react-native-elements';
 import Swiper from 'react-native-swiper';
-import { SafeAreaView, NavigationActions } from 'react-navigation';
+import { SafeAreaView } from 'react-navigation';
 import Spinner from 'react-native-loading-spinner-overlay';
 import ActionSheet from 'react-native-actionsheet'
+import ImageLoading from 'react-native-image-progress';
+import { ProgressCircle } from 'react-native-progress';
 
 import TextInfo from '../../common/TextInfo';
 import SeparatorLine from '../../common/SeparatorLine';
 import styles from './Main.style';
 import theme from '../../styles/theme.style';
+import { formatNumberPhone } from '../../utils/util';
+import { BASE_URL_IMAGE } from '../../constants/constants';
 
 class MainScreen extends Component {
 
-  componentDidMount() {
+  componentDidMount() { 
     this.props.checkAuth()
-   
   }
 
   showActionSheet = () => {
     this.ActionSheet.show()
+  }
+
+  renderProfileImage() {
+    const profileImage = this.props.info.profile_image
+    console.log(`${BASE_URL_IMAGE}/profile/${profileImage}`)
+    if (profileImage) {
+      return (
+        <View>
+          <Image
+            style={{
+              height: 60,
+              width: 60,
+              borderRadius: 34,
+            }}
+            resizeMode='cover'
+            source={require('../../assets/images/add_display.png')}
+          />
+          <ImageLoading
+            source={{ uri: `${BASE_URL_IMAGE}/profile/${profileImage}` }}
+            indicator={ProgressCircle}
+            imageStyle={{
+              borderRadius: 30,
+              overflow: 'hidden'
+            }}
+            style={{
+              height: 60,
+              width: 60,
+              position: 'absolute'
+            }}
+            resizeMode='cover'
+          />
+        </View>
+      )
+    }
+
+    return (
+      <Image
+        style={{
+          height: 60,
+          width: 60,
+          borderRadius: 30,
+        }}
+        resizeMode='contain'
+        source={require('../../assets/images/add_display.png')}
+      />
+    )
+  }
+
+  renderCompanyFax() {
+    const companyFax = this.props.detail.company_fax
+    if (companyFax) {
+      return (
+        <TextInfo
+          placehoder='Fax No.'
+          value={companyFax}
+          source={require('../../assets/images/ic_fax.png')}
+        />
+      )
+    }
+    return null
+  }
+
+  renderCompanyPhone() {
+    const companyPhone = this.props.detail.company_phone
+    if (companyPhone) {
+      return (
+        <TextInfo
+          placehoder='Office No.'
+          value={companyPhone}
+          source={require('../../assets/images/ic_phone.png')}
+        />
+      )
+    }
+    return null
+  }
+
+  renderBusinnessType() {
+    const businnessType = this.props.detail.businness_type
+    if (businnessType) {
+      return (
+        <TextInfo
+          placehoder='Business Type'
+          value={businnessType}
+          source={require('../../assets/images/ic_business.png')}
+        />
+      )
+    }
+    return null
+  }
+
+  renderSecondMobilePhone() {
+    const secondMobilePhone = this.props.detail.mobile_phone_second
+    if (secondMobilePhone) {
+      return (
+        <TextInfo
+          placehoder='Second phone no.'
+          value={formatNumberPhone(secondMobilePhone)}
+          source={require('../../assets/images/ic_mobile.png')}
+        />
+      )
+    }
+    return null
+  }
+
+
+  renderSecondEmail() {
+    const secondEmail = this.props.detail.email_second
+    if (secondEmail) {
+      return (
+        <TextInfo
+          placehoder='Second email'
+          value={secondEmail}
+          source={require('../../assets/images/ic_mail.png')}
+        />
+      )
+    }
+    return null
   }
 
   renderErrorDialog() {
@@ -62,39 +182,56 @@ class MainScreen extends Component {
       editButtonStyle
     } = styles
 
-    const { data } = this.props
-    return (
-      <SafeAreaView
-        style={safeAreaViewStyle}
-      >
-        <ScrollView style={containerStyle} >
+    const { info, detail } = this.props
+    // Info data.
+    const { card_front, card_back } = info 
+    // Detail profile language data.
+    const {
+      info_prefix, 
+      first_name,
+      last_name,
+      suffix,
+      mobile_phone, 
+      email, 
+      company_name,
+      position,
+      company_address, 
+    } = detail
 
+
+    return (
+      <SafeAreaView style={safeAreaViewStyle}>
+        <ScrollView style={containerStyle}>
           {/* Begin Header Photo Card Swipe */}
           <View
             style={headerSwipeStyle}
           >
+            {/* Slide paging images */}
             <Swiper
               paginationStyle={paginationStyle}
               dotStyle={dotStyle}
               activeDotStyle={activeDotStyle}
               loop={false}
             >
-              <Image
-                resizeMode='cover'
-                source={require('../../assets/images/background_profile.png')}
+              {/* Photo card front */}
+              <ImageLoading
+                source={{ uri: `${BASE_URL_IMAGE}/card/${card_front}` }}
+                indicator={ProgressCircle}
                 style={photoCardStyle}
+                resizeMode='cover'
               />
-              <Image
-                resizeMode='cover'
-                source={require('../../assets/images/background_profile.png')}
+              {/* Photo card back */}
+              <ImageLoading
+                source={{ uri: `${BASE_URL_IMAGE}/card/${card_back}` }}
+                indicator={ProgressCircle}
                 style={photoCardStyle}
+                resizeMode='cover'
               />
             </Swiper>
           </View>
           {/* End Header Photo Card Swipe */}
 
           <View style={{ backgroundColor: '#FFF', marginTop: 10, marginBottom: 10 }}>
-
             {/* Begin Profile Info Content */}
             <View style={{ alignSelf: 'flex-end', marginTop: 4 }}>
               <Button
@@ -141,25 +278,17 @@ class MainScreen extends Component {
                     alignItems: 'center',
                   }}
                 >
-                  <Image
-                    style={{
-                      height: 60,
-                      width: 60,
-                      borderRadius: 34,
-                    }}
-                    resizeMode='contain'
-                    source={require('../../assets/images/add_display.png')}
-                  />
+                  {this.renderProfileImage()}
                 </View>
               </View>
               {/*  End Image Profile Group */}
 
               <View style={{ marginBottom: 10, flex: 1 }}>
                 <Text style={textNameProfileStyle}>
-                  Mintra Jantarapak
-                  </Text>
+                  {first_name}
+                </Text>
                 <Text style={textNameCompanyStyle}>
-                  Codemobiles.co.,Ltd
+                  {company_name}
                 </Text>
               </View>
             </View>
@@ -170,15 +299,28 @@ class MainScreen extends Component {
             <View>
               <Text style={textTitleStyle}> Contact </Text>
               <TextInfo
-                placehoder='Phone no.'
-                value='091-112-1314'
+                placehoder='Name'
+                value={`${info_prefix} ${first_name} ${last_name} ${suffix}`}
                 source={require('../../assets/images/ic_mobile.png')}
               />
               <TextInfo
+                placehoder='Phone no.'
+                value={formatNumberPhone(mobile_phone)}
+                source={require('../../assets/images/ic_mobile.png')}
+              />
+
+              {/* Second mobile phone. */}
+              {this.renderSecondMobilePhone()}
+
+              <TextInfo
                 placehoder='Email'
-                value='oldster189@gmail.com'
+                value={email}
                 source={require('../../assets/images/ic_mail.png')}
               />
+
+              {/* Second email */}
+              {this.renderSecondEmail()}
+
               <SeparatorLine color={'#E0E0E0'} />
             </View>
             {/* End Contact Info Content */}
@@ -188,34 +330,29 @@ class MainScreen extends Component {
               <Text style={textTitleStyle}> Company Info </Text>
               <TextInfo
                 placehoder='Company Name'
-                value='Codemobiles.co.,Ltd'
+                value={company_name}
                 source={require('../../assets/images/ic_company.png')}
               />
               <TextInfo
                 placehoder='Position'
-                value='Manager'
+                value={position}
                 source={require('../../assets/images/ic_position.png')}
               />
               <TextInfo
                 placehoder='Company Address'
-                value='Charoen Rat 7'
+                value={company_address}
                 source={require('../../assets/images/ic_location.png')}
               />
-              <TextInfo
-                placehoder='Office No.'
-                value='0813599468'
-                source={require('../../assets/images/ic_phone.png')}
-              />
-              <TextInfo
-                placehoder='Fax No.'
-                value='026897926'
-                source={require('../../assets/images/ic_fax.png')}
-              />
-              <TextInfo
-                placehoder='Business Type'
-                value='Outsource'
-                source={require('../../assets/images/ic_business.png')}
-              />
+
+              {/* Office no. */}
+              {this.renderCompanyPhone()}
+
+              {/* Fax no. */}
+              {this.renderCompanyFax()}
+
+              {/* Business Type */}
+              {this.renderBusinnessType()}
+
               <SeparatorLine color={'#E0E0E0'} />
             </View>
             {/* End Company Info Content */}
@@ -252,7 +389,7 @@ MainScreen.propTypes = {
   getProfileDefault: PropTypes.func,
 
   //Data
-  data: PropTypes.object,
+  dataProfile: PropTypes.object,
 
   //Error
   errorMessage: PropTypes.string,

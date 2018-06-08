@@ -5,8 +5,12 @@ export const validateEmail = (email) => {
 
 export const isEmpty = (obj) => {
     return Object.keys(obj).length === 0;
-} 
+}
 
 export const trimmingAndLowercase = (email) => {
-   return email.replace(/\s+/g, '').toLowerCase()
+    return email.replace(/\s+/g, '').toLowerCase()
+}
+
+export const formatNumberPhone = phone => {
+    return phone.replace(/(\d{3})(\d{3})(\d{4})/, '$1-$2-$3');
 }

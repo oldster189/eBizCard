@@ -1,21 +1,25 @@
 import { connect } from 'react-redux';
 import MainScreen from './Main.component';
 import * as actions from '../../actions/MainAction';
- 
-const mapStateToProps = ({ mainProfile }) => {
+
+const mapStateToProps = ({ mainProfile }) => {   
     const { 
-        data,
+        info,
+        detail,
+        profileData,
         errorMessage,
-        loading 
+        loading
     } = mainProfile
-    
-    return {
-        data,
+
+    return { 
+        info,
+        detail,
+        profileData,
         errorMessage,
-        loading 
+        loading
     }
 }
-  
+
 const MainScreenContainer = connect(mapStateToProps, actions)(MainScreen);
 
 export default MainScreenContainer;

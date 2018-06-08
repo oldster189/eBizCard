@@ -134,10 +134,7 @@ export const AppNavigator = createStackNavigator({
       header: null,
     }
   },
-}, {
-    stateName: 'MainAppNav', 
-    initialRouteName: 'Login'
-  })
+})
 
 class AppWithNavigationState extends Component {
 

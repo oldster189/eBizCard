@@ -50,18 +50,23 @@ const chooseLibrary = (dispatch, cropping, circular = false) => {
         compressImageQuality: 1,
         includeExif: true,
     }).then(image => {
-        uploadImageToServer(dispatch, image)
-        // dispatch({
-        //     type: CREATE_PROFILE_PHOTO_LIBRARY,
-        //     payload: {
-        //         profileImage: {
-        //             uri: image.path,
-        //             width: image.width,
-        //             height: image.height,
-        //             mime: image.mime
-        //         }
-        //     }
-        // })
+        const data = new FormData();
+        const pathParts = image.path.split('/');
+        data.append('profile_image', {
+            uri: image.path,
+            type: image.mime,
+            name: pathParts[pathParts.length - 1]
+        })
+        const url = `${BASE_URL_API}/profile/image`
+        fetch(url, {
+            method: 'post',
+            headers: { 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjI1OTIwMDAwMDAsImRhdGEiOnsiaWQiOiI1YjFhNDYxOTgyNTNhZjExMjkyNGI2MDYifSwiaWF0IjoxNTI4NDU1MTg0fQ.kC3VcxJbNcYqoQPeqTBOsXZ-aYVX9zJxptxUDFbTcOA' },
+            body: data
+        }).then(res => {
+            console.log('Upload successfully!')
+            console.log(res)
+        })
+        console.log('Upload successfully!22')
     }).catch(e => {
         console.log(e);
     });
@@ -78,7 +83,24 @@ const chooseCamera = (dispatch, cropping) => {
         compressImageQuality: 1,
         includeExif: true,
     }).then(image => {
-        uploadImageToServer(dispatch, image)
+        const data = new FormData();
+        data.append('profile_image', {
+            uri: image.uri,
+            type: 'image/jpeg',
+            name: 'testPhotoName'
+        })
+        const url = `${BASE_URL_API}/profile/image`
+        fetch(url, {
+            method: 'post',
+            headers: { 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjI1OTIwMDAwMDAsImRhdGEiOnsiaWQiOiI1YjFhNDYxOTgyNTNhZjExMjkyNGI2MDYifSwiaWF0IjoxNTI4NDU1MTg0fQ.kC3VcxJbNcYqoQPeqTBOsXZ-aYVX9zJxptxUDFbTcOA' },
+            body: data
+        }).then(res => {
+            console.log('Upload successfully!')
+            console.log(res)
+        })
+        console.log('Upload successfully!22')
+
+
         dispatch({
             type: CREATE_PROFILE_PHOTO_CAMERA,
             payload: {
@@ -121,7 +143,7 @@ const uploadImageToServer = async (dispatch, image) => {
 
 }
 
-export const createProfile = ({ 
+export const createProfile = ({
     profileImage,
     profileName,
     infoPrefix,
@@ -171,7 +193,7 @@ export const createProfile = ({
             return dispatch({ type: TEXT_INPUT_IS_INVALID, payload })
         }
         // Call service
-        const result = await doCreateProfile(dispatch, 
+        const result = await doCreateProfile(dispatch,
             profileImage,
             profileName,
             infoPrefix,
@@ -190,12 +212,12 @@ export const createProfile = ({
             faxPhone,
             businessType)
         console.log(result)
-        dispatch({ type: CREATE_PROFILE_SUCCESS, payload: result }) 
+        dispatch({ type: CREATE_PROFILE_SUCCESS, payload: result })
     }
 }
 
 const doCreateProfile = async (
-    dispatch, 
+    dispatch,
     profileImage,
     profileName,
     infoPrefix,
@@ -220,7 +242,7 @@ const doCreateProfile = async (
         console.log(userToken)
         const config = { headers: { 'x-access-token': userToken } }
 
-        const response = await axios.post(url, { 
+        const response = await axios.post(url, {
             profile_image: 'dummy.jpg',
             profile_name: profileName,
             info_prefix: infoPrefix,

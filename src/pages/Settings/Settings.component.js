@@ -1,15 +1,27 @@
 import React, { Component } from 'react';
-import { View, Text, } from 'react-native';
+import { View, AsyncStorage, } from 'react-native';
+import { Button } from 'react-native-elements';
 
 import styles from './Settings.style';
+import { USER_TOKEN, FACEBOOK_TOKEN } from '../../constants/constants';
 
 class SettingsScreen extends Component {
-  //kk
+ 
+  async onClickLogout() {
+    await AsyncStorage.removeItem(USER_TOKEN)
+    await AsyncStorage.removeItem(FACEBOOK_TOKEN)
+    this.props.navigation.navigate({ routeName: 'Login' })
+  }
+
   render() {
     const { containerStyle } = styles;
     return (
       <View style={containerStyle}>
-        <Text> SettingsScreen </Text>
+        <Button
+          title='Logout'
+          buttonStyle={{ margin: 26 }}
+          onPress={() => this.onClickLogout()}
+        />
       </View>
     );
   }
