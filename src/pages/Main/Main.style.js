@@ -7,7 +7,7 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 export default StyleSheet.create({
     safeAreaViewStyle: {
         flex: 1,
-        backgroundColor: theme.BACKGROUND_CONTAINER_COLOR, 
+        backgroundColor: theme.BACKGROUND_CONTAINER_COLOR,
     },
     containerStyle: {
         flex: 1,
@@ -32,19 +32,74 @@ export default StyleSheet.create({
         height: 10,
         borderRadius: 5
     },
+    imageProfileLayoutGroupStyle: {
+        marginLeft: theme.MARGIN_XX,
+        marginBottom: 20,
+        marginTop: 8,
+        marginRight: 20,
+        backgroundColor: '#339CED',
+        height: 74,
+        width: 74,
+        borderRadius: 37,
+        padding: 5,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    backgroundImageProfileStyle: {
+        backgroundColor: theme.BACKGROUND_WHITE_COLOR,
+        height: 69,
+        width: 69,
+        borderRadius: 34.5,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    contentProfileInfoStyle: {
+        marginBottom: 10,
+        flex: 1
+    },
+    titleButtonEditStyle: {
+        color: theme.BUTTON_EDIT_HOME_COLOR,
+        fontSize: theme.TEXT_FONT
+    },
     photoCardStyle: {
         height: SCREEN_WIDTH * 0.6,
         width: null,
     },
-    textNameProfileStyle: {
+    backgroundPlaceholderProfileImageStyle: {
+        height: 64,
+        width: 64,
+        borderRadius: 32,
+    },
+    profileImageStyle: {
+        height: 64,
+        width: 64,
+        position: 'absolute' 
+    },
+    containerProfileInfoContentStyle: {
+        backgroundColor: theme.BACKGROUND_WHITE_COLOR,
+        marginTop: 10,
+        marginBottom: 10
+    },
+    changeLanguageProfileLayoutStyle: {
+        alignSelf: 'flex-end',
+        marginTop: 4
+    },
+    buttonTitleStyle: {
+        color: theme.TEXT_BUTTON_HOME_COLOR,
+        fontSize: 16
+    },
+    buttonStyle: {
+        width: 100
+    },
+    textTitleProfileStyle: {
         fontSize: 23,
         fontWeight: 'bold',
-        color: '#2F2F2F',
+        color: theme.TEXT_TITLE_HOME_COLOR,
         height: 30,
     },
-    textNameCompanyStyle: {
-        fontSize: 19,
-        color: '#454545'
+    textSubTitleCompanyStyle: {
+        fontSize: theme.TEXT_FONT,
+        color: theme.TEXT_COLOR
     },
     textTitleStyle: {
         fontSize: 14,
@@ -53,10 +108,10 @@ export default StyleSheet.create({
         marginTop: 12,
         marginBottom: 10,
     },
-    editButtonStyle: {  
+    editButtonStyle: {
         width: 100,
         height: 34,
         marginTop: 8,
-        marginBottom: 8 
+        marginBottom: 8
     }
 });

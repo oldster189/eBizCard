@@ -1,11 +1,10 @@
 import {
-    CREATE_PROFILE_VALUE_CHANGE,
-    CREATE_PROFILE_PHOTO_CAMERA,
-    CREATE_PROFILE_PHOTO_LIBRARY,
+    CREATE_PROFILE_VALUE_CHANGE, 
     CREATE_PROFILE_START,
     CREATE_PROFILE_SUCCESS,
     TEXT_INPUT_IS_INVALID,
-    ERROR_NETWORK
+    ERROR_NETWORK,
+    CREATE_PROFILE_UPLOAD_IMAGE_SUCCESS
 } from '../constants/actionTypes';
 
 const initialState = {
@@ -40,14 +39,17 @@ const initialState = {
 }
 
 export default (state = initialState, action) => {
-    // console.log(`Action: ${JSON.stringify(action)} \nState: ${JSON.stringify(state)}`);
+    // console.log(`Action: ${JSON.stringify(action)} `);
     switch (action.type) {
         case CREATE_PROFILE_VALUE_CHANGE:
             return { ...state, [action.payload.prop]: action.payload.value, errorMessage: '' };
-        case CREATE_PROFILE_PHOTO_CAMERA:
-            return { ...state, profileImage: action.payload.profileImage }
-        case CREATE_PROFILE_PHOTO_LIBRARY:
-            return { ...state, profileImage: action.payload.profileImage }
+        case CREATE_PROFILE_UPLOAD_IMAGE_SUCCESS:
+            return {
+                ...state,
+                profileImage: action.payload,
+                loading: false,
+                errorMessage: ''
+            }
         case CREATE_PROFILE_START:
             return { ...state, loading: true, errorMessage: '' };
         case CREATE_PROFILE_SUCCESS:
@@ -66,7 +68,7 @@ export default (state = initialState, action) => {
             };
         case ERROR_NETWORK:
             return {
-                ...state, 
+                ...state,
                 errorMessage: action.payload.errorMessage,
                 errorProfileName: '',
                 errorFirstName: '',

@@ -36,62 +36,7 @@ const infoPrefixArray = [
 ];
 
 class CreateProfileScreen extends Component {
-
-  static propTypes = {
-    //Action Creator
-    inputValueChange: PropTypes.func,
-    handleActionSheetPress: PropTypes.func,
-    createProfile: PropTypes.func,
-
-    //Data
-    infoPrefix: PropTypes.string,
-    profileImage: PropTypes.object,
-    profileName: PropTypes.string,
-    firstName: PropTypes.string,
-    middleName: PropTypes.string,
-    lastName: PropTypes.string,
-    suffix: PropTypes.string,
-    mobilePhone: PropTypes.string,
-    secondMobilePhone: PropTypes.string,
-    email: PropTypes.string,
-    secondEmail: PropTypes.string,
-    companyName: PropTypes.string,
-    position: PropTypes.string,
-    companyAddress: PropTypes.string,
-    officePhone: PropTypes.string,
-    faxPhone: PropTypes.string,
-    businessType: PropTypes.string,
-    userType: PropTypes.string,
-    fbId: PropTypes.string,
-
-    //Show/Hide View
-    isShowSecondMobilePhone: PropTypes.bool,
-    isShowSecondEmail: PropTypes.bool,
-
-    //Error
-    errorMessage: PropTypes.string,
-    errorProfileName: PropTypes.string,
-    errorFirstName: PropTypes.string,
-    errorLastName: PropTypes.string,
-    errorMobilePhone: PropTypes.string,
-    errorCompanyName: PropTypes.string,
-    errorPosition: PropTypes.string,
-    errorCompanyAddress: PropTypes.string,
-
-    //Loading
-    loading: PropTypes.bool,
-  };
-
-  static navigationOptions = {
-    title: 'Create your profile',
-    headerStyle: {
-      backgroundColor: theme.NAV_BAR_COLOR,
-    },
-    headerTitleStyle: { color: 'white' },
-    headerBackTitle: ' '
-
-  }
-
+ 
   showActionSheet = () => {
     this.ActionSheet.show()
   }
@@ -622,10 +567,65 @@ class CreateProfileScreen extends Component {
         />
 
         {/* Loading  */}
-        {/* <Spinner visible={loading} /> */}
+        <Spinner visible={loading} />
       </SafeAreaView>
     );
   }
+}
+
+CreateProfileScreen.propTypes = {
+  //Action Creator
+  inputValueChange: PropTypes.func,
+  handleActionSheetPress: PropTypes.func,
+  createProfile: PropTypes.func,
+
+  //Data
+  infoPrefix: PropTypes.string,
+  profileImage: PropTypes.object,
+  profileName: PropTypes.string,
+  firstName: PropTypes.string,
+  middleName: PropTypes.string,
+  lastName: PropTypes.string,
+  suffix: PropTypes.string,
+  mobilePhone: PropTypes.string,
+  secondMobilePhone: PropTypes.string,
+  email: PropTypes.string,
+  secondEmail: PropTypes.string,
+  companyName: PropTypes.string,
+  position: PropTypes.string,
+  companyAddress: PropTypes.string,
+  officePhone: PropTypes.string,
+  faxPhone: PropTypes.string,
+  businessType: PropTypes.string,
+  userType: PropTypes.string,
+  fbId: PropTypes.string,
+
+  //Show/Hide View
+  isShowSecondMobilePhone: PropTypes.bool,
+  isShowSecondEmail: PropTypes.bool,
+
+  //Error
+  errorMessage: PropTypes.string,
+  errorProfileName: PropTypes.string,
+  errorFirstName: PropTypes.string,
+  errorLastName: PropTypes.string,
+  errorMobilePhone: PropTypes.string,
+  errorCompanyName: PropTypes.string,
+  errorPosition: PropTypes.string,
+  errorCompanyAddress: PropTypes.string,
+
+  //Loading
+  loading: PropTypes.bool,
+};
+
+CreateProfileScreen.navigationOptions = {
+  title: 'Create your profile',
+  headerStyle: {
+    backgroundColor: theme.NAV_BAR_COLOR,
+  },
+  headerTitleStyle: { color: 'white' },
+  headerBackTitle: ' '
+
 }
 
 export default CreateProfileScreen;

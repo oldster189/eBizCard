@@ -46,12 +46,26 @@ const initialState = {
     }
   },
   profileData: null,
+  facebookData: {
+    email: '',
+    id: '',
+    last_name: '',
+    picture: {
+      data: {
+        is_silhouette: false,
+        width: 0,
+        url: '',
+        height: 0
+      }
+    },
+    name: '',
+    first_name: ''
+  },
   errorMessage: '',
   loading: false
 }
 
 export default (state = initialState, action) => {
-
   switch (action.type) {
     case HOME_START_LOADING:
       return {
@@ -63,9 +77,10 @@ export default (state = initialState, action) => {
       console.log(action.payload)
       return {
         ...state,
-        info: action.payload.info,
-        detail: action.payload.detail[0],
-        profileData: action.payload,
+        info: action.payload.profileData.info,
+        detail: action.payload.profileData.detail[0],
+        profileData: action.payload.profileData,
+        facebookData: action.payload.facebookData,
         errorMessage: '',
         loading: false,
       };
@@ -81,12 +96,12 @@ export default (state = initialState, action) => {
         errorMessage: action.payload.errorMessage,
         loading: false
       }
-    case HOME_RESET_TO_LOGIN_SCREEN: 
-    return {
-      ...state,
-      errorMessage: '',
-      loading: false
-    }
+    case HOME_RESET_TO_LOGIN_SCREEN:
+      return {
+        ...state,
+        errorMessage: '',
+        loading: false
+      }
     default:
       return state
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, ScrollView, TouchableOpacity, Image, } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Image, Alert } from 'react-native';
 import { Button, } from 'react-native-elements';
 import { SafeAreaView } from 'react-navigation';
 import ActionSheet from 'react-native-actionsheet'
@@ -10,21 +10,25 @@ import theme from '../../styles/theme.style';
 import { MAIN_SCREEN } from '../../constants/actionTypes';
 
 class CreatePhotoCardScreen extends Component {
- 
+
   componentDidMount() {
-    this.props.navigation.setParams({ handleSave: this.saveDetails });
-  }
- 
-  saveDetails() {
-    
+    this.props.navigation.setParams({ handleSave: this.confirmSkipPage });
   }
 
-  showActionSheetFront = () => {
-    this.ActionSheetFront.show()
+  confirmSkipPage() {
+    Alert.alert(
+      '',
+      'You do not select photo, Are you sure to skip ?',
+      [
+        { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+        { text: 'OK', onPress: this.changeHomeScreen },
+      ],
+      { cancelable: false }
+    )
   }
 
-  showActionSheetBack = () => {
-    this.ActionSheetBack.show()
+  changeHomeScreen() {
+    console.log('nextHomeScreen')
   }
 
   renderFrontBusinessCard() {
@@ -121,7 +125,7 @@ class CreatePhotoCardScreen extends Component {
 
               {/* Button Add Image Layout*/}
               <View style={addPhotoButtonStyle}>
-                <TouchableOpacity onPress={this.showActionSheetFront}>
+                <TouchableOpacity onPress={() => this.ActionSheetFront.show()}>
                   <Image
                     resizeMode='cover'
                     source={require('../../assets/images/add_photo.png')}
@@ -138,7 +142,7 @@ class CreatePhotoCardScreen extends Component {
 
               {/* Button Add Image Layout*/}
               <View style={addPhotoButtonStyle}>
-                <TouchableOpacity onPress={this.showActionSheetBack}>
+                <TouchableOpacity onPress={() => this.ActionSheetBack.show()}>
                   <Image
                     resizeMode='cover'
                     source={require('../../assets/images/add_photo.png')}
@@ -152,7 +156,7 @@ class CreatePhotoCardScreen extends Component {
             <Button
               title='Next'
               buttonStyle={nextButtonStyle}
-              onPress={() => { }}
+              onPress={this.confirmSkipPage}
             />
           </View>
         </ScrollView>
@@ -182,7 +186,7 @@ class CreatePhotoCardScreen extends Component {
   }
 }
 
-CreatePhotoCardScreen.navigationOptions = ({ navigation }) => { 
+CreatePhotoCardScreen.navigationOptions = ({ navigation }) => {
   return {
     title: 'Capture your card',
     headerStyle: {
@@ -191,10 +195,10 @@ CreatePhotoCardScreen.navigationOptions = ({ navigation }) => {
     headerTitleStyle: { color: 'white' },
     headerBackTitle: ' ',
     headerRight: (
-      <Button
+      < Button
         clear
         title="Skip"
-        onPress={() => { navigation.dispatch({ type: MAIN_SCREEN }) }}
+        onPress={() => navigation.navigate({ routeName: 'Home' })}
       />
     )
   }
@@ -208,7 +212,7 @@ CreatePhotoCardScreen.propTypes = {
 
   //Data 
   profileData: PropTypes.object,
-  frontBusinessCard: PropTypes.string,
+  frontBusinessCard: PropTypes.object,
   backBusinessCard: PropTypes.object,
 
   //Error

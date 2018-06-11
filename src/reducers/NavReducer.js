@@ -9,14 +9,13 @@ import {
   LOGIN_SCREEN,
   REGISTER_SCREEN,
   CREATE_PROFILE_SUCCESS,
-  FORGET_PASSWORD_SCREEN,
-  CREATE_PROFILE_SCREEN,
+  FORGET_PASSWORD_SCREEN, 
   MAIN_SCREEN,
   HOME_RESET_TO_LOGIN_SCREEN
 } from '../constants/actionTypes';
 
 const router = AppNavigator.router;
-const mainAction = router.getActionForPathAndParams('CreateProfile');
+const mainAction = router.getActionForPathAndParams('Home');
 const loginAction = router.getActionForPathAndParams('Login');
 const tempNavState = router.getStateForAction(loginAction);
 

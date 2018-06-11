@@ -7,7 +7,7 @@ import {
     HOME_START_LOADING,
     HOME_RESET_TO_LOGIN_SCREEN
 } from '../constants/actionTypes';
-import { BASE_URL_API, USER_TOKEN, FACEBOOK_TOKEN } from '../constants/constants';
+import { BASE_URL_API, USER_TOKEN, FACEBOOK_TOKEN, FACEBOOK_DATA } from '../constants/constants';
 
 export const checkAuth = () => async dispatch => {
     try {
@@ -18,31 +18,40 @@ export const checkAuth = () => async dispatch => {
         const userToken = await AsyncStorage.getItem(USER_TOKEN)
 
         //isLoggedIn.
-        if (fbToken || userToken) {
+        if (fbToken) {
             const url = `${BASE_URL_API}/profile/home`
-
             const config = { headers: { 'x-access-token': userToken } }
             const response = await axios.get(url, config)
+
+            const facebookDataRaw = await AsyncStorage.getItem(FACEBOOK_DATA)
+            const facebookData = JSON.parse(facebookDataRaw)
+
             console.log('Get profile default successfully!!')
             return dispatch({
                 type: HOME_GET_PROFILE_DEFAULT_SUCCESS,
-                payload: response.data.data[0]
+                payload: {
+                    profileData: response.data.data[0],
+                    facebookData
+                }
+            })
+        } else if (userToken) {
+            const url = `${BASE_URL_API}/profile/home`
+            const config = { headers: { 'x-access-token': userToken } }
+            const response = await axios.get(url, config)
+
+            console.log('Get profile default successfully!!')
+            return dispatch({
+                type: HOME_GET_PROFILE_DEFAULT_SUCCESS,
+                payload: {
+                    profileData: response.data.data[0]
+                }
             })
         }
+
 
         // Go to page LoginScreen.
         return dispatch({ type: HOME_RESET_TO_LOGIN_SCREEN })
     } catch (error) {
-        // Error get profile default.
-        if (error.response.data.message) {
-            const message = error.response.data.message
-            console.log(`Error get profile default: ${message}`)
-            return dispatch({
-                type: HOME_GET_PROFILE_DEFAULT_FAIL,
-                payload: { errorMessage: message }
-            })
-        }
-
         // Error common.
         console.log(JSON.stringify(error))
         return dispatch({
@@ -53,28 +62,23 @@ export const checkAuth = () => async dispatch => {
 }
 
 
-const getProfileDefault = () => async (dispatch, userToken) => {
-    console.log('object')
+const getProfileDefault = async (dispatch, userToken) => {
     try {
         const url = `${BASE_URL_API}/profile/home`
-
         const config = { headers: { 'x-access-token': userToken } }
         const response = await axios.get(url, config)
 
         console.log('Get profile default successfully!!')
-        return dispatch({
-            type: HOME_GET_PROFILE_DEFAULT_SUCCESS,
-            payload: response.data.data[0]
-        })
+        return response.data.data[0]
     } catch (error) {
         // Error get profile default.
         if (error.response.data.message) {
             const message = error.response.data.message
             console.log(`Error get profile default: ${message}`)
-            return dispatch({
-                type: HOME_GET_PROFILE_DEFAULT_FAIL,
-                payload: { errorMessage: message }
-            })
+            // return dispatch({
+            //     type: HOME_GET_PROFILE_DEFAULT_FAIL,
+            //     payload: { errorMessage: message }
+            // })
         }
 
         // Error common.

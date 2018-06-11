@@ -1,22 +1,24 @@
 
 import { NativeModules, AsyncStorage } from 'react-native';
-import axios from 'axios';
+import axios from 'axios'; 
 import { isEmpty, trimmingAndLowercase } from '../utils/util';
 import {
-    CREATE_PROFILE_VALUE_CHANGE,
-    CREATE_PROFILE_PHOTO_CAMERA,
-    CREATE_PROFILE_PHOTO_LIBRARY,
+    CREATE_PROFILE_VALUE_CHANGE, 
     CREATE_PROFILE_START,
     TEXT_INPUT_IS_INVALID,
     CREATE_PROFILE_SUCCESS,
-    ERROR_NETWORK,
-    CREATE_PROFILE_FAIL
+    ERROR_NETWORK, 
+    CREATE_PROFILE_COMMON_ERROR,
+    CREATE_PROFILE_UPLOAD_IMAGE_SUCCESS,
+    CREATE_PROFILE_UPLOAD_IMAGE_FAIL
 } from '../constants/actionTypes';
 import {
     CHOOSE_CAMERA,
     CHOOSE_LIBRARY,
     USER_TOKEN,
-    BASE_URL_API
+    BASE_URL_API,
+    NAME_PROFILE_IMAGE,
+    PROFILE_DATA
 } from '../constants/constants';
 
 const ImagePicker = NativeModules.ImageCropPicker;
@@ -40,79 +42,63 @@ export const handleActionSheetPress = (buttonIndex) => {
 
 const chooseLibrary = (dispatch, cropping, circular = false) => {
     ImagePicker.openPicker({
-        width: 500,
-        height: 500,
-        cropping,
-        freeStyleCropEnabled: true,
-        cropperCircleOverlay: circular,
-        compressImageMaxWidth: 500,
-        compressImageMaxHeight: 500,
-        compressImageQuality: 1,
-        includeExif: true,
+        width: 500, //Width of result image when used with cropping option
+        height: 500, //Height of result image when used with cropping option
+        cropping, //Enable or disable cropping
+        freeStyleCropEnabled: true, //Enables user to apply custom rectangle area for cropping
+        cropperCircleOverlay: circular, //Enable or disable circular cropping mask.
+        compressImageMaxWidth: 500, //Compress image with maximum width
+        compressImageMaxHeight: 500, //Compress image with maximum height
+        compressImageQuality: 1, //Compress image with quality (from 0 to 1, where 1 is best)
+        includeExif: true, //Include image exif data in the response 
     }).then(image => {
-        const data = new FormData();
-        const pathParts = image.path.split('/');
-        data.append('profile_image', {
-            uri: image.path,
-            type: image.mime,
-            name: pathParts[pathParts.length - 1]
+        uploadImageToServer(dispatch, image)
+            .then(() => {
+                dispatch({
+                    type: CREATE_PROFILE_UPLOAD_IMAGE_SUCCESS,
+                    payload: {
+                        uri: image.path,
+                        width: image.width,
+                        height: image.height,
+                        mime: image.mime
+                    }
+                })
+            })
+    }).catch(error => {
+        // Error common.
+        console.log(JSON.stringify(error))
+        return dispatch({
+            type: CREATE_PROFILE_COMMON_ERROR,
+            payload: { errorMessage: error }
         })
-        const url = `${BASE_URL_API}/profile/image`
-        fetch(url, {
-            method: 'post',
-            headers: { 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjI1OTIwMDAwMDAsImRhdGEiOnsiaWQiOiI1YjFhNDYxOTgyNTNhZjExMjkyNGI2MDYifSwiaWF0IjoxNTI4NDU1MTg0fQ.kC3VcxJbNcYqoQPeqTBOsXZ-aYVX9zJxptxUDFbTcOA' },
-            body: data
-        }).then(res => {
-            console.log('Upload successfully!')
-            console.log(res)
-        })
-        console.log('Upload successfully!22')
-    }).catch(e => {
-        console.log(e);
     });
 }
 
 const chooseCamera = (dispatch, cropping) => {
     ImagePicker.openCamera({
-        cropping,
-        width: 500,
-        height: 500,
-        freeStyleCropEnabled: true,
-        compressImageMaxWidth: 500,
-        compressImageMaxHeight: 500,
-        compressImageQuality: 1,
-        includeExif: true,
+        width: 500, //Width of result image when used with cropping option
+        height: 500, //Height of result image when used with cropping option
+        cropping, //Enable or disable cropping
+        freeStyleCropEnabled: true, //Enables user to apply custom rectangle area for cropping
+        compressImageMaxWidth: 500, //Compress image with maximum width
+        compressImageMaxHeight: 500, //Compress image with maximum height
+        compressImageQuality: 1, //Compress image with quality (from 0 to 1, where 1 is best)
+        includeExif: true, //Include image exif data in the response
     }).then(image => {
-        const data = new FormData();
-        data.append('profile_image', {
-            uri: image.uri,
-            type: 'image/jpeg',
-            name: 'testPhotoName'
-        })
-        const url = `${BASE_URL_API}/profile/image`
-        fetch(url, {
-            method: 'post',
-            headers: { 'x-access-token': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjI1OTIwMDAwMDAsImRhdGEiOnsiaWQiOiI1YjFhNDYxOTgyNTNhZjExMjkyNGI2MDYifSwiaWF0IjoxNTI4NDU1MTg0fQ.kC3VcxJbNcYqoQPeqTBOsXZ-aYVX9zJxptxUDFbTcOA' },
-            body: data
-        }).then(res => {
-            console.log('Upload successfully!')
-            console.log(res)
-        })
-        console.log('Upload successfully!22')
-
-
-        dispatch({
-            type: CREATE_PROFILE_PHOTO_CAMERA,
-            payload: {
-                profileImage: {
-                    uri: image.path,
-                    width: image.width,
-                    height: image.height
-                }
-            }
-        })
-    }).catch(e => {
-        console.log(e);
+        uploadImageToServer(dispatch, image)
+            .then(() => {
+                dispatch({
+                    type: CREATE_PROFILE_UPLOAD_IMAGE_SUCCESS,
+                    payload: {
+                        uri: image.path,
+                        width: image.width,
+                        height: image.height
+                    }
+                })
+            })
+    }).catch(error => {
+        // Error common.
+        console.log(JSON.stringify(error))
     });
 }
 
@@ -122,29 +108,51 @@ const startCreateProfile = (dispatch) => {
 
 const uploadImageToServer = async (dispatch, image) => {
     try {
-        const data = new FormData()
+        // Create FormData 
+        const data = new FormData();
+        const pathParts = image.path.split('/');
         data.append('profile_image', {
             uri: image.path,
-            type: 'image/jpeg',
-            name: 'testPhotoName'
+            type: image.mime,
+            name: pathParts[pathParts.length - 1]
         })
+
+        // Get temp name profile
+        const deleteImage = await AsyncStorage.getItem(NAME_PROFILE_IMAGE)
+        data.append('delete_image', deleteImage)
+
         const userToken = await AsyncStorage.getItem(USER_TOKEN)
-        const config = { headers: { 'Content-Type': 'multipart/form-data;', 'x-access-token': userToken } }
-        const response = await axios.put(`${BASE_URL_API}/profile/image`, data, config)
-        console.log(`Response: ${JSON.stringify(response)}`)
+        const config = { headers: { 'x-access-token': userToken } }
+        const url = `${BASE_URL_API}/profile/image`
+        const response = await axios.post(url, data, config)
+        const imageName = response.data.data[0].image
+
+        // Save temp name profile image for delete next upload image profile. 
+        await AsyncStorage.setItem(NAME_PROFILE_IMAGE, imageName)
+
+        console.log('Upload image to server successfully!!')
+        return response.data.data[0].image
     } catch (error) {
-        const message = error.response.data.message
-        console.log(`Error Upload image: ${error}`);
+        // Error upload profile image.
+        if (error.response.data.message) {
+            const message = error.response.data.message
+            console.log(`Error upload profile image: ${message}`)
+            return dispatch({
+                type: CREATE_PROFILE_UPLOAD_IMAGE_FAIL,
+                payload: { errorMessage: message }
+            })
+        }
+
+        // Error common.
+        console.log(JSON.stringify(error))
         return dispatch({
-            type: ERROR_NETWORK,
-            payload: { errorMessage: message }
+            type: CREATE_PROFILE_COMMON_ERROR,
+            payload: { errorMessage: error }
         })
     }
-
 }
 
-export const createProfile = ({
-    profileImage,
+export const createProfile = ({ 
     profileName,
     infoPrefix,
     firstName,
@@ -167,6 +175,9 @@ export const createProfile = ({
 
     return async dispatch => {
         startCreateProfile(dispatch)
+        if (!profileName) {
+            payload.errorProfileName = 'Profile name is require.'
+        }
         if (!firstName) {
             payload.errorFirstName = 'First name is require.'
         }
@@ -193,8 +204,7 @@ export const createProfile = ({
             return dispatch({ type: TEXT_INPUT_IS_INVALID, payload })
         }
         // Call service
-        const result = await doCreateProfile(dispatch,
-            profileImage,
+        const result = await doCreateProfile(dispatch, 
             profileName,
             infoPrefix,
             firstName,
@@ -211,14 +221,21 @@ export const createProfile = ({
             officePhone,
             faxPhone,
             businessType)
-        console.log(result)
-        dispatch({ type: CREATE_PROFILE_SUCCESS, payload: result })
+
+        // Save profile data to local storage.
+        const profileData = JSON.stringify(result)
+
+        await AsyncStorage.setItem(PROFILE_DATA, profileData)
+       
+        dispatch({
+            type: CREATE_PROFILE_SUCCESS,
+            payload: result
+        })    
     }
 }
 
 const doCreateProfile = async (
-    dispatch,
-    profileImage,
+    dispatch, 
     profileName,
     infoPrefix,
     firstName,
@@ -239,11 +256,11 @@ const doCreateProfile = async (
     try {
         const url = `${BASE_URL_API}/profile`
         const userToken = await AsyncStorage.getItem(USER_TOKEN)
-        console.log(userToken)
+        const profileImage = await AsyncStorage.getItem(NAME_PROFILE_IMAGE)
         const config = { headers: { 'x-access-token': userToken } }
 
         const response = await axios.post(url, {
-            profile_image: 'dummy.jpg',
+            profile_image: profileImage,
             profile_name: profileName,
             info_prefix: infoPrefix,
             first_name: firstName,

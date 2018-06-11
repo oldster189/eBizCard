@@ -12,36 +12,7 @@ import theme from '../../styles/theme.style';
 
 class RegisterScreen extends Component {
 
-  static propTypes = {
-    //Action Creator
-    registerValueChange: PropTypes.func,
-    normalRegister: PropTypes.func,
-    facebookLogin: PropTypes.func,
-    loginScreen: PropTypes.func,
-
-    //Data
-    email: PropTypes.string,
-    password: PropTypes.string,
-    rePassword: PropTypes.string,
-
-    //Error
-    errorMessage: PropTypes.string,
-    errorEmail: PropTypes.string,
-    errorPassword: PropTypes.string,
-    errorRePassword: PropTypes.string,
-
-    //Loading
-    loading: PropTypes.bool,
-  };
-
-  static navigationOptions = {
-    title: 'Sign up',
-    headerStyle: {
-      backgroundColor: theme.NAV_BAR_COLOR,
-    },
-    headerTitleStyle: { color: 'white' },
-    headerBackTitle: ' '
-  }
+  
 
   onClickSignInGoogle() {
     console.log('Click Sign in Google!');
@@ -259,12 +230,42 @@ class RegisterScreen extends Component {
 
         </ScrollView>
 
-        {/* Loading */}
-        {/* {this.renderLoading()} */}
-        {this.renderErrorDialog()}
+        {/* Loading */} 
+        <Spinner visible={loading} /> 
       </SafeAreaView>
     );
   }
+}
+
+RegisterScreen.propTypes = {
+  //Action Creator
+  registerValueChange: PropTypes.func,
+  normalRegister: PropTypes.func,
+  facebookLogin: PropTypes.func,
+  loginScreen: PropTypes.func,
+
+  //Data
+  email: PropTypes.string,
+  password: PropTypes.string,
+  rePassword: PropTypes.string,
+
+  //Error
+  errorMessage: PropTypes.string,
+  errorEmail: PropTypes.string,
+  errorPassword: PropTypes.string,
+  errorRePassword: PropTypes.string,
+
+  //Loading
+  loading: PropTypes.bool,
+};
+
+RegisterScreen.navigationOptions = {
+  title: 'Sign up',
+  headerStyle: {
+    backgroundColor: theme.NAV_BAR_COLOR,
+  },
+  headerTitleStyle: { color: 'white' },
+  headerBackTitle: ' '
 }
 
 export default RegisterScreen;

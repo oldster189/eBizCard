@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, Image, ScrollView, Alert } from 'react-native';
+import { View, Text, Image, ScrollView, Alert, TouchableOpacity } from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Button } from 'react-native-elements';
 import Swiper from 'react-native-swiper';
@@ -15,30 +15,29 @@ import SeparatorLine from '../../common/SeparatorLine';
 import styles from './Main.style';
 import theme from '../../styles/theme.style';
 import { formatNumberPhone } from '../../utils/util';
-import { BASE_URL_IMAGE } from '../../constants/constants';
+import { BASE_URL_IMAGE, USER_TYPE_FACEBOOK, USER_TYPE_NORMAL } from '../../constants/constants';
 
 class MainScreen extends Component {
 
-  componentDidMount() { 
+  componentDidMount() {
     this.props.checkAuth()
   }
 
-  showActionSheet = () => {
-    this.ActionSheet.show()
-  }
-
-  renderProfileImage() {
+  renderProfileImage = () => {
+    const {
+      backgroundPlaceholderProfileImageStyle,
+      profileImageStyle
+    } = styles
     const profileImage = this.props.info.profile_image
-    console.log(`${BASE_URL_IMAGE}/profile/${profileImage}`)
-    if (profileImage) {
+    const userType = this.props.info.account_id.type
+    const { facebookData } = this.props
+
+    // Profile image for normal user.
+    if (userType && userType === USER_TYPE_NORMAL && profileImage) {
       return (
         <View>
           <Image
-            style={{
-              height: 60,
-              width: 60,
-              borderRadius: 34,
-            }}
+            style={backgroundPlaceholderProfileImageStyle}
             resizeMode='cover'
             source={require('../../assets/images/add_display.png')}
           />
@@ -46,14 +45,31 @@ class MainScreen extends Component {
             source={{ uri: `${BASE_URL_IMAGE}/profile/${profileImage}` }}
             indicator={ProgressCircle}
             imageStyle={{
-              borderRadius: 30,
+              borderRadius: 32,
               overflow: 'hidden'
             }}
-            style={{
-              height: 60,
-              width: 60,
-              position: 'absolute'
+            style={profileImageStyle}
+            resizeMode='cover'
+          />
+        </View>
+      )
+      // Profile image for facebook user.  
+    } else if (userType && userType === USER_TYPE_FACEBOOK) {
+      return (
+        <View>
+          <Image
+            style={backgroundPlaceholderProfileImageStyle}
+            resizeMode='cover'
+            source={require('../../assets/images/add_display.png')}
+          />
+          <ImageLoading
+            source={{ uri: `https://graph.facebook.com/${facebookData.id}/picture?type=large&width=180&height=180` }}
+            indicator={ProgressCircle}
+            imageStyle={{
+              borderRadius: 32,
+              overflow: 'hidden'
             }}
+            style={profileImageStyle}
             resizeMode='cover'
           />
         </View>
@@ -62,11 +78,7 @@ class MainScreen extends Component {
 
     return (
       <Image
-        style={{
-          height: 60,
-          width: 60,
-          borderRadius: 30,
-        }}
+        style={profileImageStyle}
         resizeMode='contain'
         source={require('../../assets/images/add_display.png')}
       />
@@ -177,25 +189,33 @@ class MainScreen extends Component {
       activeDotStyle,
       photoCardStyle,
       textTitleStyle,
-      textNameProfileStyle,
-      textNameCompanyStyle,
-      editButtonStyle
+      textTitleProfileStyle,
+      textSubTitleCompanyStyle,
+      editButtonStyle,
+      containerProfileInfoContentStyle,
+      changeLanguageProfileLayoutStyle,
+      buttonTitleStyle,
+      buttonStyle,
+      imageProfileLayoutGroupStyle,
+      backgroundImageProfileStyle,
+      contentProfileInfoStyle,
+      titleButtonEditStyle
     } = styles
 
-    const { info, detail } = this.props
+    const { info, detail, loading } = this.props
     // Info data.
-    const { card_front, card_back } = info 
+    const { card_front, card_back } = info
     // Detail profile language data.
     const {
-      info_prefix, 
+      info_prefix,
       first_name,
       last_name,
       suffix,
-      mobile_phone, 
-      email, 
+      mobile_phone,
+      email,
       company_name,
       position,
-      company_address, 
+      company_address,
     } = detail
 
 
@@ -231,68 +251,45 @@ class MainScreen extends Component {
           </View>
           {/* End Header Photo Card Swipe */}
 
-          <View style={{ backgroundColor: '#FFF', marginTop: 10, marginBottom: 10 }}>
+          <View style={containerProfileInfoContentStyle}>
             {/* Begin Profile Info Content */}
-            <View style={{ alignSelf: 'flex-end', marginTop: 4 }}>
+            <View style={changeLanguageProfileLayoutStyle}>
               <Button
                 title='Default'
-                titleStyle={{ color: '#2F2F2F', fontSize: 16 }}
-                buttonStyle={{ width: 100, }}
+                titleStyle={buttonTitleStyle}
+                buttonStyle={buttonStyle}
                 iconRight
                 icon={
                   <MaterialIcon
                     name='chevron-down'
-                    size={25}
-                    color='#2F2F2F'
+                    size={theme.ICON_HOME_FONT}
+                    color={theme.ICON_HOME_COLOR}
                   />
                 }
                 clear
-                onPress={this.showActionSheet}
+                onPress={() => this.ActionSheet.show()}
               />
             </View>
 
             <View style={{ flexDirection: 'row', alignItems: 'center' }}>
               {/*  Begin Image Profile Group */}
-              <View
-                style={{
-                  marginLeft: theme.MARGIN_XX,
-                  marginBottom: 20,
-                  marginTop: 8,
-                  marginRight: 20,
-                  backgroundColor: '#339CED',
-                  height: 74,
-                  width: 74,
-                  borderRadius: 37,
-                  padding: 5,
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <View
-                  style={{
-                    backgroundColor: '#FFF',
-                    height: 69,
-                    width: 69,
-                    borderRadius: 33,
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                  }}
-                >
+              <View style={imageProfileLayoutGroupStyle}>
+                <View style={backgroundImageProfileStyle} >
                   {this.renderProfileImage()}
                 </View>
               </View>
               {/*  End Image Profile Group */}
 
-              <View style={{ marginBottom: 10, flex: 1 }}>
-                <Text style={textNameProfileStyle}>
+              <View style={contentProfileInfoStyle}>
+                <Text style={textTitleProfileStyle}>
                   {first_name}
                 </Text>
-                <Text style={textNameCompanyStyle}>
+                <Text style={textSubTitleCompanyStyle}>
                   {company_name}
                 </Text>
               </View>
             </View>
-            <SeparatorLine color={'#E0E0E0'} />
+            <SeparatorLine color={theme.SEPARATOR_HOME_COLOR} />
             {/* End Profile Info Content */}
 
             {/* Begin Contact Info Content */}
@@ -301,7 +298,7 @@ class MainScreen extends Component {
               <TextInfo
                 placehoder='Name'
                 value={`${info_prefix} ${first_name} ${last_name} ${suffix}`}
-                source={require('../../assets/images/ic_mobile.png')}
+                source={require('../../assets/images/ic_name.png')}
               />
               <TextInfo
                 placehoder='Phone no.'
@@ -321,7 +318,7 @@ class MainScreen extends Component {
               {/* Second email */}
               {this.renderSecondEmail()}
 
-              <SeparatorLine color={'#E0E0E0'} />
+              <SeparatorLine color={theme.SEPARATOR_HOME_COLOR} />
             </View>
             {/* End Contact Info Content */}
 
@@ -353,14 +350,14 @@ class MainScreen extends Component {
               {/* Business Type */}
               {this.renderBusinnessType()}
 
-              <SeparatorLine color={'#E0E0E0'} />
+              <SeparatorLine color={theme.SEPARATOR_HOME_COLOR} />
             </View>
             {/* End Company Info Content */}
 
             <View style={{ alignSelf: 'center' }}>
               <Button
                 title='Edit'
-                titleStyle={{ color: '#339CED', fontSize: 19 }}
+                titleStyle={titleButtonEditStyle}
                 buttonStyle={editButtonStyle}
                 clear
               />
@@ -376,8 +373,8 @@ class MainScreen extends Component {
         />
 
         {/* Loading */}
-        {/* {this.renderLoading()} */}
-        {this.renderErrorDialog()}
+        <Spinner visible={loading} />
+        {/* {this.renderErrorDialog()} */}
       </SafeAreaView>
 
     );
@@ -390,6 +387,7 @@ MainScreen.propTypes = {
 
   //Data
   dataProfile: PropTypes.object,
+  facebookData: PropTypes.object,
 
   //Error
   errorMessage: PropTypes.string,
@@ -398,40 +396,43 @@ MainScreen.propTypes = {
   loading: PropTypes.bool
 };
 
-MainScreen.navigationOptions = {
-  title: 'Home',
-  // header: ( 
-  //   /* Your custom header */
-  //   <View
-  //     style={{
-  //       height: 80,
-  //       flexDirection: 'row',
-  //       backgroundColor: theme.NAV_BAR_COLOR,
-  //       marginTop: Platform.OS === 'ios' ? 20 : 0 
-  //     }}
-  //   >
-  //     <Text>This is CustomHeader</Text>
-  //   </View>
-  // ),
-  headerStyle: {
-    backgroundColor: theme.NAV_BAR_COLOR,
-  },
-  headerTitleStyle: { color: 'white' },
-  headerBackTitle: ' ',
-  headerRight: (
-    <Button
-      title=' '
-      icon={
-        <MaterialIcon
-          name='share'
-          size={32}
-          color='white'
+MainScreen.navigationOptions = ({ navigation }) => {
+  return {
+    title: 'Home',
+    // header: ( 
+    //   /* Your custom header */
+    //   <View
+    //     style={{
+    //       height: 80,
+    //       flexDirection: 'row',
+    //       backgroundColor: theme.NAV_BAR_COLOR,
+    //       marginTop: Platform.OS === 'ios' ? 20 : 0 
+    //     }}
+    //   >
+    //     <Text>This is CustomHeader</Text>
+    //   </View>
+    // ),
+    headerStyle: {
+      backgroundColor: theme.NAV_BAR_COLOR,
+    },
+    headerTitleStyle: { color: 'white' },
+    headerBackTitle: ' ',
+    headerRight: (
+      <TouchableOpacity
+        onPress={() => navigation.navigate({ routeName: 'QRCode' })}
+        style={{ padding: 10 }}
+      >
+        <Image
+          style={{
+            height: 24,
+            width: 24, 
+          }}
+          resizeMode='cover'
+          source={require('../../assets/images/ic_share.png')}
         />
-      }
-      clear
-      iconRight
-    />
-  )
+      </TouchableOpacity>
+    )
+  }
 }
 
 

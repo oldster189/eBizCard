@@ -12,6 +12,9 @@ import theme from '../styles/theme.style';
 const MainTab = createStackNavigator({
   Main: {
     screen: Pages.Main,
+  },
+  QRCode: {
+    screen: Pages.QRCode
   }
 })
 

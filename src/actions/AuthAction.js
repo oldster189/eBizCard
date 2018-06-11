@@ -1,4 +1,4 @@
-import { AsyncStorage } from 'react-native'
+import { AsyncStorage } from 'react-native';
 import FBSDK, { LoginManager, AccessToken } from 'react-native-fbsdk'
 import axios from 'axios';
 import { validateEmail, isEmpty, trimmingAndLowercase } from '../utils/util'
@@ -31,8 +31,10 @@ import {
     BASE_URL_API,
     LOGIN_TYPE_NORMAL,
     USER_TOKEN,
-    REGISTER_TYPE_SOCIAL,
+    REGISTER_TYPE_FACEBOOK,
     FACEBOOK_TOKEN,
+    FACEBOOK_DATA,
+    LOGIN_TYPE_FACEBOOK,
 } from '../constants/constants';
 
 const { GraphRequest, GraphRequestManager } = FBSDK
@@ -48,7 +50,6 @@ const loginStartLoading = (dispatch) => {
 }
 
 const doFacebookLogin = async dispatch => {
-
     try {
         const { isCancelled } = await LoginManager.logInWithReadPermissions([
             'public_profile', 'email'])
@@ -59,7 +60,7 @@ const doFacebookLogin = async dispatch => {
         // Get token facebook.
         const { accessToken } = await AccessToken.getCurrentAccessToken()
 
-        await AsyncStorage.removeItem(FACEBOOK_TOKEN)
+        // Save token facebook.
         await AsyncStorage.setItem(FACEBOOK_TOKEN, accessToken)
 
         if (accessToken !== null) {
@@ -70,16 +71,20 @@ const doFacebookLogin = async dispatch => {
                     return dispatch({ type: FACEBOOK_LOGIN_FAIL })
                 }
 
+                // Cast data object to string
+                const facebookDataRaw = JSON.stringify(result) 
+                // Save facebook data to local storage.
+                await AsyncStorage.setItem(FACEBOOK_DATA, facebookDataRaw)
+
                 // Check status page for change page.
                 const statusPageResult = await getStatusForChangePage(dispatch, result.email)
 
                 if (statusPageResult === 'ACCOUNT') {
                     // Register account for social.
                     const response = await registerAccountSocial(dispatch, result.email)
-
+                    
                     // Save user_token to local storage.
                     const userToken = response.token
-                    await AsyncStorage.removeItem(USER_TOKEN)
                     await AsyncStorage.setItem(USER_TOKEN, userToken)
 
                     console.log('Facebook login successfully!!')
@@ -87,11 +92,19 @@ const doFacebookLogin = async dispatch => {
                     // Next to page ProfileScreen.
                     return dispatch({ type: CREATE_ACCOUNT_SOCIAL_SUCCESS, payload: result })
                 } else if (statusPageResult === 'PROFILE') {
+                    // Save user_token to local storage.
+                    const userToken = await loginForSocial(dispatch, result.email)
+                    await AsyncStorage.setItem(USER_TOKEN, userToken)
+
                     // Next to page ProfileScreen.
                     return dispatch({ type: CREATE_ACCOUNT_SOCIAL_SUCCESS, payload: result })
                 } else if (statusPageResult === 'HOME') {
-                    // Next to page HomeScreen.
-                    return dispatch({ type: FACEBOOK_LOGIN_SUCCESS })
+                    // Save user_token to local storage.
+                    const userToken = await loginForSocial(dispatch, result.email)
+                    await AsyncStorage.setItem(USER_TOKEN, userToken) 
+
+                    // Next to page HomeScreen. 
+                    return dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: result })
                 }
             }
 
@@ -122,12 +135,41 @@ const doFacebookLogin = async dispatch => {
     }
 }
 
+const loginForSocial = async (dispatch, email) => {
+    try {
+        const url = `${BASE_URL_API}/signin` 
+        const response = await axios.post(url, {
+            email,
+            type: LOGIN_TYPE_FACEBOOK
+        })  
+        console.log(`Login for social: ${response.data.token}`)
+        return response.data.token
+    } catch (error) {
+        // Error get status for change page.
+        if (error.response.data.message) {
+            const message = error.response.data.message
+            console.log(`Error login for social: ${message}`);
+            return dispatch({
+                type: NORMAL_LOGIN_FAIL,
+                payload: { errorMessage: message }
+            })
+        }
+
+        // Error common.
+        console.log(JSON.stringify(error))
+        return dispatch({
+            type: LOGIN_COMMON_ERROR,
+            payload: { errorMessage: error }
+        })
+    }
+}
+
 const registerAccountSocial = async (dispatch, email) => {
     try {
         const url = `${BASE_URL_API}/signup`
         const response = await axios.post(url, {
             email,
-            type: REGISTER_TYPE_SOCIAL
+            type: REGISTER_TYPE_FACEBOOK
         })
         console.log(`Response register account: ${JSON.stringify(response.data)}`)
         return response.data
@@ -199,7 +241,6 @@ export const normalLogin = ({ email, password }) => {
 
             // Save user_token to local storage.
             const userToken = response.data.token
-            await AsyncStorage.removeItem(USER_TOKEN)
             await AsyncStorage.setItem(USER_TOKEN, userToken)
 
             // Check status page for change page.
@@ -319,10 +360,9 @@ export const normalRegister = ({ email, password, rePassword }) => async dispatc
             password: this.password,
             type: REGISTER_TYPE_NORMAL
         })
-        const userToken = response.data.token
 
-        // Save user_token to local storage.
-        await AsyncStorage.removeItem(USER_TOKEN)
+        // Save user_token to local storage. 
+        const userToken = response.data.token
         await AsyncStorage.setItem(USER_TOKEN, userToken)
 
         console.log('Register successfully!')

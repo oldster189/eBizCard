@@ -41,7 +41,7 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  console.log(`Action: ${JSON.stringify(action)} State: ${JSON.stringify(state)}`);
+  // console.log(`Action: ${JSON.stringify(action)} State: ${JSON.stringify(state)}`);
 
   switch (action.type) {
     case LOGIN:
@@ -89,6 +89,8 @@ export default (state = initialState, action) => {
         ...state,
         password: '',
         rePassword: '',
+        userType: USER_TYPE_FACEBOOK,
+        link_image: action.payload.picture.data.url,
         errorMessage: '',
         errorEmail: '',
         errorPassword: '',

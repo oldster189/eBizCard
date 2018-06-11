@@ -202,9 +202,9 @@ class LoginScreen extends Component {
         </ScrollView>
 
 
-        {/* Loading */}
-        {/* {this.renderLoading()} */}
-        {this.renderErrorDialog()}
+        {/* Loading */} 
+        <Spinner visible={loading} />
+        {/* {this.renderErrorDialog()} */}
       </SafeAreaView>
 
     );
