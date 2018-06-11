@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { StatusBar, View, Image } from 'react-native'
+import { StatusBar, View, Image, Text, Platform, TouchableOpacity, AsyncStorage } from 'react-native'
 import { connect } from 'react-redux'
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation'
 import { initializeListeners } from 'react-navigation-redux-helpers'
@@ -9,38 +9,9 @@ import * as Pages from '../pages'
 import { navigationPropConstructor } from '../utils/redux'
 import theme from '../styles/theme.style';
 
-const MainTab = createStackNavigator({
-  Main: {
-    screen: Pages.Main,
-  },
-  QRCode: {
-    screen: Pages.QRCode
-  }
-})
-
-const StorageTab = createStackNavigator({
-  Storage: {
-    screen: Pages.Storage,
-  }
-})
-
-const SettingsTab = createStackNavigator({
-  Settings: {
-    screen: Pages.Settings,
-    navigationOptions: {
-      title: 'Settings',
-      headerStyle: {
-        backgroundColor: theme.NAV_BAR_COLOR,
-      },
-      headerTitleStyle: { color: theme.TITLE_NAV_BAR_COLOR },
-      headerBackTitle: ' '
-    }
-  }
-})
-
 const Tabs = createBottomTabNavigator({
   MainTab: {
-    screen: MainTab,
+    screen: Pages.Main,
     path: '/',
     navigationOptions: {
       tabBarLabel: 'Home',
@@ -61,10 +32,21 @@ const Tabs = createBottomTabNavigator({
     },
   },
   StorageTab: {
-    screen: StorageTab,
+    screen: Pages.Storage,
     path: '/storage',
     navigationOptions: {
-      tabBarLabel: 'Storage',
+      tabBarLabel: (
+        <View
+          style={{
+            height: 80,
+            flexDirection: 'row',
+            backgroundColor: theme.NAV_BAR_COLOR,
+            marginTop: Platform.OS === 'ios' ? 20 : 0
+          }}
+        >
+          <Text>This is CustomHeader</Text>
+        </View>
+      ),
       tabBarIcon: ({ focused }) => (
         <Image
           style={{
@@ -82,7 +64,7 @@ const Tabs = createBottomTabNavigator({
     },
   },
   SettingsTab: {
-    screen: SettingsTab,
+    screen: Pages.Settings,
     path: '/settings',
     navigationOptions: {
       tabBarLabel: 'Settings',
@@ -106,37 +88,70 @@ const Tabs = createBottomTabNavigator({
   {
     tabBarOptions: {
       showLabel: false,
-      headerMode: 'screen',
     },
   }
 )
 
 Tabs.navigationOptions = ({ navigation }) => {
-  const { routeName } = navigation.state.routes[navigation.state.index];
-  let title;
-  if (routeName === 'SettingsTab') {
-    title = 'Settings';
-  } else if (routeName === 'MainTab') {
-    title = 'Home';
+  const { routeName, params } = navigation.state.routes[navigation.state.index];
+  console.log(navigation)
+  if (routeName === 'MainTab') {
+    return {
+      title: 'Home',
+      headerStyle: {
+        backgroundColor: theme.NAV_BAR_COLOR,
+      },
+      headerTitleStyle: { color: 'white' },
+      headerBackTitle: ' ',
+      headerRight: (
+        <TouchableOpacity
+          onPress={() => console.log(params.title)}
+          style={{ padding: 10 }}
+        >
+          <Image
+            style={{
+              height: 24,
+              width: 24,
+            }}
+            resizeMode='cover'
+            source={require('../assets/images/ic_share.png')}
+          />
+        </TouchableOpacity>
+      )
+    }
+  } else if (routeName === 'SettingsTab') {
+    return {
+      title: 'Settings',
+      headerStyle: {
+        backgroundColor: theme.NAV_BAR_COLOR,
+      },
+      headerTitleStyle: { color: 'white' },
+      headerBackTitle: ' ',
+    }
   }
   return {
-    title,
-  };
-};
+    title: 'Storage',
+    headerStyle: {
+      backgroundColor: theme.NAV_BAR_COLOR,
+    },
+    headerTitleStyle: { color: 'white' },
+    headerBackTitle: ' ',
+  }
+}
 
 export const AppNavigator = createStackNavigator({
   Welcome: { screen: Pages.Welcome },
   Login: { screen: Pages.Login },
   Register: { screen: Pages.Register },
   ForgetPassword: { screen: Pages.ForgetPassword },
+  ResetPassword: { screen: Pages.ResetPassword },
   CreateProfile: { screen: Pages.CreateProfile },
   CreatePhotoCard: { screen: Pages.CreatePhotoCard },
-  Home: {
-    screen: Tabs,
-    navigationOptions: {
-      header: null,
-    }
-  },
+  Home: { screen: Tabs },
+  QRCode: { screen: Pages.QRCode },
+  ChangePassword: { screen: Pages.ChangePassword },
+  Upgrade: { screen: Pages.Upgrade },
+  TermOfUser: { screen: Pages.TermOfUse }
 })
 
 class AppWithNavigationState extends Component {

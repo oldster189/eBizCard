@@ -12,4 +12,5 @@ export { default as QRCode } from './QRCode';
 export { default as Upgrade } from './Upgrade';  
 export { default as TermOfUse } from './TermOfUse';  
 export { default as DetailProfileCard } from './DetailProfileCard';  
+export { default as ChangePassword } from './ChangePassword';   
 

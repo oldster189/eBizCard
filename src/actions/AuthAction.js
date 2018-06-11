@@ -1,6 +1,7 @@
 import { AsyncStorage } from 'react-native';
 import FBSDK, { LoginManager, AccessToken } from 'react-native-fbsdk'
 import axios from 'axios';
+import { StackActions, NavigationActions } from 'react-navigation';
 import { validateEmail, isEmpty, trimmingAndLowercase } from '../utils/util'
 
 import {
@@ -72,7 +73,7 @@ const doFacebookLogin = async dispatch => {
                 }
 
                 // Cast data object to string
-                const facebookDataRaw = JSON.stringify(result) 
+                const facebookDataRaw = JSON.stringify(result)
                 // Save facebook data to local storage.
                 await AsyncStorage.setItem(FACEBOOK_DATA, facebookDataRaw)
 
@@ -82,7 +83,7 @@ const doFacebookLogin = async dispatch => {
                 if (statusPageResult === 'ACCOUNT') {
                     // Register account for social.
                     const response = await registerAccountSocial(dispatch, result.email)
-                    
+
                     // Save user_token to local storage.
                     const userToken = response.token
                     await AsyncStorage.setItem(USER_TOKEN, userToken)
@@ -101,7 +102,7 @@ const doFacebookLogin = async dispatch => {
                 } else if (statusPageResult === 'HOME') {
                     // Save user_token to local storage.
                     const userToken = await loginForSocial(dispatch, result.email)
-                    await AsyncStorage.setItem(USER_TOKEN, userToken) 
+                    await AsyncStorage.setItem(USER_TOKEN, userToken)
 
                     // Next to page HomeScreen. 
                     return dispatch({ type: FACEBOOK_LOGIN_SUCCESS, payload: result })
@@ -137,11 +138,11 @@ const doFacebookLogin = async dispatch => {
 
 const loginForSocial = async (dispatch, email) => {
     try {
-        const url = `${BASE_URL_API}/signin` 
+        const url = `${BASE_URL_API}/signin`
         const response = await axios.post(url, {
             email,
             type: LOGIN_TYPE_FACEBOOK
-        })  
+        })
         console.log(`Login for social: ${response.data.token}`)
         return response.data.token
     } catch (error) {
@@ -258,7 +259,12 @@ export const normalLogin = ({ email, password }) => {
                 })
             } else if (statusPageResult === 'HOME') {
                 // Next to page HomeScreen. 
-                return dispatch({ type: NORMAL_LOGIN_SUCCESS })
+                const resetAction = StackActions.reset({
+                    index: 0,
+                    actions: [NavigationActions.navigate({ routeName: 'Home' })],
+                });
+                dispatch(resetAction)
+                // return dispatch({ type: NORMAL_LOGIN_SUCCESS })
             }
         } catch (error) {
             // Error login normal.
@@ -395,7 +401,11 @@ const registerStartLoading = (dispatch) => {
 }
 
 export const forgetPasswordScreen = () => dispatch => {
-    dispatch({ type: FORGET_PASSWORD_SCREEN })
+    const resetAction = StackActions.reset({
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: 'ForgetPassword' })],
+    });
+    dispatch(resetAction)
 }
 
 export const loginScreen = () => dispatch => {

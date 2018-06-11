@@ -624,8 +624,8 @@ CreateProfileScreen.navigationOptions = {
     backgroundColor: theme.NAV_BAR_COLOR,
   },
   headerTitleStyle: { color: 'white' },
-  headerBackTitle: ' '
-
+  headerBackTitle: ' ',
+  headerTintColor: '#FFF' 
 }
 
 export default CreateProfileScreen;

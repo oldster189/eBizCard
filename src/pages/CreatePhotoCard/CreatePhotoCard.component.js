@@ -194,6 +194,7 @@ CreatePhotoCardScreen.navigationOptions = ({ navigation }) => {
     },
     headerTitleStyle: { color: 'white' },
     headerBackTitle: ' ',
+    headerTintColor: '#FFF',
     headerRight: (
       < Button
         clear

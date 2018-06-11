@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { View, Text, Image, ScrollView, Alert, TouchableOpacity } from 'react-native';
+import { View, Text, Image, ScrollView, Alert, TouchableOpacity, AsyncStorage } from 'react-native';
 import MaterialIcon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Button } from 'react-native-elements';
 import Swiper from 'react-native-swiper';
@@ -15,12 +15,32 @@ import SeparatorLine from '../../common/SeparatorLine';
 import styles from './Main.style';
 import theme from '../../styles/theme.style';
 import { formatNumberPhone } from '../../utils/util';
-import { BASE_URL_IMAGE, USER_TYPE_FACEBOOK, USER_TYPE_NORMAL } from '../../constants/constants';
+import { BASE_URL_IMAGE, USER_TYPE_FACEBOOK, USER_TYPE_NORMAL, PROFILE_DATA } from '../../constants/constants';
 
 class MainScreen extends Component {
 
   componentDidMount() {
     this.props.checkAuth()
+    AsyncStorage.getItem(PROFILE_DATA)
+      .then(value => {
+        const profileData = JSON.parse(value)  
+        this.props.navigation.setParams({ title: profileData.info.profile_name }); 
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+
+  confirmSkipPage() {
+    Alert.alert(
+      '',
+      'You do not select photo, Are you sure to skip ?',
+      [
+        { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
+        { text: 'OK', onPress: this.changeHomeScreen },
+      ],
+      { cancelable: false }
+    )
   }
 
   renderProfileImage = () => {

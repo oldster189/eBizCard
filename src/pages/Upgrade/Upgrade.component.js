@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, } from 'react-native';
 
 import styles from './Upgrade.style';
+import theme from '../../styles/theme.style';
 
 class UpgradeScreen extends Component {
   
@@ -13,6 +14,16 @@ class UpgradeScreen extends Component {
       </View>
     );
   }
+}
+
+UpgradeScreen.navigationOptions = {
+  title: 'Upgrade',
+  headerStyle: {
+    backgroundColor: theme.NAV_BAR_COLOR,
+  },
+  headerTitleStyle: { color: 'white' },
+  headerBackTitle: ' ',
+  headerTintColor: '#FFF'
 }
 
 export default UpgradeScreen;

@@ -238,7 +238,8 @@ LoginScreen.navigationOptions = {
     backgroundColor: theme.NAV_BAR_COLOR,
   },
   headerTitleStyle: { color: theme.TITLE_NAV_BAR_COLOR },
-  headerBackTitle: ' '
+  headerBackTitle: ' ',
+  headerTintColor: '#FFF'
 }
 
 

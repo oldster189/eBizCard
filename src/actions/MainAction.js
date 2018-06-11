@@ -7,7 +7,7 @@ import {
     HOME_START_LOADING,
     HOME_RESET_TO_LOGIN_SCREEN
 } from '../constants/actionTypes';
-import { BASE_URL_API, USER_TOKEN, FACEBOOK_TOKEN, FACEBOOK_DATA } from '../constants/constants';
+import { BASE_URL_API, USER_TOKEN, FACEBOOK_TOKEN, FACEBOOK_DATA, PROFILE_DATA } from '../constants/constants';
 
 export const checkAuth = () => async dispatch => {
     try {
@@ -39,7 +39,10 @@ export const checkAuth = () => async dispatch => {
             const config = { headers: { 'x-access-token': userToken } }
             const response = await axios.get(url, config)
 
+            const profileDataRaw = JSON.stringify(response.data.data[0]) 
+            await AsyncStorage.setItem(PROFILE_DATA, profileDataRaw)
             console.log('Get profile default successfully!!')
+            
             return dispatch({
                 type: HOME_GET_PROFILE_DEFAULT_SUCCESS,
                 payload: {

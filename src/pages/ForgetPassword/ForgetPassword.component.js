@@ -13,6 +13,8 @@ class ForgetPasswordScreen extends Component {
       backgroundColor: theme.NAV_BAR_COLOR,
     },
     headerTitleStyle: { color: 'white' },
+    headerBackTitle: ' ',
+    headerTintColor: '#FFF'
   }
 
 
@@ -24,14 +26,14 @@ class ForgetPasswordScreen extends Component {
     //   index: 0
     // })
 
-    const resetAction = NavigationActions.reset({
-      index: 0,
-      stateName: 'MainAppNav',
-      actions: [
-        NavigationActions.navigate({ routeName: 'Authenticated' })
-      ]
-   });
-   this.props.navigation.dispatch(resetAction);
+  //   const resetAction = NavigationActions.reset({
+  //     index: 0,
+  //     stateName: 'MainAppNav',
+  //     actions: [
+  //       NavigationActions.navigate({ routeName: 'Authenticated' })
+  //     ]
+  //  });
+  //  this.props.navigation.dispatch(resetAction);
   }
 
 

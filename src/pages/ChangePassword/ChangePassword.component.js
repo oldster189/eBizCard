@@ -1,29 +1,29 @@
 import React, { Component } from 'react';
 import { View, Text, } from 'react-native';
 
-import styles from './TermOfUse.style';
+import styles from './ChangePassword.style';
 import theme from '../../styles/theme.style';
 
-class TermOfUseScreen extends Component {
+class ChangePasswordScreen extends Component {
   
   render() {
     const { containerStyle } = styles;
     return (
       <View style={containerStyle}>
-        <Text> TermOfUseScreen </Text>
+        <Text> ChangePasswordScreen </Text>
       </View>
     );
   }
 }
 
-TermOfUseScreen.navigationOptions = {
-  title: 'Term of use',
+ChangePasswordScreen.navigationOptions = {
+  title: 'Change password',
   headerStyle: {
     backgroundColor: theme.NAV_BAR_COLOR,
   },
   headerTitleStyle: { color: 'white' },
   headerBackTitle: ' ',
-  headerTintColor: '#FFF'
+  headerTintColor: '#FFF' 
 }
 
-export default TermOfUseScreen;
+export default ChangePasswordScreen;

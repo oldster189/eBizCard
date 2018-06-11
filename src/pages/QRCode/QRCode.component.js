@@ -75,6 +75,7 @@ QRCodeScreen.navigationOptions = ({ navigation }) => {
     },
     headerTitleStyle: { color: 'white' },
     headerBackTitle: ' ',
+    headerTintColor: '#FFF',
     headerRight: (
       <TouchableOpacity
         onPress={() => navigation.navigate({ routeName: 'QRCode' })}
