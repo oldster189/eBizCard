@@ -1,5 +1,6 @@
 import { AsyncStorage } from 'react-native';
 import axios from 'axios';
+import { StackActions, NavigationActions } from 'react-navigation';
 import {
     HOME_GET_PROFILE_DEFAULT_SUCCESS,
     HOME_GET_PROFILE_DEFAULT_FAIL,
@@ -39,10 +40,10 @@ export const checkAuth = () => async dispatch => {
             const config = { headers: { 'x-access-token': userToken } }
             const response = await axios.get(url, config)
 
-            const profileDataRaw = JSON.stringify(response.data.data[0]) 
+            const profileDataRaw = JSON.stringify(response.data.data[0])
             await AsyncStorage.setItem(PROFILE_DATA, profileDataRaw)
             console.log('Get profile default successfully!!')
-            
+
             return dispatch({
                 type: HOME_GET_PROFILE_DEFAULT_SUCCESS,
                 payload: {
@@ -53,7 +54,12 @@ export const checkAuth = () => async dispatch => {
 
 
         // Go to page LoginScreen.
-        return dispatch({ type: HOME_RESET_TO_LOGIN_SCREEN })
+        const resetAction = StackActions.reset({
+            index: 0,
+            actions: [NavigationActions.navigate({ routeName: 'Login' })],
+        });
+        dispatch(resetAction)
+        // return dispatch({ type: HOME_RESET_TO_LOGIN_SCREEN })
     } catch (error) {
         // Error common.
         console.log(JSON.stringify(error))

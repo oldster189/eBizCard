@@ -20,8 +20,7 @@ const loginAction = router.getActionForPathAndParams('Login');
 const tempNavState = router.getStateForAction(loginAction);
 
 const initialNavState = router.getStateForAction(
-  mainAction,
-  tempNavState
+  mainAction 
 );
 
 export default (state = initialNavState, action) => {

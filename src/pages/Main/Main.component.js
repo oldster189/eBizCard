@@ -20,29 +20,9 @@ import { BASE_URL_IMAGE, USER_TYPE_FACEBOOK, USER_TYPE_NORMAL, PROFILE_DATA } fr
 class MainScreen extends Component {
 
   componentDidMount() {
-    this.props.checkAuth()
-    AsyncStorage.getItem(PROFILE_DATA)
-      .then(value => {
-        const profileData = JSON.parse(value)  
-        this.props.navigation.setParams({ title: profileData.info.profile_name }); 
-      })
-      .catch(err => {
-        console.log(err)
-      })
+    this.props.checkAuth() 
   }
-
-  confirmSkipPage() {
-    Alert.alert(
-      '',
-      'You do not select photo, Are you sure to skip ?',
-      [
-        { text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel' },
-        { text: 'OK', onPress: this.changeHomeScreen },
-      ],
-      { cancelable: false }
-    )
-  }
-
+  
   renderProfileImage = () => {
     const {
       backgroundPlaceholderProfileImageStyle,

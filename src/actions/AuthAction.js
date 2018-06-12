@@ -401,11 +401,12 @@ const registerStartLoading = (dispatch) => {
 }
 
 export const forgetPasswordScreen = () => dispatch => {
-    const resetAction = StackActions.reset({
-        index: 0,
-        actions: [NavigationActions.navigate({ routeName: 'ForgetPassword' })],
-    });
-    dispatch(resetAction)
+    dispatch({ type: FORGET_PASSWORD_SCREEN })
+    // const resetAction = StackActions.reset({
+    //     index: 0,
+    //     actions: [NavigationActions.navigate({ routeName: 'ForgetPassword' })],
+    // });
+    // dispatch(resetAction)
 }
 
 export const loginScreen = () => dispatch => {

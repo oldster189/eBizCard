@@ -56,7 +56,7 @@ class QRCodeScreen extends Component {
                   padding: 12
                 }}
               >
-
+                
               </View>
             </View>
             {/* End QRCode layout group  */}

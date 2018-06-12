@@ -93,8 +93,7 @@ const Tabs = createBottomTabNavigator({
 )
 
 Tabs.navigationOptions = ({ navigation }) => {
-  const { routeName, params } = navigation.state.routes[navigation.state.index];
-  console.log(navigation)
+  const { routeName } = navigation.state.routes[navigation.state.index]; 
   if (routeName === 'MainTab') {
     return {
       title: 'Home',
@@ -104,8 +103,8 @@ Tabs.navigationOptions = ({ navigation }) => {
       headerTitleStyle: { color: 'white' },
       headerBackTitle: ' ',
       headerRight: (
-        <TouchableOpacity
-          onPress={() => console.log(params.title)}
+        <TouchableOpacity 
+        onPress={() => navigation.navigate({ routeName: 'QRCode' })}
           style={{ padding: 10 }}
         >
           <Image
